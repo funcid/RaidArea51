@@ -20,8 +20,6 @@ public class NarutoRunner implements ICharacter {
     private final Gun            GUN;
 
     public NarutoRunner() {
-        CharacterUtil.getCharacters().put(NAME, this);
-
         ItemMeta itemMeta = INFO.getItemMeta();
         itemMeta.setDisplayName("§fИнформация о персонаже: §b§lФанат Нарутоо");
         itemMeta.setLore(Arrays.asList(

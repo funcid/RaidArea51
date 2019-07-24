@@ -2,16 +2,21 @@ package ru.func.raidarea.listener;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
-import org.bukkit.entity.Enderman;
-import org.bukkit.entity.Player;
+import org.bukkit.block.Block;
+import org.bukkit.entity.*;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
+import org.bukkit.event.block.BlockExplodeEvent;
+import org.bukkit.event.block.BlockPlaceEvent;
+import org.bukkit.event.entity.EntityExplodeEvent;
+import org.bukkit.event.player.PlayerFishEvent;
 import org.bukkit.event.player.PlayerInteractAtEntityEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
+import org.bukkit.util.Vector;
 import ru.func.raidarea.RaidArea;
 import ru.func.raidarea.RaidStatus;
 import ru.func.raidarea.RaidTimeStatus;
@@ -64,15 +69,8 @@ public class InteractListener implements Listener {
                                 return;
                             }
                             break;
-                        case "§f§l[ §7Невидимость тела §f§l] | 3000 §e§lETH":
-                            if (raidPlayer.getMoney() >= 3000) raidPlayer.setMoney(raidPlayer.getMoney() - 3000);
-                            else {
-                                e.setCancelled(true);
-                                return;
-                            }
-                            break;
                     }
-                    Bukkit.getScheduler().runTaskLaterAsynchronously(PLUGIN, () -> PLUGIN.givePotions(player), 1);
+                    Bukkit.getScheduler().runTaskLaterAsynchronously(PLUGIN, () -> PLUGIN.giveItems(player), 1);
                 }
             }
         }
@@ -91,6 +89,56 @@ public class InteractListener implements Listener {
                         player.addPotionEffect(BLINDNESS);
                 }
             }
+        }
+    }
+
+    @EventHandler
+    public void onBlockPlace(BlockPlaceEvent e) {
+        e.setCancelled(true);
+
+        if (e.getBlock().getType().equals(Material.FENCE)) {
+            RaidPlayer raidPlayer = (RaidPlayer) PLUGIN.getPlayers().get(e.getPlayer().getUniqueId());
+            if (raidPlayer.getMoney() > 50) {
+                raidPlayer.setMoney(raidPlayer.getMoney() - 50);
+                PLUGIN.giveItems(e.getPlayer());
+                e.setCancelled(false);
+            }
+        } else if (e.getBlock().getType().equals(Material.TNT)) {
+            RaidPlayer raidPlayer = (RaidPlayer) PLUGIN.getPlayers().get(e.getPlayer().getUniqueId());
+            if (raidPlayer.getMoney() > 500) {
+                raidPlayer.setMoney(raidPlayer.getMoney() - 500);
+                TNTPrimed tntPrimed = (TNTPrimed) e.getBlock().getWorld().spawnEntity(e.getBlockPlaced().getLocation(), EntityType.PRIMED_TNT);
+                tntPrimed.setFuseTicks(80);
+                Bukkit.getScheduler().runTaskLater(PLUGIN, () -> e.getBlock().getWorld().createExplosion(e.getBlockPlaced().getLocation(), 2), 75);
+                PLUGIN.giveItems(e.getPlayer());
+            }
+        }
+    }
+
+    @EventHandler
+    public void onHook(PlayerFishEvent e) {
+        if (e.getHook().isOnGround())
+            e.getPlayer().setVelocity(e.getHook().getLocation().toVector().subtract(e.getPlayer().getLocation().toVector()).setY(-1));
+    }
+
+    @EventHandler
+    public void explodeEntityEvent(EntityExplodeEvent e) {
+        for (Block block : e.blockList()) {
+            FallingBlock fallingBlock = block.getWorld().spawnFallingBlock(block.getLocation(), block.getType(), (byte) 0);
+            fallingBlock.setDropItem(false);
+            fallingBlock.setVelocity(e.blockList().get(0).getLocation().toVector().subtract(block.getLocation().toVector()));
+
+            block.setType(Material.AIR);
+        }
+    }
+    @EventHandler
+    public void explodeBlockEvent(BlockExplodeEvent e) {
+        for (Block block : e.blockList()) {
+            FallingBlock fallingBlock = block.getWorld().spawnFallingBlock(block.getLocation(), block.getType(), (byte) 0);
+            fallingBlock.setDropItem(false);
+            fallingBlock.setVelocity(e.blockList().get(0).getLocation().toVector().subtract(block.getLocation().toVector()));
+
+            block.setType(Material.AIR);
         }
     }
 }

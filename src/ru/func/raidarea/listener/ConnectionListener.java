@@ -3,7 +3,6 @@ package ru.func.raidarea.listener;
 import net.minecraft.server.v1_12_R1.*;
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
-import org.bukkit.Material;
 import org.bukkit.craftbukkit.v1_12_R1.entity.CraftPlayer;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -18,7 +17,6 @@ import ru.func.raidarea.character.NarutoRunner;
 import ru.func.raidarea.player.IPlayer;
 import ru.func.raidarea.player.PlayerBuilder;
 import ru.func.raidarea.player.RaidPlayer;
-
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -33,9 +31,7 @@ public class ConnectionListener implements Listener {
     @EventHandler
     public void onPlayerJoin(final PlayerJoinEvent e) {
         e.setJoinMessage(null);
-        int level = loadStats(e.getPlayer()).getLevel() + 20;
-        e.getPlayer().setMaxHealth(level);
-        e.getPlayer().setHealth(level);
+        loadStats(e.getPlayer());
         if (!PLUGIN.getTimeStatus().equals(RaidTimeStatus.GAME))
             e.getPlayer().setGameMode(GameMode.SURVIVAL);
     }
@@ -47,45 +43,34 @@ public class ConnectionListener implements Listener {
         saveStats(e.getPlayer(), 0);
     }
 
-    public IPlayer loadStats(final Player player) {
+    public void loadStats(final Player player) {
         if (PLUGIN.getTimeStatus().equals(RaidTimeStatus.WAITING) || PLUGIN.getTimeStatus().equals(RaidTimeStatus.STARTING)) {
             try {
                 ResultSet resultSet = PLUGIN.getStatement().executeQuery("SELECT * FROM `RaidPlayers` WHERE uuid = '" + player.getUniqueId() + "';");
                 if (resultSet.next()) {
-                    IPlayer iPlayer = new PlayerBuilder()
-                            .clef(resultSet.getInt("clef"))
+                    PLUGIN.getPlayers().put(player.getUniqueId(), new PlayerBuilder()
                             .kills(resultSet.getInt("kills"))
                             .money(resultSet.getInt("money"))
                             .wins(resultSet.getInt("wins"))
-                            .level(resultSet.getInt("level"))
-                            .characters(resultSet.getString("characters").split(","))
                             .currentCharacter(new NarutoRunner())
                             .defend(false)
-                            .build();
-                    PLUGIN.getPlayers().put(player.getUniqueId(), iPlayer);
+                            .build());
                     enableScoreboard(player);
-                    return iPlayer;
                 } else {
                     //Создает новый профиль в базе данных
                     // uuid TEXT, money INT, characters TEXT, clef INT, kills INT, wins INT
-                    PLUGIN.getStatement().executeUpdate("INSERT INTO `RaidPlayers` (uuid, money, characters, clef, level, kills, wins) VALUES(" +
+                    PLUGIN.getStatement().executeUpdate("INSERT INTO `RaidPlayers` (uuid, money, kills, wins) VALUES(" +
                             "'" + player.getUniqueId() + "', " +
-                            "0, " +
-                            "'Naruto Runner,'," +
-                            "0, " +
                             "0, " +
                             "0, " +
                             "0);");
-                    return loadStats(player);
+                    loadStats(player);
                 }
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+            } catch (Exception e) { }
         } else {
             player.setGameMode(GameMode.SPECTATOR);
             player.teleport(PLUGIN.getRaidSpawn());
         }
-        return null;
     }
 
     public void saveStats(final Player player, int i) {
@@ -96,9 +81,6 @@ public class ConnectionListener implements Listener {
                 if (resultSet.next())
                     PLUGIN.getStatement().executeUpdate("UPDATE `RaidPlayers` SET " +
                             "money = '" + raidPlayer.getMoney() + "', " +
-                            "characters = '" + raidPlayer.getStringAllowCharacters() + "', " +
-                            "clef = '" + raidPlayer.getClef() + "', " +
-                            "level = '" + raidPlayer.getLevel() + "', " +
                             "kills = '" + raidPlayer.getKills() + "', " +
                             "wins = '" + raidPlayer.getWins() + "' " +
                             "WHERE uuid = '" + player.getUniqueId() + "';");
@@ -156,7 +138,7 @@ public class ConnectionListener implements Listener {
                 playerConnection.sendPacket(createObj);
                 playerConnection.sendPacket(display);
 
-                ScoreboardScore characterScore = new ScoreboardScore(scoreboard, objective, "§lПерсонаж: §6" + raidPlayer.getCurrentCharacter().getName());
+                ScoreboardScore characterScore = new ScoreboardScore(scoreboard, objective, "§lПерсонаж: §6" + (PLUGIN.getTimeStatus().equals(RaidTimeStatus.GAME) ? raidPlayer.getCurrentCharacter().getName() : "Не подобран"));
                 characterScore.setScore(9);
                 ScoreboardScore moneyScore = new ScoreboardScore(scoreboard, objective, "§lETH: §e§l" + raidPlayer.getMoney());
                 moneyScore.setScore(8);

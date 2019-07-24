@@ -18,8 +18,6 @@ public class Soldier implements ICharacter {
 
 
     public Soldier() {
-        CharacterUtil.getCharacters().put(NAME, this);
-
         ItemMeta infoItemMeta = INFO.getItemMeta();
         infoItemMeta.setDisplayName("§fИнформация о персонаже: §b§lСолдат Армии США");
         infoItemMeta.setLore(Arrays.asList(

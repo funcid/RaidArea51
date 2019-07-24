@@ -27,7 +27,7 @@ public class RespawnListener implements Listener {
         player.setGameMode(GameMode.SPECTATOR);
         Bukkit.getScheduler().runTaskLater(PLUGIN, () -> {
             raidPlayer.getCurrentCharacter().giveAmmunition(player);
-            PLUGIN.givePotions(player);
+            PLUGIN.giveItems(player);
             player.setGameMode(GameMode.SURVIVAL);
             if (raidPlayer.isDefend())
                 player.teleport(PLUGIN.getDefSpawn());

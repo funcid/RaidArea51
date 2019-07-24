@@ -1,5 +1,6 @@
 package ru.func.raidarea.listener;
 
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.Sound;
@@ -53,6 +54,8 @@ public class DamageListener implements Listener {
     public void onSomeDamage(final EntityDamageEvent e) {
         if (e.getEntity() instanceof Player)
             pullDown((Player) e.getEntity());
+        if (e.getCause().equals(EntityDamageEvent.DamageCause.FALL))
+            e.setCancelled(true);
     }
 
     @EventHandler
@@ -70,8 +73,9 @@ public class DamageListener implements Listener {
 
     @EventHandler
     public void onBlockFall(final EntityChangeBlockEvent e) {
-        if ((e.getEntityType() == EntityType.FALLING_BLOCK))
-            explode(e.getBlock().getLocation());
+        if ((e.getEntityType().equals(EntityType.FALLING_BLOCK)))
+            if (e.getTo().equals(Material.IRON_BLOCK))
+                explode(e.getBlock().getLocation());
         e.setCancelled(true);
     }
 
@@ -91,6 +95,6 @@ public class DamageListener implements Listener {
     }
 
     private void explode(final Location location) {
-        location.getWorld().createExplosion(location, 2);
+        location.getWorld().createExplosion(location, 3);
     }
 }

@@ -1,15 +1,13 @@
 package ru.func.raidarea;
 
 import com.google.common.collect.Maps;
-import org.bukkit.Bukkit;
-import org.bukkit.Difficulty;
-import org.bukkit.Location;
-import org.bukkit.World;
+import org.bukkit.*;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.*;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.potion.Potion;
 import org.bukkit.potion.PotionType;
@@ -59,19 +57,18 @@ public class RaidArea extends JavaPlugin {
     );
 
     private ICharacter[] characters = {
-            //new ArnoldSchwarzenegger(),
-            //new ElonMusk(),
-            //new NarutoRunner(),
-            //new NarutoRunner(),
-            //new NarutoRunner(),
-            new ArnoldSchwarzenegger()
+            new ArnoldSchwarzenegger(),
+            new ElonMusk(),
+            new KeanuReeves(),
+            new NarutoRunner()
     };
 
     private boolean STATION = true;
 
-    private ItemStack      HEAL;
-    private ItemStack     SPEED;
-    private ItemStack INVISIBLE;
+    private ItemStack     TNT;
+    private ItemStack    HEAL;
+    private ItemStack   SPEED;
+    private ItemStack BARRIER;
 
     @Override
     public void onEnable() {
@@ -82,7 +79,7 @@ public class RaidArea extends JavaPlugin {
         world.setMonsterSpawnLimit(0);
         world.setAnimalSpawnLimit(0);
         world.setAutoSave(false);
-        world.setTime(15000);
+        world.setTime(12000);
 
         registerConfig();
 
@@ -95,9 +92,6 @@ public class RaidArea extends JavaPlugin {
                             "id INT NOT NULL AUTO_INCREMENT PRIMARY KEY, " +
                             "uuid TEXT, " +
                             "money INT, " +
-                            "characters TEXT, " +
-                            "clef INT, " +
-                            "level INT, " +
                             "kills INT, " +
                             "wins INT" +
                     ");"
@@ -117,7 +111,7 @@ public class RaidArea extends JavaPlugin {
         for (Player player : Bukkit.getOnlinePlayers())
             connectionListener.loadStats(player);
 
-        /*      POTIONS ************** */
+        /*      ITEMS *************** */
         HEAL = new Potion(PotionType.INSTANT_HEAL, 1, true).toItemStack(1);
         ItemMeta meta = HEAL.getItemMeta();
         meta.setDisplayName("§f§l[ §cВосстановления здоровья §f§l] | 100 §e§lETH");
@@ -128,10 +122,15 @@ public class RaidArea extends JavaPlugin {
         meta.setDisplayName("§f§l[ §bУскорение тела §f§l] | 500 §e§lETH");
         SPEED.setItemMeta(meta);
 
-        INVISIBLE = new Potion(PotionType.INVISIBILITY, 1, true).toItemStack(1);
-        meta = INVISIBLE.getItemMeta();
-        meta.setDisplayName("§f§l[ §7Невидимость тела §f§l] | 3000 §e§lETH");
-        INVISIBLE.setItemMeta(meta);
+        BARRIER = new ItemStack(Material.FENCE);
+        meta = BARRIER.getItemMeta();
+        meta.setDisplayName("§f§l[ §7Преграда §f§l] | 50 §e§lETH");
+        BARRIER.setItemMeta(meta);
+
+        TNT = new ItemStack(Material.TNT);
+        meta = TNT.getItemMeta();
+        meta.setDisplayName("§f§l[ §7Взрывчатка §f§l] | 500 §e§lETH");
+        TNT.setItemMeta(meta);
         /*      END ******************* */
 
         raidSpawn = getLocationByPath("raidLocation");
@@ -149,7 +148,7 @@ public class RaidArea extends JavaPlugin {
                             return;
                         TIME++;
                         if (TIME == RaidTimeStatus.WAITING.getTime()) {
-                            Bukkit.broadcastMessage("Игра начинается!");
+                            Bukkit.broadcastMessage("Игра начанается!");
                             TIME_STATUS = RaidTimeStatus.STARTING;
                         }
                         break;
@@ -264,14 +263,13 @@ public class RaidArea extends JavaPlugin {
 
         Enderman enderman = (Enderman) Bukkit.getWorld(SETTINGS.getString("world")).spawnEntity(getLocationByPath("endermanLocation"), EntityType.ENDERMAN);
         enderman.setAI(false);
-        enderman.setCustomName("§lПришелец Зема");
+        enderman.setCustomName("§lПришелец Артемилиан");
         enderman.setCustomNameVisible(true);
         enderman.setGravity(true);
 
         for (Player player : Bukkit.getOnlinePlayers()) {
             RaidPlayer raidPlayer = (RaidPlayer) players.get(player.getUniqueId());
             player.getInventory().clear();
-            givePotions(player);
 
             Location location;
             if (characters.length > 0) {
@@ -289,13 +287,14 @@ public class RaidArea extends JavaPlugin {
             player.teleport(location);
 
             raidPlayer.getCurrentCharacter().giveAmmunition(player);
+            giveItems(player);
         }
     }
 
-    public void givePotions(Player player) {
+    public void giveItems(Player player) {
         Inventory inventory = player.getInventory();
-        inventory.setItem(3, HEAL);
-        inventory.setItem(4, SPEED);
-        inventory.setItem(5, INVISIBLE);
+        inventory.setItem(4, HEAL);
+        inventory.setItem(5, SPEED);
+        inventory.setItem(6, players.get(player.getUniqueId()).isDefend() ? BARRIER : TNT);
     }
 }

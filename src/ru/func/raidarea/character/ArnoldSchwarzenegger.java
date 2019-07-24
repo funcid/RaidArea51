@@ -18,8 +18,6 @@ public class ArnoldSchwarzenegger implements ICharacter {
     private final Gun       GUN;
 
     public ArnoldSchwarzenegger() {
-        CharacterUtil.getCharacters().put(NAME, this);
-
         ItemMeta itemMeta = INFO.getItemMeta();
         itemMeta.setDisplayName("§fИнформация о персонаже: §b§lАрнольд Шварценеггер");
         itemMeta.setLore(Arrays.asList(

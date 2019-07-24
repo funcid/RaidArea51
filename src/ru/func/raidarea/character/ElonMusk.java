@@ -11,14 +11,12 @@ import java.util.Arrays;
 
 public class ElonMusk implements ICharacter {
 
-    private final String    NAME  = "Elon Musk";
-    private final ItemStack INFO  = new ItemStack(Material.PAPER);
+    private final String     NAME = "Elon Musk";
+    private final ItemStack  INFO = new ItemStack(Material.PAPER);
     private final ItemStack CLIPS = new ItemStack(Material.ARROW, 8);
-    private final Gun       GUN;
+    private final Gun         GUN;
 
     public ElonMusk() {
-        CharacterUtil.getCharacters().put(NAME, this);
-
         ItemMeta itemMeta = INFO.getItemMeta();
         itemMeta.setDisplayName("§fИнформация о персонаже: §b§lИлон Маск");
         itemMeta.setLore(Arrays.asList(
@@ -33,10 +31,10 @@ public class ElonMusk implements ICharacter {
         GUN = new GunBuilder()
                 .material(Material.GOLD_HOE)
                 .delay(5)
-                .bullets(10)
-                .damage(10)
+                .bullets(5)
+                .damage(8)
                 .clip(Material.ARROW)
-                .name("§e§lЭлектроСнайперка §b[ §f§l%d §b]")
+                .name("§e§lАвтоЭлектроСнайперка §b[ §f§l%d §b]")
                 .lore(Arrays.asList(
                         "",
                         "§fОчень мощная штука...",
@@ -63,12 +61,12 @@ public class ElonMusk implements ICharacter {
     @Override
     public void giveAmmunition(final Player currentPlayer) {
         currentPlayer.getInventory().setItem(0, GUN.getItemStack());
-        currentPlayer.getInventory().setItem(1, CLIPS);
+        currentPlayer.getInventory().setItem(2, CLIPS);
         currentPlayer.getInventory().setItem(8, INFO);
     }
 
     @Override
     public Gun getGunWeapon() {
-        return null;
+        return GUN;
     }
 }
