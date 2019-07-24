@@ -1,0 +1,14 @@
+settings:
+  world: 'world'
+  minPlayers: 1
+  defenders: 2
+  raidLocation: '240 92 200'
+  defLocation: '250 92 200'
+  toggleLocation: '219 92 203'
+sqlSettings:
+  user: 'root'
+  password: ''
+  host: 'localhost'
+  port: 3306
+  database: 'data'
+

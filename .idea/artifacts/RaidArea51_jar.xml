@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" build-on-make="true" name="RaidArea51:jar">
+    <output-path>$USER_HOME$/Desktop/Develop/Other/Server/plugins</output-path>
+    <root id="archive" name="RaidArea51.jar">
+      <element id="module-output" name="RaidArea51" />
+    </root>
+  </artifact>
+</component>
