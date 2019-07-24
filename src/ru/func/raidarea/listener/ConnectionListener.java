@@ -14,7 +14,6 @@ import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.scheduler.BukkitRunnable;
 import ru.func.raidarea.RaidArea;
 import ru.func.raidarea.RaidTimeStatus;
-import ru.func.raidarea.character.ICharacter;
 import ru.func.raidarea.character.NarutoRunner;
 import ru.func.raidarea.player.IPlayer;
 import ru.func.raidarea.player.PlayerBuilder;
@@ -27,15 +26,14 @@ public class ConnectionListener implements Listener {
 
     private final RaidArea PLUGIN;
 
-    public ConnectionListener(RaidArea plugin) {
+    public ConnectionListener(final RaidArea plugin) {
         PLUGIN = plugin;
     }
 
     @EventHandler
-    public void onPlayerJoin(PlayerJoinEvent e) {
+    public void onPlayerJoin(final PlayerJoinEvent e) {
         e.setJoinMessage(null);
         int level = loadStats(e.getPlayer()).getLevel() + 20;
-        enableScoreboard(e.getPlayer());
         e.getPlayer().setMaxHealth(level);
         e.getPlayer().setHealth(level);
         if (!PLUGIN.getTimeStatus().equals(RaidTimeStatus.GAME))
@@ -43,12 +41,13 @@ public class ConnectionListener implements Listener {
     }
 
     @EventHandler
-    public void onPlayerQuit(PlayerQuitEvent e) {
+    public void onPlayerQuit(final PlayerQuitEvent e) {
+        e.getPlayer().getInventory().clear();
         e.setQuitMessage(null);
         saveStats(e.getPlayer(), 0);
     }
 
-    public IPlayer loadStats(Player player) {
+    public IPlayer loadStats(final Player player) {
         if (PLUGIN.getTimeStatus().equals(RaidTimeStatus.WAITING) || PLUGIN.getTimeStatus().equals(RaidTimeStatus.STARTING)) {
             try {
                 ResultSet resultSet = PLUGIN.getStatement().executeQuery("SELECT * FROM `RaidPlayers` WHERE uuid = '" + player.getUniqueId() + "';");
@@ -64,6 +63,7 @@ public class ConnectionListener implements Listener {
                             .defend(false)
                             .build();
                     PLUGIN.getPlayers().put(player.getUniqueId(), iPlayer);
+                    enableScoreboard(player);
                     return iPlayer;
                 } else {
                     //Создает новый профиль в базе данных
@@ -88,7 +88,7 @@ public class ConnectionListener implements Listener {
         return null;
     }
 
-    private void saveStats(Player player, int i) {
+    public void saveStats(final Player player, int i) {
         if (PLUGIN.getPlayers().containsKey(player.getUniqueId())) {
             RaidPlayer raidPlayer = (RaidPlayer) PLUGIN.getPlayers().get(player.getUniqueId());
             try {
@@ -111,7 +111,7 @@ public class ConnectionListener implements Listener {
         }
     }
 
-    private void enableScoreboard(Player player) {
+    private void enableScoreboard(final Player player) {
         /* С самного начала этот код понимали я и Бог,
         прошло 10 дней, отсался только Бог
         (лан шучу, это просто)

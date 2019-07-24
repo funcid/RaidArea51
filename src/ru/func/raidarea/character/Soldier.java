@@ -11,10 +11,10 @@ import java.util.Arrays;
 
 public class Soldier implements ICharacter {
 
-    private final String NAME = "American Soldier";
-    private final Gun GUN;
-    private final ItemStack INFO = new ItemStack(Material.PAPER);
+    private final String     NAME = "American Soldier";
+    private final ItemStack  INFO = new ItemStack(Material.PAPER);
     private final ItemStack CLIPS = new ItemStack(Material.GLOWSTONE_DUST, 14);
+    private final Gun         GUN;
 
 
     public Soldier() {
@@ -53,7 +53,7 @@ public class Soldier implements ICharacter {
     }
 
     @Override
-    public void usePerk(Player user) {
+    public void usePerk(final Player user) {
 
     }
 
@@ -63,7 +63,7 @@ public class Soldier implements ICharacter {
     }
 
     @Override
-    public void giveAmmunition(Player currentPlayer) {
+    public void giveAmmunition(final Player currentPlayer) {
         currentPlayer.getInventory().setItem(0, GUN.getItemStack());
         currentPlayer.getInventory().setItem(1, CLIPS);
         currentPlayer.getInventory().setItem(8, INFO);

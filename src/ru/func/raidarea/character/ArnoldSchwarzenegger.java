@@ -9,14 +9,13 @@ import ru.func.raidarea.weapon.Gun;
 import ru.func.raidarea.weapon.GunBuilder;
 
 import java.util.Arrays;
-import java.util.concurrent.TimeUnit;
 
 public class ArnoldSchwarzenegger implements ICharacter {
 
-    private final String NAME = "Arnold Schwarzenegger";
-    private final ItemStack INFO = new ItemStack(Material.PAPER);
+    private final String    NAME  = "Arnold Schwarzenegger";
+    private final ItemStack INFO  = new ItemStack(Material.PAPER);
     private final ItemStack CLIPS = new ItemStack(Material.BLAZE_ROD, 12);
-    private final Gun GUN;
+    private final Gun       GUN;
 
     public ArnoldSchwarzenegger() {
         CharacterUtil.getCharacters().put(NAME, this);
@@ -50,12 +49,12 @@ public class ArnoldSchwarzenegger implements ICharacter {
     }
 
     @Override
-    public void usePerk(Player user) {
+    public void usePerk(final Player user) {
         if (CharacterDelayUtil.hasCountdown(user.getUniqueId()))
             return;
         FallingBlock fallingBlock = user.getWorld().spawnFallingBlock(user.getLocation().subtract(0, -1, 0), Material.IRON_BLOCK, (byte) 0);
         fallingBlock.setVelocity(user.getEyeLocation().getDirection().multiply(2));
-        CharacterDelayUtil.setCountdown(user.getUniqueId(), 8, TimeUnit.SECONDS);
+        CharacterDelayUtil.setCountdown(user.getUniqueId(), 8);
     }
 
     @Override
@@ -64,7 +63,7 @@ public class ArnoldSchwarzenegger implements ICharacter {
     }
 
     @Override
-    public void giveAmmunition(Player currentPlayer) {
+    public void giveAmmunition(final Player currentPlayer) {
         currentPlayer.getInventory().setItem(0, GUN.getItemStack());
         currentPlayer.getInventory().setItem(1, CLIPS);
         currentPlayer.getInventory().setItem(8, INFO);

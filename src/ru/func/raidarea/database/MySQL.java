@@ -7,13 +7,13 @@ import java.sql.SQLException;
 public class MySQL extends Database {
 
     //Класс хранящий инструменты для работы с MySql
-    private final String user;
+    private final String     user;
     private final String password;
-    private final String host;
+    private final String     host;
     private final String database;
-    private final int port;
+    private final int        port;
 
-    public MySQL(String user, String password, String host, String database, int port) {
+    public MySQL(final String user, final String password, final String host, final String database, final int port) {
         this.user = user;
         this.password = password;
         this.host = host;

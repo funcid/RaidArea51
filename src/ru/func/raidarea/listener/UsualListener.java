@@ -3,6 +3,7 @@ package ru.func.raidarea.listener;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
+import org.bukkit.event.block.BlockExplodeEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.entity.EntityTeleportEvent;
 import org.bukkit.event.entity.FoodLevelChangeEvent;
@@ -32,6 +33,11 @@ public class UsualListener implements Listener {
 
     @EventHandler
     public void noHungry(FoodLevelChangeEvent e) {
+        e.setCancelled(true);
+    }
+
+    @EventHandler
+    public void onBlockExplosion(BlockExplodeEvent e) {
         e.setCancelled(true);
     }
 }

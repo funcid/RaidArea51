@@ -13,11 +13,11 @@ import java.util.Arrays;
 
 public class NarutoRunner implements ICharacter {
 
-    private final String NAME = "Naruto Runner";
-    private final ItemStack INFO = new ItemStack(Material.PAPER);
+    private final String        NAME = "Naruto Runner";
+    private final ItemStack     INFO = new ItemStack(Material.PAPER);
     private final PotionEffect SPEED = new PotionEffect(PotionEffectType.SPEED, 99999, 20);
-    private final ItemStack CLIPS = new ItemStack(Material.FIREWORK_CHARGE, 16);
-    private final Gun GUN;
+    private final ItemStack    CLIPS = new ItemStack(Material.FIREWORK_CHARGE, 16);
+    private final Gun            GUN;
 
     public NarutoRunner() {
         CharacterUtil.getCharacters().put(NAME, this);
@@ -54,7 +54,7 @@ public class NarutoRunner implements ICharacter {
     }
 
     @Override
-    public void usePerk(Player user) {
+    public void usePerk(final Player user) {
         if (user.isSneaking()) user.removePotionEffect(PotionEffectType.SPEED);
         else user.addPotionEffect(SPEED);
     }
@@ -65,7 +65,7 @@ public class NarutoRunner implements ICharacter {
     }
 
     @Override
-    public void giveAmmunition(Player currentPlayer) {
+    public void giveAmmunition(final Player currentPlayer) {
         currentPlayer.getInventory().setItem(0, GUN.getItemStack());
         currentPlayer.getInventory().setItem(1, CLIPS);
         currentPlayer.getInventory().setItem(8, INFO);

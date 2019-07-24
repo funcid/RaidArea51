@@ -8,7 +8,7 @@ public enum RaidTimeStatus {
     ENDING(3010, "Завершение"),
     ;
 
-    private int time;
+    private int    time;
     private String name;
 
     RaidTimeStatus(final int time, final String name) {

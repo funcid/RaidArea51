@@ -1,5 +1,7 @@
 package ru.func.raidarea.listener;
 
+import org.bukkit.Location;
+import org.bukkit.Material;
 import org.bukkit.Sound;
 import org.bukkit.entity.Enderman;
 import org.bukkit.entity.EntityType;
@@ -7,7 +9,6 @@ import org.bukkit.entity.Player;
 import org.bukkit.entity.Snowball;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.event.block.*;
 import org.bukkit.event.entity.*;
 import org.bukkit.potion.PotionEffectType;
 import ru.func.raidarea.RaidArea;
@@ -18,12 +19,12 @@ public class DamageListener implements Listener {
 
     private final RaidArea PLUGIN;
 
-    public DamageListener(RaidArea plugin) {
+    public DamageListener(final RaidArea plugin) {
         PLUGIN = plugin;
     }
 
     @EventHandler
-    public void onDamage(EntityDamageByEntityEvent e) {
+    public void onDamage(final EntityDamageByEntityEvent e) {
         if (!PLUGIN.getTimeStatus().equals(RaidTimeStatus.GAME)) {
             e.setCancelled(true);
             return;
@@ -32,6 +33,10 @@ public class DamageListener implements Listener {
             e.setCancelled(true);
             return;
         }
+
+        if (e.getEntity() instanceof Player)
+            pullDown((Player) e.getEntity());
+
         if (e.getDamager() instanceof Snowball && e.getEntity() instanceof Player) {
             Player player = ((Player) ((Snowball) e.getDamager()).getShooter());
             RaidPlayer raidPlayer = (RaidPlayer) PLUGIN.getPlayers().get(player.getUniqueId());
@@ -40,15 +45,18 @@ public class DamageListener implements Listener {
                 raidPlayer.setMoney(raidPlayer.getMoney() + 5);
                 player.sendMessage("§l+ 5 ETH §e(За точный выстрел)");
                 player.playSound(player.getLocation(), Sound.ENTITY_ARROW_HIT_PLAYER, 1, 1);
-                if (e.getEntity().getPassengers().size() > 0) {
-                    e.getEntity().removePassenger(e.getEntity().getPassengers().get(0));
-                    ((Player) e.getEntity()).removePotionEffect(PotionEffectType.SLOW);
-                }
             } else e.setCancelled(true);
         }
     }
+
     @EventHandler
-    public void onDeath(PlayerDeathEvent e) {
+    public void onSomeDamage(final EntityDamageEvent e) {
+        if (e.getEntity() instanceof Player)
+            pullDown((Player) e.getEntity());
+    }
+
+    @EventHandler
+    public void onDeath(final PlayerDeathEvent e) {
         e.setDeathMessage(null);
         e.getDrops().clear();
         if (e.getEntity().getKiller() != null) {
@@ -59,15 +67,30 @@ public class DamageListener implements Listener {
             player.playSound(player.getLocation(), Sound.ENTITY_ARROW_HIT_PLAYER, 1, 1);
         }
     }
+
     @EventHandler
-    public void onBlockFall(EntityChangeBlockEvent e) {
-        if ((e.getEntityType() == EntityType.FALLING_BLOCK)) {
-            e.getBlock().getWorld().createExplosion(e.getBlock().getLocation(), 2);
-            e.setCancelled(true);
+    public void onBlockFall(final EntityChangeBlockEvent e) {
+        if ((e.getEntityType() == EntityType.FALLING_BLOCK))
+            explode(e.getBlock().getLocation());
+        e.setCancelled(true);
+    }
+
+    @EventHandler
+    public void onItemSpawn(final ItemSpawnEvent e) {
+        if (e.getEntity().getItemStack().getType().equals(Material.IRON_BLOCK))
+            explode(e.getLocation());
+        e.setCancelled(true);
+    }
+
+    private void pullDown(final Player player) {
+        if (player.getPassengers().size() > 0) {
+            player.removePassenger(player.getPassengers().get(0));
+            player.removePotionEffect(PotionEffectType.SLOW);
+            player.removePotionEffect(PotionEffectType.BLINDNESS);
         }
     }
-    @EventHandler
-    public void onBlockExplosion(BlockExplodeEvent e) {
-        e.setCancelled(true);
+
+    private void explode(final Location location) {
+        location.getWorld().createExplosion(location, 2);
     }
 }

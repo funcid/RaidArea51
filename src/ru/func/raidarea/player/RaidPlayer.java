@@ -6,14 +6,14 @@ import java.util.Arrays;
 
 public class RaidPlayer implements IPlayer {
 
-    private int money;
-    private int clef;
+    private int                   money;
+    private int                    clef;
     private ICharacter currentCharacter;
-    private ICharacter characters[];
-    private int kills;
-    private int wins;
-    private boolean defend;
-    private int level;
+    private ICharacter     characters[];
+    private int                   kills;
+    private int                    wins;
+    private boolean              defend;
+    private int                   level;
 
     RaidPlayer(final PlayerBuilder playerBuilder) {
         this.money = playerBuilder.getMoney();

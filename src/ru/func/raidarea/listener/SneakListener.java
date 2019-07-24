@@ -1,5 +1,6 @@
 package ru.func.raidarea.listener;
 
+import org.bukkit.GameMode;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerToggleSneakEvent;
@@ -10,13 +11,14 @@ public class SneakListener implements Listener {
 
     private final RaidArea PLUGIN;
 
-    public SneakListener(RaidArea plugin) {
+    public SneakListener(final RaidArea plugin) {
         PLUGIN = plugin;
     }
 
     @EventHandler
-    public void playerSneakEvent(PlayerToggleSneakEvent e) {
+    public void playerSneakEvent(final PlayerToggleSneakEvent e) {
         if (PLUGIN.getTimeStatus().equals(RaidTimeStatus.GAME))
-            PLUGIN.getPlayers().get(e.getPlayer().getUniqueId()).getCurrentCharacter().usePerk(e.getPlayer());
+            if (e.getPlayer().getGameMode().equals(GameMode.SURVIVAL))
+                PLUGIN.getPlayers().get(e.getPlayer().getUniqueId()).getCurrentCharacter().usePerk(e.getPlayer());
     }
 }

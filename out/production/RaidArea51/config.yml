@@ -1,9 +1,10 @@
 settings:
   world: 'world'
-  minPlayers: 10
-  raidLocation: '240 92 200'
-  defLocation: '250 92 200'
-  toggleLocation: '219 92 203'
+  minPlayers: 2
+  raidLocation: '290 97 190'
+  defLocation: '230 107 189'
+  toggleLocation: '201 108 205'
+  endermanLocation: '190 107 183'
 sqlSettings:
   user: 'root'
   password: ''

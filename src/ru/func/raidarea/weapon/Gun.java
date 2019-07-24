@@ -14,30 +14,30 @@ import java.util.stream.Stream;
 
 public class Gun implements IGun {
 
-    private ItemStack itemStack;
-    private Material material;
+    private ItemStack   itemStack;
+    private Material     material;
     private Material clipMaterial;
-    private String name;
-    private int bullets;
-    private int delay;
-    private double damage;
+    private String           name;
+    private int           bullets;
+    private int             delay;
+    private double         damage;
 
     private final Map<UUID, Long> weaponDelay = Maps.newHashMap();
 
-    private boolean hasCountdown(UUID user) {
+    private boolean hasCountdown(final UUID user) {
         Long data = weaponDelay.get(user);
         return data != null && data > System.currentTimeMillis();
     }
 
-    private void setCountdown(UUID user, int val, TimeUnit unit) {
-        weaponDelay.put(user, System.currentTimeMillis() + unit.toMillis(val));
+    private void setCountdown(final UUID user, final int val) {
+        weaponDelay.put(user, System.currentTimeMillis() + TimeUnit.SECONDS.toMillis(val));
     }
 
-    private long getSecondsLeft(UUID user) {
+    private long getSecondsLeft(final UUID user) {
         return TimeUnit.MILLISECONDS.toSeconds(weaponDelay.get(user) - System.currentTimeMillis());
     }
 
-    Gun(GunBuilder gunBuilder) {
+    Gun(final GunBuilder gunBuilder) {
         this.material = gunBuilder.getMaterial();
         this.bullets = gunBuilder.getBullets();
         this.delay = gunBuilder.getDelay();
@@ -48,7 +48,7 @@ public class Gun implements IGun {
     }
 
     @Override
-    public void strike(Player player) {
+    public void strike(final Player player) {
         ItemStack gun = player.getInventory().getItemInMainHand();
 
         if (gun.getType().equals(material)) {
@@ -63,7 +63,7 @@ public class Gun implements IGun {
                 meta.setDisplayName(String.format(name, (int) gun.getDurability()));
 
                 if (gun.getDurability() == 0)
-                    setCountdown(player.getUniqueId(), delay, TimeUnit.SECONDS);
+                    setCountdown(player.getUniqueId(), delay);
             } else {
                 if (player.getInventory().contains(clipMaterial)) {
                     if (hasCountdown(player.getUniqueId())) {

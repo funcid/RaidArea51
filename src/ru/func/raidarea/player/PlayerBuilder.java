@@ -7,14 +7,14 @@ import java.util.Arrays;
 
 public class PlayerBuilder {
 
-    private int money;
-    private int clef;
+    private int                   money;
+    private int                    clef;
     private ICharacter currentCharacter;
-    private ICharacter characters[];
-    private int kills;
-    private int wins;
-    private boolean defend;
-    private int level;
+    private ICharacter     characters[];
+    private int                   kills;
+    private int                    wins;
+    private boolean              defend;
+    private int                   level;
 
     public PlayerBuilder money(final int money) {
         this.money = money;

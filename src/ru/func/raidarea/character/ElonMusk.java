@@ -1,6 +1,5 @@
 package ru.func.raidarea.character;
 
-import com.google.common.collect.Maps;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
@@ -9,16 +8,13 @@ import ru.func.raidarea.weapon.Gun;
 import ru.func.raidarea.weapon.GunBuilder;
 
 import java.util.Arrays;
-import java.util.Map;
-import java.util.UUID;
-import java.util.concurrent.TimeUnit;
 
 public class ElonMusk implements ICharacter {
 
-    private final String NAME = "Elon Musk";
-    private final ItemStack INFO = new ItemStack(Material.PAPER);
+    private final String    NAME  = "Elon Musk";
+    private final ItemStack INFO  = new ItemStack(Material.PAPER);
     private final ItemStack CLIPS = new ItemStack(Material.ARROW, 8);
-    private final Gun GUN;
+    private final Gun       GUN;
 
     public ElonMusk() {
         CharacterUtil.getCharacters().put(NAME, this);
@@ -51,12 +47,12 @@ public class ElonMusk implements ICharacter {
     }
 
     @Override
-    public void usePerk(Player user) {
+    public void usePerk(final Player user) {
         if (CharacterDelayUtil.hasCountdown(user.getUniqueId()))
             return;
         for (int i = 0; i< 4; i++)
             user.getWorld().strikeLightningEffect(user.getTargetBlock(null, 500).getLocation());
-        CharacterDelayUtil.setCountdown(user.getUniqueId(), 12, TimeUnit.SECONDS);
+        CharacterDelayUtil.setCountdown(user.getUniqueId(), 12);
     }
 
     @Override
@@ -65,7 +61,7 @@ public class ElonMusk implements ICharacter {
     }
 
     @Override
-    public void giveAmmunition(Player currentPlayer) {
+    public void giveAmmunition(final Player currentPlayer) {
         currentPlayer.getInventory().setItem(0, GUN.getItemStack());
         currentPlayer.getInventory().setItem(1, CLIPS);
         currentPlayer.getInventory().setItem(8, INFO);

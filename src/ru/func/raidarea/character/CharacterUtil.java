@@ -4,7 +4,7 @@ import com.google.common.collect.Maps;
 
 import java.util.Map;
 
-public class CharacterUtil {
+public final class CharacterUtil {
 
     private static Map<String, ICharacter> characters = Maps.newHashMap();
 

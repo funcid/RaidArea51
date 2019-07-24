@@ -13,12 +13,12 @@ public class RespawnListener implements Listener {
 
     private final RaidArea PLUGIN;
 
-    public RespawnListener(RaidArea plugin) {
+    public RespawnListener(final RaidArea plugin) {
         PLUGIN = plugin;
     }
 
     @EventHandler
-    public void onPlayerRespawn(PlayerRespawnEvent e) {
+    public void onPlayerRespawn(final PlayerRespawnEvent e) {
         Player player = e.getPlayer();
         RaidPlayer raidPlayer = (RaidPlayer) PLUGIN.getPlayers().get(player.getUniqueId());
 
@@ -27,6 +27,7 @@ public class RespawnListener implements Listener {
         player.setGameMode(GameMode.SPECTATOR);
         Bukkit.getScheduler().runTaskLater(PLUGIN, () -> {
             raidPlayer.getCurrentCharacter().giveAmmunition(player);
+            PLUGIN.givePotions(player);
             player.setGameMode(GameMode.SURVIVAL);
             if (raidPlayer.isDefend())
                 player.teleport(PLUGIN.getDefSpawn());

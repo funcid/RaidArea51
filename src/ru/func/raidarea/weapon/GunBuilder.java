@@ -8,21 +8,21 @@ import java.util.List;
 
 public class GunBuilder {
 
-    private ItemStack itemStack;
-    private Material material;
-    private String name;
-    private int bullets;
-    private int delay;
+    private ItemStack   itemStack;
+    private Material     material;
+    private String           name;
+    private int           bullets;
+    private int             delay;
     private Material clipMaterial;
-    private double damage;
+    private double         damage;
 
-    public GunBuilder material(Material material) {
+    public GunBuilder material(final Material material) {
         this.material = material;
         this.itemStack = new ItemStack(material);
         return this;
     }
 
-    public GunBuilder name(String name) {
+    public GunBuilder name(final String name) {
         this.name = name;
         ItemMeta meta = itemStack.getItemMeta();
         meta.setDisplayName(String.format(name, bullets));
@@ -30,20 +30,20 @@ public class GunBuilder {
         return this;
     }
 
-    public GunBuilder lore(List<String> lore) {
+    public GunBuilder lore(final List<String> lore) {
         ItemMeta meta = itemStack.getItemMeta();
         meta.setLore(lore);
         this.itemStack.setItemMeta(meta);
         return this;
     }
 
-    public GunBuilder bullets(int bullets) {
+    public GunBuilder bullets(final int bullets) {
         itemStack.setDurability((short) bullets);
         this.bullets = bullets;
         return this;
     }
 
-    public GunBuilder delay(int delay) {
+    public GunBuilder delay(final int delay) {
         this.delay = delay;
         return this;
     }
