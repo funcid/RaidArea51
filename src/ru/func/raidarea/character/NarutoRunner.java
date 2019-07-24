@@ -15,13 +15,15 @@ public class NarutoRunner implements ICharacter {
 
     private final String NAME = "Naruto Runner";
     private final ItemStack INFO = new ItemStack(Material.PAPER);
+    private final PotionEffect SPEED = new PotionEffect(PotionEffectType.SPEED, 99999, 20);
+    private final ItemStack CLIPS = new ItemStack(Material.FIREWORK_CHARGE, 16);
     private final Gun GUN;
 
     public NarutoRunner() {
         CharacterUtil.getCharacters().put(NAME, this);
 
         ItemMeta itemMeta = INFO.getItemMeta();
-        itemMeta.setDisplayName("§fИнформация о персонаже: §b§lФанат Func");
+        itemMeta.setDisplayName("§fИнформация о персонаже: §b§lФанат Нарутоо");
         itemMeta.setLore(Arrays.asList(
                 "",
                 "§fВаш персонаж обладает огромной скоростью,",
@@ -38,7 +40,7 @@ public class NarutoRunner implements ICharacter {
                 .delay(1)
                 .bullets(1)
                 .damage(1)
-                .clip(Material.STONE)
+                .clip(Material.FIREWORK_CHARGE)
                 .name("§e§lРогатка §b[ §f§l%d §b]")
                 .lore(Arrays.asList(
                         "",
@@ -53,10 +55,8 @@ public class NarutoRunner implements ICharacter {
 
     @Override
     public void usePerk(Player user) {
-        if (user.isSneaking())
-            user.removePotionEffect(PotionEffectType.SPEED);
-        else
-            user.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 99999, 20));
+        if (user.isSneaking()) user.removePotionEffect(PotionEffectType.SPEED);
+        else user.addPotionEffect(SPEED);
     }
 
     @Override
@@ -67,7 +67,7 @@ public class NarutoRunner implements ICharacter {
     @Override
     public void giveAmmunition(Player currentPlayer) {
         currentPlayer.getInventory().setItem(0, GUN.getItemStack());
-        currentPlayer.getInventory().setItem(1, new ItemStack(Material.STONE, 16));
+        currentPlayer.getInventory().setItem(1, CLIPS);
         currentPlayer.getInventory().setItem(8, INFO);
     }
 
@@ -76,3 +76,4 @@ public class NarutoRunner implements ICharacter {
         return GUN;
     }
 }
+

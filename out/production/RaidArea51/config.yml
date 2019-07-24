@@ -1,7 +1,6 @@
 settings:
   world: 'world'
-  minPlayers: 1
-  defenders: 2
+  minPlayers: 10
   raidLocation: '240 92 200'
   defLocation: '250 92 200'
   toggleLocation: '219 92 203'

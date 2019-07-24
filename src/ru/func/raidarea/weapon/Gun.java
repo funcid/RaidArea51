@@ -12,7 +12,7 @@ import java.util.*;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Stream;
 
-public class Gun {
+public class Gun implements IGun {
 
     private ItemStack itemStack;
     private Material material;
@@ -47,6 +47,7 @@ public class Gun {
         this.damage = gunBuilder.getDamage();
     }
 
+    @Override
     public void strike(Player player) {
         ItemStack gun = player.getInventory().getItemInMainHand();
 
@@ -88,10 +89,12 @@ public class Gun {
         }
     }
 
+    @Override
     public ItemStack getItemStack() {
         return itemStack;
     }
 
+    @Override
     public double getDamage() {
         return damage;
     }

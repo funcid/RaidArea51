@@ -14,7 +14,7 @@ public class Soldier implements ICharacter {
     private final String NAME = "American Soldier";
     private final Gun GUN;
     private final ItemStack INFO = new ItemStack(Material.PAPER);
-    private final ItemStack CLIP = new ItemStack(Material.FIREWORK_CHARGE, 4);
+    private final ItemStack CLIPS = new ItemStack(Material.GLOWSTONE_DUST, 14);
 
 
     public Soldier() {
@@ -36,7 +36,7 @@ public class Soldier implements ICharacter {
                 .delay(5)
                 .bullets(25)
                 .damage(7)
-                .clip(Material.FIREWORK_CHARGE)
+                .clip(Material.GLOWSTONE_DUST)
                 .name("§e§lM4A1-S Carbine §b[ §f§l%d §b]")
                 .lore(Arrays.asList(
                         "",
@@ -47,9 +47,9 @@ public class Soldier implements ICharacter {
                 ))
                 .build();
 
-        ItemMeta clipItemMeta = CLIP.getItemMeta();
+        ItemMeta clipItemMeta = CLIPS.getItemMeta();
         infoItemMeta.setDisplayName("§f§lОбойма");
-        CLIP.setItemMeta(clipItemMeta);
+        CLIPS.setItemMeta(clipItemMeta);
     }
 
     @Override
@@ -65,7 +65,7 @@ public class Soldier implements ICharacter {
     @Override
     public void giveAmmunition(Player currentPlayer) {
         currentPlayer.getInventory().setItem(0, GUN.getItemStack());
-        currentPlayer.getInventory().setItem(1, CLIP);
+        currentPlayer.getInventory().setItem(1, CLIPS);
         currentPlayer.getInventory().setItem(8, INFO);
     }
 

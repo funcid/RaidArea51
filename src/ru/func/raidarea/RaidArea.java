@@ -7,16 +7,15 @@ import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.*;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitRunnable;
-import ru.func.raidarea.character.ElonMusk;
-import ru.func.raidarea.character.ICharacter;
-import ru.func.raidarea.character.NarutoRunner;
-import ru.func.raidarea.character.Soldier;
+import ru.func.raidarea.character.*;
 import ru.func.raidarea.database.MySQL;
 import ru.func.raidarea.listener.*;
+import ru.func.raidarea.player.IPlayer;
 import ru.func.raidarea.player.RaidPlayer;
 
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Arrays;
 import java.util.Map;
 import java.util.Random;
 import java.util.UUID;
@@ -37,7 +36,7 @@ public class RaidArea extends JavaPlugin {
 
     private boolean attackersWin = false;
 
-    private Map<UUID, RaidPlayer> players = Maps.newHashMap();
+    private Map<UUID, IPlayer> players = Maps.newHashMap();
 
     /* SQL переменные */
     private Statement STATEMENT;
@@ -50,11 +49,16 @@ public class RaidArea extends JavaPlugin {
             sqLSettingsConfigurationSection.getInt("port")
     );
 
+    ICharacter[] characters = {
+            //new ArnoldSchwarzenegger(),
+            //new ElonMusk(),
+            //new NarutoRunner(),
+            //new NarutoRunner(),
+            //new NarutoRunner(),
+            new NarutoRunner()
+    };
+
     private boolean STATION = true;
-    {
-        new NarutoRunner();
-        new ElonMusk();
-    }
 
     @Override
     public void onEnable() {
@@ -82,6 +86,7 @@ public class RaidArea extends JavaPlugin {
             getLogger().info("[!] Connection exception.");
         }
         Bukkit.getPluginManager().registerEvents(new UsualListener(), this);
+        Bukkit.getPluginManager().registerEvents(new RespawnListener(this), this);
         Bukkit.getPluginManager().registerEvents(new SneakListener(this), this);
         Bukkit.getPluginManager().registerEvents(new InteractListener(this), this);
         Bukkit.getPluginManager().registerEvents(new MoveListener(this), this);
@@ -99,7 +104,6 @@ public class RaidArea extends JavaPlugin {
         new BukkitRunnable() {
             @Override
             public void run() {
-                Bukkit.broadcastMessage(TIME + "");
                 switch (TIME_STATUS) {
                     case WAITING:
                         if (Bukkit.getOnlinePlayers().size() < minPlayers)
@@ -164,7 +168,7 @@ public class RaidArea extends JavaPlugin {
         return STATEMENT;
     }
 
-    public Map<UUID, RaidPlayer> getPlayers() {
+    public Map<UUID, IPlayer> getPlayers() {
         return players;
     }
 
@@ -182,6 +186,10 @@ public class RaidArea extends JavaPlugin {
 
     public Location getRaidSpawn() {
         return raidSpawn;
+    }
+
+    public Location getDefSpawn() {
+        return defSpawn;
     }
 
     public RaidStatus getStatus() {
@@ -208,32 +216,32 @@ public class RaidArea extends JavaPlugin {
     }
 
     private void gameStarter() {
-        int defenders = SETTINGS.getInt("defenders");
-
         for (Player player : Bukkit.getOnlinePlayers()) {
 
             Enderman enderman = (Enderman) player.getWorld().spawnEntity(player.getLocation(), EntityType.ENDERMAN);
             enderman.setAI(false);
             enderman.setCustomName("§lЗема");
-            enderman.setPortalCooldown(99999999);
             enderman.setCustomNameVisible(true);
             enderman.setGravity(true);
 
-            defenders--;
-            RaidPlayer raidPlayer = players.get(player.getUniqueId());
+            RaidPlayer raidPlayer = (RaidPlayer) players.get(player.getUniqueId());
             player.getInventory().clear();
+
             Location location;
-            if (defenders <= 0) {
+            if (characters.length > 0) {
+                raidPlayer.setCurrentCharacter(characters[characters.length - 1]);
+                characters = Arrays.copyOf(characters, characters.length - 1);
+
+                location = raidSpawn.subtract(random.nextInt(5), 0, random.nextInt(5));
+                player.sendMessage("Ваш класс: " + raidPlayer.getCurrentCharacter().getName() + ", отключите питание на базе, и вызволите испытуемого пришельца, вся надежда на вас!");
+            } else {
                 location = defSpawn.subtract(random.nextInt(5), 0, random.nextInt(5));
                 raidPlayer.setCurrentCharacter(soldier);
                 raidPlayer.setDefend(true);
-            } else
-                location = raidSpawn.subtract(random.nextInt(5), 0, random.nextInt(5));
-
+                player.sendMessage("Вы - защита этой легендарной Зоны 51, любой ценой защитите базу!");
+            }
             player.teleport(location);
-            player.performCommand("spawnpoint");
 
-            player.sendMessage("Выбранный класс: " + raidPlayer.getCurrentCharacter().getName());
             raidPlayer.getCurrentCharacter().giveAmmunition(player);
         }
     }
