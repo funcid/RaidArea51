@@ -19,6 +19,11 @@ public class RaidPlayer implements IPlayer {
     }
 
     @Override
+    public void depositMoney(final int money) {
+        this.money += money;
+    }
+
+    @Override
     public int getMoney() {
         return money;
     }

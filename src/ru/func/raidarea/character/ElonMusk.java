@@ -11,14 +11,14 @@ import java.util.Arrays;
 
 public class ElonMusk implements ICharacter {
 
-    private final String     NAME = "Elon Musk";
+    private final String     NAME = "§e§lИлон Маск";
     private final ItemStack  INFO = new ItemStack(Material.PAPER);
-    private final ItemStack CLIPS = new ItemStack(Material.ARROW, 8);
+    private final ItemStack CLIPS = new ItemStack(Material.DIAMOND, 8);
     private final Gun         GUN;
 
     public ElonMusk() {
         ItemMeta itemMeta = INFO.getItemMeta();
-        itemMeta.setDisplayName("§fИнформация о персонаже: §b§lИлон Маск");
+        itemMeta.setDisplayName("§fИнформация о персонаже: " + NAME);
         itemMeta.setLore(Arrays.asList(
                 "",
                 "§fВаш персонаж обладает огромными средтвами и умом,",
@@ -33,7 +33,7 @@ public class ElonMusk implements ICharacter {
                 .delay(5)
                 .bullets(5)
                 .damage(8)
-                .clip(Material.ARROW)
+                .clip(Material.DIAMOND)
                 .name("§e§lАвтоЭлектроСнайперка §b[ §f§l%d §b]")
                 .lore(Arrays.asList(
                         "",

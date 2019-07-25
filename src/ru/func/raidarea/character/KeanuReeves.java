@@ -11,7 +11,7 @@ import java.util.Arrays;
 
 public class KeanuReeves implements ICharacter {
 
-    private final String     NAME = "Keanu Reeves";
+    private final String     NAME = "§e§lКеану Ривз";
     private final ItemStack  INFO = new ItemStack(Material.PAPER);
     private final ItemStack  HOOK = new ItemStack(Material.FISHING_ROD);
     private final ItemStack CLIPS = new ItemStack(Material.CLAY_BRICK, 16);
@@ -19,7 +19,7 @@ public class KeanuReeves implements ICharacter {
 
     public KeanuReeves() {
         ItemMeta itemMeta = INFO.getItemMeta();
-        itemMeta.setDisplayName("§fИнформация о персонаже: §b§lКиано Ривз");
+        itemMeta.setDisplayName("§fИнформация о персонаже: " + NAME);
         itemMeta.setLore(Arrays.asList(
                 "",
                 "§fБог киберпанка."

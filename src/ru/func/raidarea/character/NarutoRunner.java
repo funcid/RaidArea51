@@ -13,15 +13,15 @@ import java.util.Arrays;
 
 public class NarutoRunner implements ICharacter {
 
-    private final String        NAME = "Naruto Runner";
+    private final String        NAME = "§e§lНаруто Фан";
     private final ItemStack     INFO = new ItemStack(Material.PAPER);
-    private final PotionEffect SPEED = new PotionEffect(PotionEffectType.SPEED, 99999, 20);
     private final ItemStack    CLIPS = new ItemStack(Material.FIREWORK_CHARGE, 16);
     private final Gun            GUN;
+    private final PotionEffect SPEED;
 
     public NarutoRunner() {
         ItemMeta itemMeta = INFO.getItemMeta();
-        itemMeta.setDisplayName("§fИнформация о персонаже: §b§lФанат Нарутоо");
+        itemMeta.setDisplayName("§fИнформация о персонаже: " + NAME);
         itemMeta.setLore(Arrays.asList(
                 "",
                 "§fВаш персонаж обладает огромной скоростью,",
@@ -32,6 +32,8 @@ public class NarutoRunner implements ICharacter {
                 "§7[§fНе повторять в реальной жизни, вы упадете лицом в пол§7]"
         ));
         INFO.setItemMeta(itemMeta);
+
+        SPEED = new PotionEffect(PotionEffectType.SPEED, 99999, 30);
 
         GUN = new GunBuilder()
                 .material(Material.WOOD_AXE)

@@ -11,7 +11,7 @@ import java.util.Arrays;
 
 public class Soldier implements ICharacter {
 
-    private final String     NAME = "American Soldier";
+    private final String     NAME = "§lСолдат Армии США";
     private final ItemStack  INFO = new ItemStack(Material.PAPER);
     private final ItemStack CLIPS = new ItemStack(Material.GLOWSTONE_DUST, 14);
     private final Gun         GUN;
@@ -19,7 +19,7 @@ public class Soldier implements ICharacter {
 
     public Soldier() {
         ItemMeta infoItemMeta = INFO.getItemMeta();
-        infoItemMeta.setDisplayName("§fИнформация о персонаже: §b§lСолдат Армии США");
+        infoItemMeta.setDisplayName("§fИнформация о персонаже: " + NAME);
         infoItemMeta.setLore(Arrays.asList(
                 "",
                 "§fВаш персонаж это рядовой солдат,",

@@ -29,14 +29,19 @@ public interface IPlayer {
      */
     boolean isDefend();
 
-    void setMoney(int money);
+    void setMoney(final int money);
 
+    void setCurrentCharacter(final ICharacter currentCharacter);
 
-    void setCurrentCharacter(ICharacter currentCharacter);
+    void setKills(final int kills);
 
-    void setKills(int kills);
+    void setWins(final int wins);
 
-    void setWins(int wins);
+    void setDefend(final boolean defend);
 
-    void setDefend(boolean defend);
+    /**
+     * setMoney(getMoney() + money)
+     * @param money that introduced
+     */
+    void depositMoney(final int money);
 }

@@ -12,14 +12,14 @@ import java.util.Arrays;
 
 public class ArnoldSchwarzenegger implements ICharacter {
 
-    private final String     NAME = "Arnold Schwarzenegger";
+    private final String     NAME = "§e§lАрнольд Шварцнеггер";
     private final ItemStack  INFO = new ItemStack(Material.PAPER);
     private final ItemStack CLIPS = new ItemStack(Material.BLAZE_ROD, 12);
     private final Gun         GUN;
 
     public ArnoldSchwarzenegger() {
         ItemMeta itemMeta = INFO.getItemMeta();
-        itemMeta.setDisplayName("§fИнформация о персонаже: §b§lАрнольд Шварценеггер");
+        itemMeta.setDisplayName("§fИнформация о персонаже: " + NAME);
         itemMeta.setLore(Arrays.asList(
                 "",
                 "§fВаш персонаж обладает невероятной силой,",

@@ -57,13 +57,13 @@ public class RaidArea extends JavaPlugin {
     );
 
     private ICharacter[] characters = {
-            new ArnoldSchwarzenegger()
+            new ElonMusk()
     };
 
     private boolean STATION = true;
 
-    private ItemStack     TNT;
     private ItemStack    HEAL;
+    private ItemStack   ARROW;
     private ItemStack   SPEED;
     private ItemStack BARRIER;
 
@@ -97,6 +97,8 @@ public class RaidArea extends JavaPlugin {
         } catch (ClassNotFoundException | SQLException e) {
             getLogger().info("[!] Connection exception.");
         }
+
+        Bukkit.getPluginManager().registerEvents(new BlockEventsListener(), this);
         Bukkit.getPluginManager().registerEvents(new UsualListener(), this);
         Bukkit.getPluginManager().registerEvents(new RespawnListener(this), this);
         Bukkit.getPluginManager().registerEvents(new SneakListener(this), this);
@@ -123,10 +125,10 @@ public class RaidArea extends JavaPlugin {
         meta.setDisplayName("§f§l[ §7Преграда §f§l] | 50 §e§lETH");
         BARRIER.setItemMeta(meta);
 
-        TNT = new ItemStack(Material.TNT);
-        meta = TNT.getItemMeta();
-        meta.setDisplayName("§f§l[ §7Взрывчатка §f§l] | 500 §e§lETH");
-        TNT.setItemMeta(meta);
+        ARROW = new ItemStack(Material.ARROW);
+        meta = ARROW.getItemMeta();
+        meta.setDisplayName("§f§l[ §7Взрывная стрела §f§l] | 200 §e§lETH");
+        ARROW.setItemMeta(meta);
         /*      END ******************* */
 
         raidSpawn = getLocationByPath("raidLocation");
@@ -144,18 +146,18 @@ public class RaidArea extends JavaPlugin {
                             return;
                         TIME++;
                         if (TIME == RaidTimeStatus.WAITING.getTime()) {
-                            Bukkit.broadcastMessage("Игра начанается!");
+                            Bukkit.broadcastMessage("[§b!§f] §7Игра начинается!");
                             TIME_STATUS = RaidTimeStatus.STARTING;
                         }
                         break;
                     case STARTING:
                         TIME++;
                         int dt = RaidTimeStatus.STARTING.getTime() - TIME;
-                        if (dt < 5)
-                            Bukkit.broadcastMessage("До начала игры осталось " + ++dt + " секунд(ы).");
+                        if (dt <= 5 && dt != 0)
+                            Bukkit.broadcastMessage("[§b!§f] §7До начала игры осталось " + dt + " секунд(ы).");
                         if (TIME == RaidTimeStatus.STARTING.getTime()) {
                             TIME_STATUS = RaidTimeStatus.GAME;
-                            Bukkit.broadcastMessage("Игра началась!");
+                            Bukkit.broadcastMessage("[§b!§f] §7Игра началась!");
                         }
                         if (TIME == RaidTimeStatus.STARTING.getTime())
                             gameStarter();
@@ -165,11 +167,11 @@ public class RaidArea extends JavaPlugin {
                         TIME++;
                         if (TIME == RaidTimeStatus.GAME.getTime()) {
                             TIME_STATUS = RaidTimeStatus.ENDING;
-                            Bukkit.broadcastMessage("Игра закончилась! Защитники Зоны 51 победили и отстояли в этом рейде! (Все данный сохранены)");
+                            Bukkit.broadcastMessage("[§b!§f] §7Игра закончилась! Защитники Зоны 51 победили и отстояли в этом рейде!");
                         } else if (attackersWin) {
                             TIME_STATUS = RaidTimeStatus.ENDING;
                             TIME = RaidTimeStatus.GAME.getTime();
-                            Bukkit.broadcastMessage("Игра закончилась! Атакующие победили и защитили пришельца! (Все данный сохранены)");
+                            Bukkit.broadcastMessage("[§b!§f] §7Игра закончилась! Атакующие победили и защитили пришельца!");
                         }
                         break;
                     case ENDING:
@@ -184,10 +186,10 @@ public class RaidArea extends JavaPlugin {
                                     .forEach(player -> player.setWins(player.getWins() + 1));
 
                             Bukkit.getOnlinePlayers().forEach(player -> connectionListener.saveStats(player, 0));
-                            Bukkit.broadcastMessage("Статистика сохранена.");
+                            Bukkit.broadcastMessage("[§b!§f] §7Статистика сохранена.");
                         }
                         else if (dx < 5)
-                            Bukkit.broadcastMessage("Игра перезапустится через " + ++dx + " секунд");
+                            Bukkit.broadcastMessage("[§b!§f] §7Игра перезапустится через " + ++dx + " секунд");
                         if (dx == 0)
                             Bukkit.reload();
                         break;
@@ -198,7 +200,11 @@ public class RaidArea extends JavaPlugin {
 
     @Override
     public void onDisable() {
-        Bukkit.getOnlinePlayers().forEach(player -> connectionListener.saveStats(player, 0));
+        Bukkit.getOnlinePlayers().forEach(player -> {
+            connectionListener.saveStats(player, 0);
+            player.getInventory().clear();
+            player.setGameMode(GameMode.SURVIVAL);
+        });
         Bukkit.getWorld(SETTINGS.getString("world"))
                 .getEntities()
                 .stream()
@@ -281,6 +287,7 @@ public class RaidArea extends JavaPlugin {
         for (Player player : Bukkit.getOnlinePlayers()) {
             RaidPlayer raidPlayer = (RaidPlayer) players.get(player.getUniqueId());
             player.getInventory().clear();
+            player.setGameMode(GameMode.SURVIVAL);
 
             Location location;
             if (characters.length > 0) {
@@ -288,12 +295,12 @@ public class RaidArea extends JavaPlugin {
                 characters = Arrays.copyOf(characters, characters.length - 1);
 
                 location = raidSpawn.subtract(random.nextInt(5), 0, random.nextInt(5));
-                player.sendMessage("Ваш класс: " + raidPlayer.getCurrentCharacter().getName() + ", отключите питание на базе, и вызволите испытуемого пришельца, вся надежда на вас!");
+                player.sendMessage("[§b!§f] §7Ваш класс: §f§l" + raidPlayer.getCurrentCharacter().getName() + "§7, отключите питание на базе, и вызволите испытуемого пришельца, вся надежда на вас!");
             } else {
                 location = defSpawn.subtract(random.nextInt(5), 0, random.nextInt(5));
                 raidPlayer.setCurrentCharacter(soldier);
                 raidPlayer.setDefend(true);
-                player.sendMessage("Вы - защита этой легендарной Зоны 51, любой ценой защитите базу!");
+                player.sendMessage("[§b!§f] §7Вы - защита этой легендарной Зоны 51, любой ценой защитите базу!");
             }
             player.teleport(location);
 
@@ -306,6 +313,7 @@ public class RaidArea extends JavaPlugin {
         Inventory inventory = player.getInventory();
         inventory.setItem(4, HEAL);
         inventory.setItem(5, SPEED);
-        inventory.setItem(6, players.get(player.getUniqueId()).isDefend() ? BARRIER : TNT);
+        inventory.setItem(6, players.get(player.getUniqueId()).isDefend() ? BARRIER : ARROW);
+        player.getWorld().playSound(player.getLocation(), Sound.ENTITY_ITEM_PICKUP, 1, 1);
     }
 }

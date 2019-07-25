@@ -5,6 +5,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerMoveEvent;
+import org.bukkit.potion.PotionEffectType;
 import ru.func.raidarea.RaidArea;
 
 public class MoveListener implements Listener {
@@ -23,6 +24,8 @@ public class MoveListener implements Listener {
                 PLUGIN.setAttackersWin(true);
                 Entity entity = player.getPassengers().get(0);
                 entity.remove();
+
+                player.removePotionEffect(PotionEffectType.SLOW);
             }
         }
     }

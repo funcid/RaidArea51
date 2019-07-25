@@ -138,7 +138,7 @@ public class ConnectionListener implements Listener {
                 playerConnection.sendPacket(createObj);
                 playerConnection.sendPacket(display);
 
-                ScoreboardScore characterScore = new ScoreboardScore(scoreboard, objective, "§lПерсонаж: §6" + (PLUGIN.getTimeStatus().equals(RaidTimeStatus.GAME) ? raidPlayer.getCurrentCharacter().getName() : "Не подобран"));
+                ScoreboardScore characterScore = new ScoreboardScore(scoreboard, objective, "§lПерсонаж: " + (PLUGIN.getTimeStatus().equals(RaidTimeStatus.GAME) ? raidPlayer.getCurrentCharacter().getName() : "§6Не подобран"));
                 characterScore.setScore(10);
                 ScoreboardScore moneyScore = new ScoreboardScore(scoreboard, objective, "§lETH: §e§l" + raidPlayer.getMoney());
                 moneyScore.setScore(9);
@@ -152,7 +152,7 @@ public class ConnectionListener implements Listener {
                 gameStatusScore.setScore(3);
                 ScoreboardScore onlineScore = new ScoreboardScore(scoreboard, objective, "§lИгроков: §b§l" + Bukkit.getOnlinePlayers().size());
                 onlineScore.setScore(2);
-                ScoreboardScore timeScore = new ScoreboardScore(scoreboard, objective, "§lВремя: §b§l" + (PLUGIN.getTimeStatus().equals(RaidTimeStatus.GAME) ? secondsToString((PLUGIN.getTime() - RaidTimeStatus.STARTING.getTime())) : "..."));
+                ScoreboardScore timeScore = new ScoreboardScore(scoreboard, objective, "§lВремя: §b§l" + secondsToString(Math.abs(PLUGIN.getTime() - RaidTimeStatus.STARTING.getTime())));
                 timeScore.setScore(1);
 
                 playerConnection.sendPacket(new PacketPlayOutScoreboardScore(null1Score));
