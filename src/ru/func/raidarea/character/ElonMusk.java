@@ -32,7 +32,7 @@ public class ElonMusk implements ICharacter {
                 .material(Material.GOLD_HOE)
                 .delay(5)
                 .bullets(5)
-                .damage(8)
+                .damage(6.5)
                 .clip(Material.DIAMOND)
                 .name("§e§lАвтоЭлектроСнайперка §b[ §f§l%d §b]")
                 .lore(Arrays.asList(

@@ -7,9 +7,9 @@ import org.bukkit.entity.*;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
-import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.potion.Potion;
+import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionType;
 import org.bukkit.scheduler.BukkitRunnable;
 import ru.func.raidarea.character.*;
@@ -57,7 +57,7 @@ public class RaidArea extends JavaPlugin {
     );
 
     private ICharacter[] characters = {
-            new ElonMusk()
+            new ArnoldSchwarzenegger()
     };
 
     private boolean STATION = true;
@@ -98,7 +98,7 @@ public class RaidArea extends JavaPlugin {
             getLogger().info("[!] Connection exception.");
         }
 
-        Bukkit.getPluginManager().registerEvents(new BlockEventsListener(), this);
+        Bukkit.getPluginManager().registerEvents(new BlockEventListener(this), this);
         Bukkit.getPluginManager().registerEvents(new UsualListener(), this);
         Bukkit.getPluginManager().registerEvents(new RespawnListener(this), this);
         Bukkit.getPluginManager().registerEvents(new SneakListener(this), this);
@@ -288,6 +288,10 @@ public class RaidArea extends JavaPlugin {
             RaidPlayer raidPlayer = (RaidPlayer) players.get(player.getUniqueId());
             player.getInventory().clear();
             player.setGameMode(GameMode.SURVIVAL);
+            player.getActivePotionEffects()
+                    .stream()
+                    .map(PotionEffect::getType)
+                    .forEach(player::removePotionEffect);
 
             Location location;
             if (characters.length > 0) {

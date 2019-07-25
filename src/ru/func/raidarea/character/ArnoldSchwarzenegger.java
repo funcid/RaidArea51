@@ -33,7 +33,7 @@ public class ArnoldSchwarzenegger implements ICharacter {
                 .material(Material.GOLD_AXE)
                 .delay(12)
                 .bullets(100)
-                .damage(1.5)
+                .damage(3)
                 .clip(Material.BLAZE_ROD)
                 .name("§e§lM134 Minigun §b[ §f§l%d §b]")
                 .lore(Arrays.asList(

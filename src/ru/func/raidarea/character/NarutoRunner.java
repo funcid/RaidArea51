@@ -33,13 +33,13 @@ public class NarutoRunner implements ICharacter {
         ));
         INFO.setItemMeta(itemMeta);
 
-        SPEED = new PotionEffect(PotionEffectType.SPEED, 99999, 30);
+        SPEED = new PotionEffect(PotionEffectType.SPEED, 99999, 25);
 
         GUN = new GunBuilder()
                 .material(Material.WOOD_AXE)
                 .delay(1)
                 .bullets(1)
-                .damage(1)
+                .damage(6)
                 .clip(Material.FIREWORK_CHARGE)
                 .name("§e§lРогатка §b[ §f§l%d §b]")
                 .lore(Arrays.asList(

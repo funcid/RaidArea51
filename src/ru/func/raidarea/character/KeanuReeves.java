@@ -35,7 +35,7 @@ public class KeanuReeves implements ICharacter {
                 .material(Material.WOOD_HOE)
                 .delay(4)
                 .bullets(10)
-                .damage(4)
+                .damage(6)
                 .clip(Material.CLAY_BRICK)
                 .name("§e§lUSP-S §b[ §f§l%d §b]")
                 .lore(Arrays.asList(

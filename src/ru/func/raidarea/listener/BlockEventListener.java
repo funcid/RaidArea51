@@ -1,5 +1,6 @@
 package ru.func.raidarea.listener;
 
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
@@ -15,22 +16,35 @@ import org.bukkit.event.entity.EntityExplodeEvent;
 import org.bukkit.event.entity.ItemSpawnEvent;
 import org.bukkit.event.entity.ProjectileHitEvent;
 import org.bukkit.util.Vector;
+import ru.func.raidarea.RaidArea;
 
 import java.util.List;
 
-public class BlockEventsListener implements Listener {
+public class BlockEventListener implements Listener {
+
+    private final RaidArea PLUGIN;
+
+    public BlockEventListener(final RaidArea plugin) {
+        PLUGIN = plugin;
+    }
 
     @EventHandler
     public void onBlockFall(final EntityChangeBlockEvent e) {
         if ((e.getEntityType().equals(EntityType.FALLING_BLOCK)))
             if (e.getTo().equals(Material.IRON_BLOCK))
                 createExplode(e.getBlock().getLocation());
+        e.getEntity().remove();
         e.setCancelled(true);
     }
 
     @EventHandler
-    public void onBlockBreak(BlockBreakEvent e) {
-        e.setCancelled(!(e.getBlock().getType().equals(Material.FENCE) && e.getPlayer().getInventory().getItemInMainHand().getItemMeta() == null));
+    public void onBlockBreak(final BlockBreakEvent e) {
+        if (e.getPlayer().getInventory().getItemInMainHand().getItemMeta() == null) {
+            if (!e.getBlock().getType().equals(Material.FENCE)) {
+                Material material = e.getBlock().getType();
+                Bukkit.getScheduler().runTaskLater(PLUGIN, () -> e.getBlock().setType(material), 80L);
+            }
+        }
     }
 
     @EventHandler
@@ -41,17 +55,17 @@ public class BlockEventsListener implements Listener {
     }
 
     @EventHandler
-    public void explodeEntityEvent(EntityExplodeEvent e) {
+    public void explodeEntityEvent(final EntityExplodeEvent e) {
         explode(e.blockList(), e.getLocation(), 0.2F);
         e.setCancelled(true);
     }
     @EventHandler
-    public void explodeBlockEvent(BlockExplodeEvent e) {
+    public void explodeBlockEvent(final BlockExplodeEvent e) {
         explode(e.blockList(), e.getBlock().getLocation(), 0.2F);
     }
 
     @EventHandler
-    public void onArrowShoot(ProjectileHitEvent e) {
+    public void onArrowShoot(final ProjectileHitEvent e) {
         if (e.getEntity() instanceof Arrow) {
             if (e.getHitBlock() != null) e.getHitBlock().getWorld().createExplosion(e.getHitBlock().getLocation(), 2);
             else e.getHitEntity().setVelocity(e.getEntity().getVelocity());
@@ -59,7 +73,7 @@ public class BlockEventsListener implements Listener {
         }
     }
 
-    private void explode(List<Block> blockList, Location center, float power) {
+    private void explode(final List<Block> blockList, final Location center, final float power) {
         for (Block block : blockList) {
             if (block.getType().equals(Material.LEVER))
                 continue;

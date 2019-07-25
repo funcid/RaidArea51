@@ -23,43 +23,66 @@ public class DamageListener implements Listener {
 
     @EventHandler
     public void onEntityDamageByEntity(final EntityDamageByEntityEvent e) {
+        // ОСТОРОЖНО, ХРУПКИЙ МЕТОД
         if (!PLUGIN.getTimeStatus().equals(RaidTimeStatus.GAME)) {
             e.setCancelled(true);
             return;
         }
+
+        // ENDERMAN DAMAGING
         if (e.getEntity() instanceof Enderman) {
-            e.setCancelled(e.getEntity() instanceof Enderman);
+            e.setCancelled(true);
             return;
         }
 
+        // PLAYER DAMAGING
         if (e.getEntity() instanceof Player) {
+
             pullDown((Player) e.getEntity());
+
+
+            Player attacker;
+            RaidPlayer raidPlayer;
+            // BY PLAYER
             if (e.getDamager() instanceof Player) {
-                if (((Player) e.getDamager()).getInventory().getItemInMainHand().getItemMeta() == null) {
-                    e.setDamage(4);
-                    return;
-                }
-                e.setCancelled(true);
+                attacker = (Player) e.getDamager();
+                raidPlayer = (RaidPlayer) PLUGIN.getPlayers().get(attacker.getUniqueId());
+                if (PLUGIN.getPlayers().get(e.getEntity().getUniqueId()).isDefend() != raidPlayer.isDefend()) {
+                    if (((Player) e.getDamager()).getInventory().getItemInMainHand().getItemMeta() == null) {
+                        e.setDamage(3);
+                        raidPlayer.depositMoney(10);
+                        attacker.sendMessage("§l+ 10 ETH §eЗа отличный удар.");
+                        attacker.playSound(attacker.getLocation(), Sound.ENTITY_ARROW_HIT_PLAYER, 1, 1);
+                    } else
+                        e.setCancelled(true);
+                } else
+                    e.setCancelled(true);
             }
-        }
-        if (e.getDamager() instanceof Snowball && e.getEntity() instanceof Player) {
-            Player player = ((Player) ((Snowball) e.getDamager()).getShooter());
-            RaidPlayer raidPlayer = (RaidPlayer) PLUGIN.getPlayers().get(player.getUniqueId());
-            if (PLUGIN.getPlayers().get(e.getEntity().getUniqueId()).isDefend() != raidPlayer.isDefend()) {
-                e.setDamage(raidPlayer.getCurrentCharacter().getGunWeapon().getDamage());
-                raidPlayer.depositMoney(5);
-                player.sendMessage("§l+ 5 ETH §eЗа точный попадание в цель.");
-                player.playSound(player.getLocation(), Sound.ENTITY_ARROW_HIT_PLAYER, 1, 1);
-            } else e.setCancelled(true);
-        }
+            // BY SNOWBALL
+            else if (e.getDamager() instanceof Snowball) {
+                attacker = ((Player) ((Snowball) e.getDamager()).getShooter());
+                raidPlayer = (RaidPlayer) PLUGIN.getPlayers().get(attacker.getUniqueId());
+                if (PLUGIN.getPlayers().get(e.getEntity().getUniqueId()).isDefend() != raidPlayer.isDefend()) {
+                    e.setDamage(raidPlayer.getCurrentCharacter().getGunWeapon().getDamage());
+                    raidPlayer.depositMoney(15);
+                    attacker.sendMessage("§l+ 15 ETH §eЗа точный попадание в цель.");
+                    attacker.playSound(attacker.getLocation(), Sound.ENTITY_ARROW_HIT_PLAYER, 1, 1);
+                } else
+                    e.setCancelled(true);
+            }
+        } else
+            e.setCancelled(true);
     }
 
     @EventHandler
     public void onEntityDamage(final EntityDamageEvent e) {
-        if (e.getEntity() instanceof Player)
+        if (e.getEntity() instanceof Player) {
             pullDown((Player) e.getEntity());
-        if (e.getCause().equals(EntityDamageEvent.DamageCause.FALL))
-            e.setCancelled(true);
+            if (e.getCause().equals(EntityDamageEvent.DamageCause.FALL))
+                e.setCancelled(true);
+            else if (e.getCause().equals(EntityDamageEvent.DamageCause.BLOCK_EXPLOSION) || e.getCause().equals(EntityDamageEvent.DamageCause.ENTITY_EXPLOSION))
+                e.setCancelled(!PLUGIN.getPlayers().get(e.getEntity().getUniqueId()).isDefend());
+        }
     }
 
     @EventHandler

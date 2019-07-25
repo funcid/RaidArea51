@@ -31,53 +31,67 @@ public class InteractListener implements Listener {
 
     @EventHandler
     public void onInteractEvent(final PlayerInteractEvent e) {
-        if (!PLUGIN.getTimeStatus().equals(RaidTimeStatus.GAME))
-            return;
+        // ОСТОРОЖНО, ХРУПКИЙ КОД
+        e.setCancelled(!PLUGIN.getTimeStatus().equals(RaidTimeStatus.GAME));
 
-        Player player = e.getPlayer();
-
-        if (PLUGIN.isStation()) {
+        if (PLUGIN.getTimeStatus().equals(RaidTimeStatus.GAME)) {
+            Player player = e.getPlayer();
+            RaidPlayer raidPlayer = (RaidPlayer) PLUGIN.getPlayers().get(player.getUniqueId());
+            // OFF LEVER
             if (e.getClickedBlock() != null) {
-                if (e.getClickedBlock().getType().equals(Material.LEVER)) {
-                    if (e.getClickedBlock().getLocation().equals(PLUGIN.getToggleLocation())) {
-                        PLUGIN.setStation(false);
-                        PLUGIN.getPlayers().get(player.getUniqueId()).depositMoney(200);
-                        player.sendMessage("§l+ 200 ETH §eЗа выключение питание всей зоны 51.");
-                        player.playSound(player.getLocation(), Sound.ENTITY_ARROW_HIT_PLAYER, 1, 1);
-                        Bukkit.broadcastMessage("");
-                        Bukkit.broadcastMessage("§l[§b!§f] Станция была обесточена! Теперь вы можете помочь инопланетянам сбежать!");
-                        Bukkit.broadcastMessage("");
-                        PLUGIN.setStatus(RaidStatus.DIACTIVATED_STATION);
+                if (PLUGIN.isStation()) {
+                    if (e.getClickedBlock().getType().equals(Material.LEVER)) {
+                        if (e.getClickedBlock().getLocation().equals(PLUGIN.getToggleLocation())) {
+                            PLUGIN.setStation(false);
+                            raidPlayer.depositMoney(200);
+                            player.sendMessage("§l+ 200 ETH §eЗа выключение питание всей зоны 51.");
+                            player.playSound(player.getLocation(), Sound.ENTITY_ARROW_HIT_PLAYER, 1, 1);
+                            Bukkit.broadcastMessage("");
+                            Bukkit.broadcastMessage("§l[§b!§f] Станция была обесточена! Теперь вы можете помочь инопланетянам сбежать!");
+                            Bukkit.broadcastMessage("");
+                            PLUGIN.setStatus(RaidStatus.DIACTIVATED_STATION);
+                        }
+                    }
+                }
+            }
+            // STRIKE
+            if (e.getAction().equals(Action.RIGHT_CLICK_AIR) || e.getAction().equals(Action.RIGHT_CLICK_BLOCK))
+                raidPlayer.getCurrentCharacter().getGunWeapon().strike(player);
+
+            // EXTRA ITEMS
+            boolean cancel = true;
+            if (e.getItem() != null) {
+                if (e.getItem().getItemMeta() != null) {
+                    if (e.getItem().getItemMeta().hasDisplayName()) {
+                        switch (e.getItem().getItemMeta().getDisplayName()) {
+                            case "§f§l[ §cВосстановления здоровья §f§l] | 100 §e§lETH":
+                                if (raidPlayer.getMoney() >= 100) {
+                                    raidPlayer.depositMoney(-100);
+                                    cancel = false;
+                                }
+                                break;
+                            case "§f§l[ §bУскорение тела §f§l] | 500 §e§lETH":
+                                if (raidPlayer.getMoney() >= 500) {
+                                    raidPlayer.depositMoney(-500);
+                                    cancel = false;
+                                }
+                                break;
+                            case "§f§l[ §7Взрывная стрела §f§l] | 200 §e§lETH":
+                                if (raidPlayer.getMoney() >= 200) {
+                                    player.getWorld().spawnArrow(player.getEyeLocation().subtract(0, -3, 0), player.getEyeLocation().getDirection(), 1, 0);
+                                    raidPlayer.depositMoney(-200);
+                                }
+                                break;
+                            default:
+                                cancel = false;
+                                break;
+                        }
+                        e.setCancelled(cancel);
+                        if (!cancel) Bukkit.getScheduler().runTaskLaterAsynchronously(PLUGIN, () -> PLUGIN.giveItems(player), 1);
                     }
                 }
             }
         }
-
-        if (e.getAction().equals(Action.RIGHT_CLICK_AIR) || e.getAction().equals(Action.RIGHT_CLICK_BLOCK))
-            PLUGIN.getPlayers().get(e.getPlayer().getUniqueId()).getCurrentCharacter().getGunWeapon().strike(player);
-
-        RaidPlayer raidPlayer = (RaidPlayer) PLUGIN.getPlayers().get(player.getUniqueId());
-        if (e.getItem() != null) {
-            if (e.getMaterial().equals(Material.SPLASH_POTION)) {
-                switch (e.getItem().getItemMeta().getDisplayName()) {
-                    case "§f§l[ §cВосстановления здоровья §f§l] | 100 §e§lETH":
-                        if (raidPlayer.getMoney() >= 100) raidPlayer.depositMoney(-100);
-                        else e.setCancelled(true);
-                        break;
-                    case "§f§l[ §bУскорение тела §f§l] | 500 §e§lETH":
-                        if (raidPlayer.getMoney() >= 500) raidPlayer.depositMoney(-500);
-                        else e.setCancelled(true);
-                }
-            }
-            if (e.getItem().getItemMeta().getDisplayName().equals("§f§l[ §7Взрывная стрела §f§l] | 200 §e§lETH")) {
-                if (raidPlayer.getMoney() >= 200) {
-                    player.getWorld().spawnArrow(player.getEyeLocation().subtract(0, -3, 0), player.getEyeLocation().getDirection(), 1, 0);
-                    raidPlayer.depositMoney(-200);
-                }
-            }
-            PLUGIN.giveItems(player);
-        }
-
     }
 
     @EventHandler
@@ -107,10 +121,10 @@ public class InteractListener implements Listener {
 
         if (e.getBlock().getType().equals(Material.FENCE)) {
             RaidPlayer raidPlayer = (RaidPlayer) PLUGIN.getPlayers().get(e.getPlayer().getUniqueId());
-            if (raidPlayer.getMoney() > 50) {
+            if (raidPlayer.getMoney() >= 50) {
                 raidPlayer.depositMoney(-50);
-                PLUGIN.giveItems(e.getPlayer());
                 e.setCancelled(false);
+                PLUGIN.giveItems(e.getPlayer());
             }
         }
     }
