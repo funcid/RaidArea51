@@ -12,10 +12,10 @@ import java.util.Arrays;
 
 public class ArnoldSchwarzenegger implements ICharacter {
 
-    private final String    NAME  = "Arnold Schwarzenegger";
-    private final ItemStack INFO  = new ItemStack(Material.PAPER);
+    private final String     NAME = "Arnold Schwarzenegger";
+    private final ItemStack  INFO = new ItemStack(Material.PAPER);
     private final ItemStack CLIPS = new ItemStack(Material.BLAZE_ROD, 12);
-    private final Gun       GUN;
+    private final Gun         GUN;
 
     public ArnoldSchwarzenegger() {
         ItemMeta itemMeta = INFO.getItemMeta();

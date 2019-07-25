@@ -62,7 +62,7 @@ public class ConnectionListener implements Listener {
                     PLUGIN.getStatement().executeUpdate("INSERT INTO `RaidPlayers` (uuid, money, kills, wins) VALUES(" +
                             "'" + player.getUniqueId() + "', " +
                             "0, " +
-                            "0, " +
+                            "1000, " +
                             "0);");
                     loadStats(player);
                 }
@@ -113,15 +113,15 @@ public class ConnectionListener implements Listener {
         PacketPlayOutScoreboardDisplayObjective display = new PacketPlayOutScoreboardDisplayObjective(1, objective);
 
         ScoreboardScore null1Score = new ScoreboardScore(scoreboard, objective, " ");
-        null1Score.setScore(12);
+        null1Score.setScore(13);
         ScoreboardScore playerScore = new ScoreboardScore(scoreboard, objective, "§c§lИгрок:");
-        playerScore.setScore(11);
+        playerScore.setScore(12);
         ScoreboardScore nameScore = new ScoreboardScore(scoreboard, objective, "§lИмя: §6" + player.getName());
-        nameScore.setScore(10);
+        nameScore.setScore(11);
         ScoreboardScore null2Score = new ScoreboardScore(scoreboard, objective, "  ");
-        null2Score.setScore(5);
+        null2Score.setScore(6);
         ScoreboardScore informationScore = new ScoreboardScore(scoreboard, objective, "§c§lИнформация:");
-        informationScore.setScore(4);
+        informationScore.setScore(5);
         ScoreboardScore null3Score = new ScoreboardScore(scoreboard, objective, "   ");
         null3Score.setScore(0);
 
@@ -139,19 +139,21 @@ public class ConnectionListener implements Listener {
                 playerConnection.sendPacket(display);
 
                 ScoreboardScore characterScore = new ScoreboardScore(scoreboard, objective, "§lПерсонаж: §6" + (PLUGIN.getTimeStatus().equals(RaidTimeStatus.GAME) ? raidPlayer.getCurrentCharacter().getName() : "Не подобран"));
-                characterScore.setScore(9);
+                characterScore.setScore(10);
                 ScoreboardScore moneyScore = new ScoreboardScore(scoreboard, objective, "§lETH: §e§l" + raidPlayer.getMoney());
-                moneyScore.setScore(8);
+                moneyScore.setScore(9);
                 ScoreboardScore killsScore = new ScoreboardScore(scoreboard, objective, "§lУбийств: §6" + raidPlayer.getKills());
-                killsScore.setScore(7);
+                killsScore.setScore(8);
                 ScoreboardScore winsScore = new ScoreboardScore(scoreboard, objective, "§lПобед: §6" + raidPlayer.getWins());
-                winsScore.setScore(6);
+                winsScore.setScore(7);
                 ScoreboardScore timeStatusScore = new ScoreboardScore(scoreboard, objective, "§lСостояние игры: §6" + PLUGIN.getTimeStatus().getName());
-                timeStatusScore.setScore(3);
+                timeStatusScore.setScore(4);
                 ScoreboardScore gameStatusScore = new ScoreboardScore(scoreboard, objective, "§lСтатус: §6" + PLUGIN.getStatus().getName());
-                gameStatusScore.setScore(2);
+                gameStatusScore.setScore(3);
                 ScoreboardScore onlineScore = new ScoreboardScore(scoreboard, objective, "§lИгроков: §b§l" + Bukkit.getOnlinePlayers().size());
-                onlineScore.setScore(1);
+                onlineScore.setScore(2);
+                ScoreboardScore timeScore = new ScoreboardScore(scoreboard, objective, "§lВремя: §b§l" + (PLUGIN.getTimeStatus().equals(RaidTimeStatus.GAME) ? secondsToString((PLUGIN.getTime() - RaidTimeStatus.STARTING.getTime())) : "..."));
+                timeScore.setScore(1);
 
                 playerConnection.sendPacket(new PacketPlayOutScoreboardScore(null1Score));
                 playerConnection.sendPacket(new PacketPlayOutScoreboardScore(playerScore));
@@ -164,9 +166,14 @@ public class ConnectionListener implements Listener {
                 playerConnection.sendPacket(new PacketPlayOutScoreboardScore(killsScore));
                 playerConnection.sendPacket(new PacketPlayOutScoreboardScore(onlineScore));
                 playerConnection.sendPacket(new PacketPlayOutScoreboardScore(characterScore));
+                playerConnection.sendPacket(new PacketPlayOutScoreboardScore(timeScore));
                 playerConnection.sendPacket(new PacketPlayOutScoreboardScore(null3Score));
                 playerConnection.sendPacket(new PacketPlayOutScoreboardScore(winsScore));
             }
         }.runTaskTimerAsynchronously(PLUGIN, 0, 20L);
+    }
+
+    private String secondsToString(int pTime) {
+        return String.format("%02d:%02d", pTime / 60, pTime % 60);
     }
 }

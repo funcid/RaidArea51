@@ -4,8 +4,8 @@ public enum RaidTimeStatus {
 
     WAITING(10, "Ожидание"),
     STARTING(20, "Начало"),
-    GAME(3000, "Игра"),
-    ENDING(3010, "Завершение"),
+    GAME(500, "Игра"),
+    ENDING(515, "Завершение"),
     ;
 
     private int    time;

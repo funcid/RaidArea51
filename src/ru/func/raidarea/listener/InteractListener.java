@@ -1,6 +1,7 @@
 package ru.func.raidarea.listener;
 
 import org.bukkit.Bukkit;
+import org.bukkit.GameMode;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.entity.*;
@@ -16,7 +17,6 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
-import org.bukkit.util.Vector;
 import ru.func.raidarea.RaidArea;
 import ru.func.raidarea.RaidStatus;
 import ru.func.raidarea.RaidTimeStatus;
@@ -29,8 +29,8 @@ public class InteractListener implements Listener {
     private final PotionEffect BLINDNESS;
 
     public InteractListener(final RaidArea plugin) {
-        PLUGIN = plugin;
-        SLOWNESS = new PotionEffect(PotionEffectType.SLOW, 10000, 4);
+        PLUGIN    = plugin;
+        SLOWNESS  = new PotionEffect(PotionEffectType.SLOW, 10000, 4);
         BLINDNESS = new PotionEffect(PotionEffectType.BLINDNESS, 10000, 1);
     }
 
@@ -82,11 +82,13 @@ public class InteractListener implements Listener {
             if (e.getHand().equals(EquipmentSlot.HAND)) {
                 if (e.getRightClicked() instanceof Enderman) {
                     Player player = e.getPlayer();
-                    player.addPassenger(e.getRightClicked());
-                    player.addPotionEffect(SLOWNESS);
-                    PLUGIN.setStatus(RaidStatus.SEARCH);
-                    if (PLUGIN.getPlayers().get(player.getUniqueId()).isDefend())
-                        player.addPotionEffect(BLINDNESS);
+                    if (e.getPlayer().getGameMode().equals(GameMode.SURVIVAL)) {
+                        player.addPassenger(e.getRightClicked());
+                        player.addPotionEffect(SLOWNESS);
+                        PLUGIN.setStatus(RaidStatus.SEARCH);
+                        if (PLUGIN.getPlayers().get(player.getUniqueId()).isDefend())
+                            player.addPotionEffect(BLINDNESS);
+                    }
                 }
             }
         }
@@ -109,7 +111,7 @@ public class InteractListener implements Listener {
                 raidPlayer.setMoney(raidPlayer.getMoney() - 500);
                 TNTPrimed tntPrimed = (TNTPrimed) e.getBlock().getWorld().spawnEntity(e.getBlockPlaced().getLocation(), EntityType.PRIMED_TNT);
                 tntPrimed.setFuseTicks(80);
-                Bukkit.getScheduler().runTaskLater(PLUGIN, () -> e.getBlock().getWorld().createExplosion(e.getBlockPlaced().getLocation(), 2), 75);
+                Bukkit.getScheduler().runTaskLater(PLUGIN, () -> e.getBlock().getWorld().createExplosion(e.getBlockPlaced().getLocation(), 1), 75);
                 PLUGIN.giveItems(e.getPlayer());
             }
         }
@@ -126,7 +128,7 @@ public class InteractListener implements Listener {
         for (Block block : e.blockList()) {
             FallingBlock fallingBlock = block.getWorld().spawnFallingBlock(block.getLocation(), block.getType(), (byte) 0);
             fallingBlock.setDropItem(false);
-            fallingBlock.setVelocity(e.blockList().get(0).getLocation().toVector().subtract(block.getLocation().toVector()));
+            fallingBlock.setVelocity(e.blockList().get(0).getLocation().toVector().subtract(block.getLocation().toVector()).multiply(0.3F));
 
             block.setType(Material.AIR);
         }

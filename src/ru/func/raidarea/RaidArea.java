@@ -57,10 +57,7 @@ public class RaidArea extends JavaPlugin {
     );
 
     private ICharacter[] characters = {
-            new ArnoldSchwarzenegger(),
-            new ElonMusk(),
-            new KeanuReeves(),
-            new NarutoRunner()
+            new ArnoldSchwarzenegger()
     };
 
     private boolean STATION = true;
@@ -108,8 +105,7 @@ public class RaidArea extends JavaPlugin {
         Bukkit.getPluginManager().registerEvents(new DamageListener(this), this);
         Bukkit.getPluginManager().registerEvents(connectionListener, this);
 
-        for (Player player : Bukkit.getOnlinePlayers())
-            connectionListener.loadStats(player);
+        Bukkit.getOnlinePlayers().forEach(connectionListener::loadStats);
 
         /*      ITEMS *************** */
         HEAL = new Potion(PotionType.INSTANT_HEAL, 1, true).toItemStack(1);
@@ -168,7 +164,6 @@ public class RaidArea extends JavaPlugin {
                     case GAME:
                         TIME++;
                         if (TIME == RaidTimeStatus.GAME.getTime()) {
-                            Bukkit.getOnlinePlayers().forEach(player -> connectionListener.saveStats(player, 0));
                             TIME_STATUS = RaidTimeStatus.ENDING;
                             Bukkit.broadcastMessage("Игра закончилась! Защитники Зоны 51 победили и отстояли в этом рейде! (Все данный сохранены)");
                         } else if (attackersWin) {
@@ -180,7 +175,18 @@ public class RaidArea extends JavaPlugin {
                     case ENDING:
                         TIME++;
                         int dx = RaidTimeStatus.ENDING.getTime() - TIME;
-                        if (dx < 5)
+                        if (dx == 5) {
+                            Bukkit.getOnlinePlayers()
+                                    .stream()
+                                    .map(Player::getUniqueId)
+                                    .map(players::get)
+                                    .filter(player -> !player.isDefend() == attackersWin)
+                                    .forEach(player -> player.setWins(player.getWins() + 1));
+
+                            Bukkit.getOnlinePlayers().forEach(player -> connectionListener.saveStats(player, 0));
+                            Bukkit.broadcastMessage("Статистика сохранена.");
+                        }
+                        else if (dx < 5)
                             Bukkit.broadcastMessage("Игра перезапустится через " + ++dx + " секунд");
                         if (dx == 0)
                             Bukkit.reload();
@@ -192,6 +198,7 @@ public class RaidArea extends JavaPlugin {
 
     @Override
     public void onDisable() {
+        Bukkit.getOnlinePlayers().forEach(player -> connectionListener.saveStats(player, 0));
         Bukkit.getWorld(SETTINGS.getString("world"))
                 .getEntities()
                 .stream()
@@ -238,6 +245,10 @@ public class RaidArea extends JavaPlugin {
 
     public RaidStatus getStatus() {
         return STATUS;
+    }
+
+    public int getTime() {
+        return TIME;
     }
 
     public void setStatus(final RaidStatus STATUS) {

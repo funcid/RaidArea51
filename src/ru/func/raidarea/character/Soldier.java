@@ -33,7 +33,7 @@ public class Soldier implements ICharacter {
                 .material(Material.DIAMOND_PICKAXE)
                 .delay(5)
                 .bullets(25)
-                .damage(7)
+                .damage(9)
                 .clip(Material.GLOWSTONE_DUST)
                 .name("§e§lM4A1-S Carbine §b[ §f§l%d §b]")
                 .lore(Arrays.asList(

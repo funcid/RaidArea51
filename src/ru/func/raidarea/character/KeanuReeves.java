@@ -14,8 +14,8 @@ public class KeanuReeves implements ICharacter {
     private final String     NAME = "Keanu Reeves";
     private final ItemStack  INFO = new ItemStack(Material.PAPER);
     private final ItemStack  HOOK = new ItemStack(Material.FISHING_ROD);
-    private final ItemStack CLIPS = new ItemStack(Material.BRICK, 16);
-    private final Gun GUN;
+    private final ItemStack CLIPS = new ItemStack(Material.CLAY_BRICK, 16);
+    private final Gun         GUN;
 
     public KeanuReeves() {
         ItemMeta itemMeta = INFO.getItemMeta();
@@ -36,7 +36,7 @@ public class KeanuReeves implements ICharacter {
                 .delay(4)
                 .bullets(10)
                 .damage(4)
-                .clip(Material.BRICK)
+                .clip(Material.CLAY_BRICK)
                 .name("§e§lUSP-S §b[ §f§l%d §b]")
                 .lore(Arrays.asList(
                         "",

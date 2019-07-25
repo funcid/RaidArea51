@@ -49,7 +49,7 @@ public class ElonMusk implements ICharacter {
         if (CharacterDelayUtil.hasCountdown(user.getUniqueId()))
             return;
         for (int i = 0; i< 4; i++)
-            user.getWorld().strikeLightningEffect(user.getTargetBlock(null, 500).getLocation());
+            user.getWorld().strikeLightning(user.getTargetBlock(null, 50).getLocation());
         CharacterDelayUtil.setCountdown(user.getUniqueId(), 12);
     }
 
@@ -61,7 +61,7 @@ public class ElonMusk implements ICharacter {
     @Override
     public void giveAmmunition(final Player currentPlayer) {
         currentPlayer.getInventory().setItem(0, GUN.getItemStack());
-        currentPlayer.getInventory().setItem(2, CLIPS);
+        currentPlayer.getInventory().setItem(1, CLIPS);
         currentPlayer.getInventory().setItem(8, INFO);
     }
 

@@ -35,9 +35,11 @@ public class DamageListener implements Listener {
             return;
         }
 
-        if (e.getEntity() instanceof Player)
+        if (e.getEntity() instanceof Player) {
             pullDown((Player) e.getEntity());
-
+            if (e.getDamager() instanceof Player)
+                e.setCancelled(true);
+        }
         if (e.getDamager() instanceof Snowball && e.getEntity() instanceof Player) {
             Player player = ((Player) ((Snowball) e.getDamager()).getShooter());
             RaidPlayer raidPlayer = (RaidPlayer) PLUGIN.getPlayers().get(player.getUniqueId());
@@ -66,6 +68,8 @@ public class DamageListener implements Listener {
             Player player = e.getEntity().getKiller();
             RaidPlayer raidPlayer = (RaidPlayer) PLUGIN.getPlayers().get(player.getUniqueId());
             raidPlayer.setMoney(raidPlayer.getMoney() + 25);
+            raidPlayer.setKills(raidPlayer.getKills() + 1);
+
             player.sendMessage("§l+ 25 ETH §e(За невероянтно меткое убийство)");
             player.playSound(player.getLocation(), Sound.ENTITY_ARROW_HIT_PLAYER, 1, 1);
         }
