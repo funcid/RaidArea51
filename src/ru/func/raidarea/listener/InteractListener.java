@@ -71,15 +71,15 @@ public class InteractListener implements Listener {
                                 }
                                 break;
                             case "§f§l[ §bУскорение тела §f§l] | 500 §e§lETH":
-                                if (raidPlayer.getMoney() >= 500) {
-                                    raidPlayer.depositMoney(-500);
+                                if (raidPlayer.getMoney() >= 300) {
+                                    raidPlayer.depositMoney(-300);
                                     cancel = false;
                                 }
                                 break;
                             case "§f§l[ §7Взрывная стрела §f§l] | 200 §e§lETH":
-                                if (raidPlayer.getMoney() >= 200) {
+                                if (raidPlayer.getMoney() >= 150) {
                                     player.getWorld().spawnArrow(player.getEyeLocation().subtract(0, -3, 0), player.getEyeLocation().getDirection(), 1, 0);
-                                    raidPlayer.depositMoney(-200);
+                                    raidPlayer.depositMoney(-150);
                                 }
                                 break;
                             default:
@@ -111,20 +111,6 @@ public class InteractListener implements Listener {
                             player.addPotionEffect(BLINDNESS);
                     }
                 }
-            }
-        }
-    }
-
-    @EventHandler
-    public void onBlockPlace(BlockPlaceEvent e) {
-        e.setCancelled(true);
-
-        if (e.getBlock().getType().equals(Material.FENCE)) {
-            RaidPlayer raidPlayer = (RaidPlayer) PLUGIN.getPlayers().get(e.getPlayer().getUniqueId());
-            if (raidPlayer.getMoney() >= 50) {
-                raidPlayer.depositMoney(-50);
-                e.setCancelled(false);
-                PLUGIN.giveItems(e.getPlayer());
             }
         }
     }

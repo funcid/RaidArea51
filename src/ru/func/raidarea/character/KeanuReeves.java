@@ -7,6 +7,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 import ru.func.raidarea.weapon.Gun;
 import ru.func.raidarea.weapon.GunBuilder;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 
 public class KeanuReeves implements ICharacter {
@@ -38,10 +39,10 @@ public class KeanuReeves implements ICharacter {
                 .damage(6)
                 .clip(Material.CLAY_BRICK)
                 .name("§e§lUSP-S §b[ §f§l%d §b]")
-                .lore(Arrays.asList(
+                .lore(new ArrayList<>(Arrays.asList(
                         "",
                         "§fОбычное, но не менее опасное оружие."
-                ))
+                )))
                 .build();
     }
 

@@ -57,7 +57,8 @@ public class RaidArea extends JavaPlugin {
     );
 
     private ICharacter[] characters = {
-            new ArnoldSchwarzenegger()
+            new ElonMusk(),
+            new NarutoRunner()
     };
 
     private boolean STATION = true;
@@ -117,17 +118,17 @@ public class RaidArea extends JavaPlugin {
 
         SPEED = new Potion(PotionType.SPEED, 1, true).toItemStack(1);
         meta = SPEED.getItemMeta();
-        meta.setDisplayName("§f§l[ §bУскорение тела §f§l] | 500 §e§lETH");
+        meta.setDisplayName("§f§l[ §bУскорение тела §f§l] | 300 §e§lETH");
         SPEED.setItemMeta(meta);
 
         BARRIER = new ItemStack(Material.FENCE);
         meta = BARRIER.getItemMeta();
-        meta.setDisplayName("§f§l[ §7Преграда §f§l] | 50 §e§lETH");
+        meta.setDisplayName("§f§l[ §7Преграда §f§l] | 75 §e§lETH");
         BARRIER.setItemMeta(meta);
 
         ARROW = new ItemStack(Material.ARROW);
         meta = ARROW.getItemMeta();
-        meta.setDisplayName("§f§l[ §7Взрывная стрела §f§l] | 200 §e§lETH");
+        meta.setDisplayName("§f§l[ §7Взрывная стрела §f§l] | 150 §e§lETH");
         ARROW.setItemMeta(meta);
         /*      END ******************* */
 
@@ -299,12 +300,15 @@ public class RaidArea extends JavaPlugin {
                 characters = Arrays.copyOf(characters, characters.length - 1);
 
                 location = raidSpawn.subtract(random.nextInt(5), 0, random.nextInt(5));
-                player.sendMessage("[§b!§f] §7Ваш класс: §f§l" + raidPlayer.getCurrentCharacter().getName() + "§7, отключите питание на базе, и вызволите испытуемого пришельца, вся надежда на вас!");
+                player.sendMessage("[§b!§f] §7Ваш класс: §f§l" + raidPlayer.getCurrentCharacter().getName() +
+                        "§7, первым делом §f§lотключете питание базы §7нажав на рычаг, который защищают солдаты," +
+                        " следом §f§lунесите§7 с собой невиданного §f§lпришельца, §7вся надежда на вас!"
+                );
             } else {
                 location = defSpawn.subtract(random.nextInt(5), 0, random.nextInt(5));
                 raidPlayer.setCurrentCharacter(soldier);
                 raidPlayer.setDefend(true);
-                player.sendMessage("[§b!§f] §7Вы - защита этой легендарной Зоны 51, любой ценой защитите базу!");
+                player.sendMessage("[§b!§f] §7Вы - защита этой легендарной Зоны 51, их §f§lрейд продлится 10 минут, §7любой ценой защитите базу!");
             }
             player.teleport(location);
 

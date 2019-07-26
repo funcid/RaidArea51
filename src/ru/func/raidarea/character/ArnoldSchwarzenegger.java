@@ -8,6 +8,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 import ru.func.raidarea.weapon.Gun;
 import ru.func.raidarea.weapon.GunBuilder;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 
 public class ArnoldSchwarzenegger implements ICharacter {
@@ -36,13 +37,13 @@ public class ArnoldSchwarzenegger implements ICharacter {
                 .damage(3)
                 .clip(Material.BLAZE_ROD)
                 .name("§e§lM134 Minigun §b[ §f§l%d §b]")
-                .lore(Arrays.asList(
+                .lore(new ArrayList<>(Arrays.asList(
                         "",
                         "§fДа да, это тот самый пулемет, которым",
                         "§fон уничтожил огромное количество автомобилей в",
                         "«Терминатор 2: Судный день», это было нечто."
 
-                ))
+                )))
                 .build();
     }
 

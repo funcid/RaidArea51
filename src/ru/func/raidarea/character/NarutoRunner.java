@@ -9,6 +9,7 @@ import org.bukkit.potion.PotionEffectType;
 import ru.func.raidarea.weapon.Gun;
 import ru.func.raidarea.weapon.GunBuilder;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 
 public class NarutoRunner implements ICharacter {
@@ -33,7 +34,7 @@ public class NarutoRunner implements ICharacter {
         ));
         INFO.setItemMeta(itemMeta);
 
-        SPEED = new PotionEffect(PotionEffectType.SPEED, 99999, 25);
+        SPEED = new PotionEffect(PotionEffectType.SPEED, 99999, 20);
 
         GUN = new GunBuilder()
                 .material(Material.WOOD_AXE)
@@ -42,14 +43,14 @@ public class NarutoRunner implements ICharacter {
                 .damage(6)
                 .clip(Material.FIREWORK_CHARGE)
                 .name("§e§lРогатка §b[ §f§l%d §b]")
-                .lore(Arrays.asList(
+                .lore(new ArrayList<>(Arrays.asList(
                         "",
                         "§fВы нашли ее на чердаке когда готовились к осаде,",
                         "§fее там оставил ваш дедушка, когда вам было 5 лет,",
                         "§fвы очень любили из нее стрелять по банкам,",
                         "§fи я хочу сказать, не зря, у вас есть огромный талант,",
                         "§fкоторым вы можете воспользоваться на рейде."
-                ))
+                )))
                 .build();
     }
 

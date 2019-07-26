@@ -32,6 +32,10 @@ public class GunBuilder {
 
     public GunBuilder lore(final List<String> lore) {
         ItemMeta meta = itemStack.getItemMeta();
+        lore.add("");
+        lore.add("§fУрон: §c§l" + damage);
+        lore.add("§fМаксимум выстрелов: §e§l" + bullets);
+        lore.add("§fВремя перезардки (с): §b§l" + delay);
         meta.setLore(lore);
         this.itemStack.setItemMeta(meta);
         return this;

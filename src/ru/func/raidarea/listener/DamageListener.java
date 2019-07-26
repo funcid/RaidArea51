@@ -80,7 +80,9 @@ public class DamageListener implements Listener {
             pullDown((Player) e.getEntity());
             if (e.getCause().equals(EntityDamageEvent.DamageCause.FALL))
                 e.setCancelled(true);
-            else if (e.getCause().equals(EntityDamageEvent.DamageCause.BLOCK_EXPLOSION) || e.getCause().equals(EntityDamageEvent.DamageCause.ENTITY_EXPLOSION))
+            else if (e.getCause().equals(EntityDamageEvent.DamageCause.BLOCK_EXPLOSION) ||
+                    e.getCause().equals(EntityDamageEvent.DamageCause.ENTITY_EXPLOSION) ||
+                    e.getCause().equals(EntityDamageEvent.DamageCause.LIGHTNING))
                 e.setCancelled(!PLUGIN.getPlayers().get(e.getEntity().getUniqueId()).isDefend());
         }
     }

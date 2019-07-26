@@ -61,8 +61,8 @@ public class ConnectionListener implements Listener {
                     // uuid TEXT, money INT, characters TEXT, clef INT, kills INT, wins INT
                     PLUGIN.getStatement().executeUpdate("INSERT INTO `RaidPlayers` (uuid, money, kills, wins) VALUES(" +
                             "'" + player.getUniqueId() + "', " +
+                            "1000, " +
                             "0, " +
-                            "2000, " +
                             "0);");
                     loadStats(player);
                 }

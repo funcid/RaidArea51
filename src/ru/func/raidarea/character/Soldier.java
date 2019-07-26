@@ -7,6 +7,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 import ru.func.raidarea.weapon.Gun;
 import ru.func.raidarea.weapon.GunBuilder;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Soldier implements ICharacter {
@@ -46,13 +47,13 @@ public class Soldier implements ICharacter {
                 .damage(4.5)
                 .clip(Material.GLOWSTONE_DUST)
                 .name("§e§lM4A1-S Carbine §b[ §f§l%d §b]")
-                .lore(Arrays.asList(
+                .lore(new ArrayList<>(Arrays.asList(
                         "",
                         "§fНевероятно удобная и в тоже время,",
                         "§fлегко контролируемая автоматическая винтовка",
                         "§fспособная запросто убить любого осмелевшего",
                         "§fпосигнуть на секреты зоны 51."
-                ))
+                )))
                 .build();
 
         ItemMeta clipItemMeta = CLIPS.getItemMeta();

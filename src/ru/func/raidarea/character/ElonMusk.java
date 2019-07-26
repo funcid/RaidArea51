@@ -7,6 +7,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 import ru.func.raidarea.weapon.Gun;
 import ru.func.raidarea.weapon.GunBuilder;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 
 public class ElonMusk implements ICharacter {
@@ -35,12 +36,12 @@ public class ElonMusk implements ICharacter {
                 .damage(6.5)
                 .clip(Material.DIAMOND)
                 .name("§e§lАвтоЭлектроСнайперка §b[ §f§l%d §b]")
-                .lore(Arrays.asList(
+                .lore(new ArrayList<>(Arrays.asList(
                         "",
                         "§fОчень мощная штука...",
                         "§fБольше толко и сказать не чего."
 
-                ))
+                )))
                 .build();
     }
 

@@ -11,12 +11,15 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockExplodeEvent;
+import org.bukkit.event.block.BlockIgniteEvent;
+import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.entity.EntityChangeBlockEvent;
 import org.bukkit.event.entity.EntityExplodeEvent;
 import org.bukkit.event.entity.ItemSpawnEvent;
 import org.bukkit.event.entity.ProjectileHitEvent;
 import org.bukkit.util.Vector;
 import ru.func.raidarea.RaidArea;
+import ru.func.raidarea.player.RaidPlayer;
 
 import java.util.List;
 
@@ -45,6 +48,25 @@ public class BlockEventListener implements Listener {
                 Bukkit.getScheduler().runTaskLater(PLUGIN, () -> e.getBlock().setType(material), 80L);
             }
         }
+    }
+
+    @EventHandler
+    public void onBlockPlace(BlockPlaceEvent e) {
+        e.setCancelled(true);
+
+        if (e.getBlock().getType().equals(Material.FENCE)) {
+            RaidPlayer raidPlayer = (RaidPlayer) PLUGIN.getPlayers().get(e.getPlayer().getUniqueId());
+            if (raidPlayer.getMoney() >= 75) {
+                raidPlayer.depositMoney(-75);
+                e.setCancelled(false);
+                PLUGIN.giveItems(e.getPlayer());
+            }
+        }
+    }
+
+    @EventHandler
+    public void onBlockIgnite(BlockIgniteEvent event) {
+        event.setCancelled(event.getCause().equals(BlockIgniteEvent.IgniteCause.LIGHTNING));
     }
 
     @EventHandler
