@@ -29,10 +29,7 @@ public class RespawnListener implements Listener {
             raidPlayer.getCurrentCharacter().giveAmmunition(player);
             PLUGIN.giveItems(player);
             player.setGameMode(GameMode.SURVIVAL);
-            if (raidPlayer.isDefend())
-                player.teleport(PLUGIN.getDefSpawn());
-            else
-                player.teleport(PLUGIN.getRaidSpawn());
+            player.teleport(raidPlayer.isDefend() ? PLUGIN.getDefSpawn() : PLUGIN.getRaidSpawn());
         }, 100);
     }
 }

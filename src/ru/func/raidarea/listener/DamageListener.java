@@ -40,7 +40,6 @@ public class DamageListener implements Listener {
 
             pullDown((Player) e.getEntity());
 
-
             Player attacker;
             RaidPlayer raidPlayer;
             // BY PLAYER

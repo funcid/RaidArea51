@@ -9,7 +9,7 @@ public interface IGun {
      * This method shoots and also reloads the weapon with beautiful animation.
      * @param player that would strike/reload his weapon.
      */
-    void strike(Player player);
+    void strike(final Player player);
 
     /**
      * @return item of thist weapon.

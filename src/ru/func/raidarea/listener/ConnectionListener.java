@@ -107,7 +107,7 @@ public class ConnectionListener implements Listener {
 
         Scoreboard scoreboard = new Scoreboard();
 
-        ScoreboardObjective objective = scoreboard.registerObjective("§lШтурм Зоны 51", IScoreboardCriteria.b);
+        ScoreboardObjective objective = scoreboard.registerObjective("§lШТУРМ ЗОНЫ 51", IScoreboardCriteria.b);
         PacketPlayOutScoreboardObjective createObj = new PacketPlayOutScoreboardObjective(objective, 0);
         PacketPlayOutScoreboardObjective removeObj = new PacketPlayOutScoreboardObjective(objective, 1);
         PacketPlayOutScoreboardDisplayObjective display = new PacketPlayOutScoreboardDisplayObjective(1, objective);
@@ -127,6 +127,10 @@ public class ConnectionListener implements Listener {
 
         IPlayer raidPlayer = PLUGIN.getPlayers().get(player.getUniqueId());
 
+        playerConnection.sendPacket(removeObj);
+        playerConnection.sendPacket(createObj);
+        playerConnection.sendPacket(display);
+
         new BukkitRunnable() {
             @Override
             public void run() {
@@ -134,9 +138,6 @@ public class ConnectionListener implements Listener {
                     this.cancel();
                     return;
                 }
-                playerConnection.sendPacket(removeObj);
-                playerConnection.sendPacket(createObj);
-                playerConnection.sendPacket(display);
 
                 ScoreboardScore characterScore = new ScoreboardScore(scoreboard, objective, "§lПерсонаж: " + (PLUGIN.getTimeStatus().equals(RaidTimeStatus.GAME) ? raidPlayer.getCurrentCharacter().getName() : "§6Не подобран"));
                 characterScore.setScore(10);
@@ -154,6 +155,10 @@ public class ConnectionListener implements Listener {
                 onlineScore.setScore(2);
                 ScoreboardScore timeScore = new ScoreboardScore(scoreboard, objective, "§lВремя: §b§l" + secondsToString(Math.abs(PLUGIN.getTime() - RaidTimeStatus.STARTING.getTime())));
                 timeScore.setScore(1);
+
+                playerConnection.sendPacket(removeObj);
+                playerConnection.sendPacket(createObj);
+                playerConnection.sendPacket(display);
 
                 playerConnection.sendPacket(new PacketPlayOutScoreboardScore(null1Score));
                 playerConnection.sendPacket(new PacketPlayOutScoreboardScore(playerScore));
@@ -173,7 +178,7 @@ public class ConnectionListener implements Listener {
         }.runTaskTimerAsynchronously(PLUGIN, 0, 20L);
     }
 
-    private String secondsToString(int pTime) {
+    private String secondsToString(final int pTime) {
         return String.format("%02d:%02d", pTime / 60, pTime % 60);
     }
 }

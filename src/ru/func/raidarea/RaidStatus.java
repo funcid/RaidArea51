@@ -2,9 +2,9 @@ package ru.func.raidarea;
 
 public enum RaidStatus {
 
-    ACTIVE_STATION("Станция активна"),
+    ACTIVE_STATION        ("Станция активна"),
     DIACTIVATED_STATION("Станция не активна"),
-    SEARCH("Инопланетянин в бегах"),
+    SEARCH          ("Инопланетянин в бегах"),
     ;
 
     private String name;

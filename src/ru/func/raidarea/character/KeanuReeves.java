@@ -4,6 +4,7 @@ import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.util.Vector;
 import ru.func.raidarea.weapon.Gun;
 import ru.func.raidarea.weapon.GunBuilder;
 
@@ -47,7 +48,14 @@ public class KeanuReeves implements ICharacter {
     }
 
     @Override
-    public void usePerk(final Player user) { }
+    public void usePerk(final Player user) {
+        if (CharacterDelayUtil.hasCountdown(user.getUniqueId()))
+            return;
+        if (user.getPassengers().size() > 0)
+            return;
+        user.setVelocity(user.getEyeLocation().getDirection().multiply(0.01).subtract(new Vector(0, -1.5, 0)));
+        CharacterDelayUtil.setCountdown(user.getUniqueId(), 8);
+    }
 
     @Override
     public String getName() {

@@ -9,17 +9,17 @@ import org.bukkit.event.player.*;
 public class UsualListener implements Listener {
 
     @EventHandler
-    public void onItemDrop(PlayerDropItemEvent e) {
+    public void onItemDrop(final PlayerDropItemEvent e) {
         e.setCancelled(true);
     }
 
     @EventHandler
-    public void inEntityTeleportation(EntityTeleportEvent e) {
+    public void inEntityTeleportation(final EntityTeleportEvent e) {
         e.setCancelled(true);
     }
 
     @EventHandler
-    public void noHungry(FoodLevelChangeEvent e) {
+    public void noHungry(final FoodLevelChangeEvent e) {
         e.setCancelled(true);
     }
 }

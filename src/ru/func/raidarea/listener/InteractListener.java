@@ -70,13 +70,13 @@ public class InteractListener implements Listener {
                                     cancel = false;
                                 }
                                 break;
-                            case "§f§l[ §bУскорение тела §f§l] | 500 §e§lETH":
+                            case "§f§l[ §bУскорение тела §f§l] | 300 §e§lETH":
                                 if (raidPlayer.getMoney() >= 300) {
                                     raidPlayer.depositMoney(-300);
                                     cancel = false;
                                 }
                                 break;
-                            case "§f§l[ §7Взрывная стрела §f§l] | 200 §e§lETH":
+                            case "§f§l[ §7Взрывная стрела §f§l] | 150 §e§lETH":
                                 if (raidPlayer.getMoney() >= 150) {
                                     player.getWorld().spawnArrow(player.getEyeLocation().subtract(0, -3, 0), player.getEyeLocation().getDirection(), 1, 0);
                                     raidPlayer.depositMoney(-150);
@@ -118,6 +118,6 @@ public class InteractListener implements Listener {
     @EventHandler
     public void onHook(PlayerFishEvent e) {
         if (e.getHook().isOnGround())
-            e.getPlayer().setVelocity(e.getHook().getLocation().toVector().subtract(e.getPlayer().getLocation().toVector()).setY(-1));
+            e.getPlayer().setVelocity(e.getHook().getLocation().toVector().subtract(e.getPlayer().getLocation().toVector()).setY(-0.5));
     }
 }

@@ -57,8 +57,7 @@ public class RaidArea extends JavaPlugin {
     );
 
     private ICharacter[] characters = {
-            new ElonMusk(),
-            new NarutoRunner()
+            new KeanuReeves()
     };
 
     private boolean STATION = true;
@@ -262,17 +261,17 @@ public class RaidArea extends JavaPlugin {
         this.STATUS = STATUS;
     }
 
-    public void setAttackersWin(boolean attackersWin) {
+    public void setAttackersWin(final boolean attackersWin) {
         this.attackersWin = attackersWin;
     }
 
     private Location getLocationByPath(final String path) {
-        String[] coord = SETTINGS.getString(path).split("\\s+");
+        String[] coordinates = SETTINGS.getString(path).split("\\s+");
         Location location = new Location(
                 Bukkit.getWorld(SETTINGS.getString("world")),
-                Double.parseDouble(coord[0]),
-                Double.parseDouble(coord[1]),
-                Double.parseDouble(coord[2])
+                Double.parseDouble(coordinates[0]),
+                Double.parseDouble(coordinates[1]),
+                Double.parseDouble(coordinates[2])
         );
         return location;
     }
@@ -282,6 +281,8 @@ public class RaidArea extends JavaPlugin {
         Enderman enderman = (Enderman) Bukkit.getWorld(SETTINGS.getString("world")).spawnEntity(getLocationByPath("endermanLocation"), EntityType.ENDERMAN);
         enderman.setAI(false);
         enderman.setCustomName("§lПришелец Артемилиан");
+        enderman.setMaxHealth(2048);
+        enderman.setHealth(2048);
         enderman.setCustomNameVisible(true);
         enderman.setGravity(true);
 
@@ -304,6 +305,7 @@ public class RaidArea extends JavaPlugin {
                         "§7, первым делом §f§lотключете питание базы §7нажав на рычаг, который защищают солдаты," +
                         " следом §f§lунесите§7 с собой невиданного §f§lпришельца, §7вся надежда на вас!"
                 );
+                player.sendMessage("[§b!§f] §lУникальная способность - [§eSHIFT§f§l]");
             } else {
                 location = defSpawn.subtract(random.nextInt(5), 0, random.nextInt(5));
                 raidPlayer.setCurrentCharacter(soldier);
@@ -317,7 +319,7 @@ public class RaidArea extends JavaPlugin {
         }
     }
 
-    public void giveItems(Player player) {
+    public void giveItems(final Player player) {
         Inventory inventory = player.getInventory();
         inventory.setItem(4, HEAL);
         inventory.setItem(5, SPEED);

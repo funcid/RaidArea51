@@ -7,6 +7,7 @@ import org.bukkit.block.Block;
 import org.bukkit.entity.Arrow;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.FallingBlock;
+import org.bukkit.entity.FishHook;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
@@ -51,7 +52,7 @@ public class BlockEventListener implements Listener {
     }
 
     @EventHandler
-    public void onBlockPlace(BlockPlaceEvent e) {
+    public void onBlockPlace(final BlockPlaceEvent e) {
         e.setCancelled(true);
 
         if (e.getBlock().getType().equals(Material.FENCE)) {
@@ -65,7 +66,7 @@ public class BlockEventListener implements Listener {
     }
 
     @EventHandler
-    public void onBlockIgnite(BlockIgniteEvent event) {
+    public void onBlockIgnite(final BlockIgniteEvent event) {
         event.setCancelled(event.getCause().equals(BlockIgniteEvent.IgniteCause.LIGHTNING));
     }
 
@@ -84,15 +85,17 @@ public class BlockEventListener implements Listener {
     @EventHandler
     public void explodeBlockEvent(final BlockExplodeEvent e) {
         explode(e.blockList(), e.getBlock().getLocation(), 0.2F);
+        e.setCancelled(true);
     }
 
     @EventHandler
     public void onArrowShoot(final ProjectileHitEvent e) {
         if (e.getEntity() instanceof Arrow) {
             if (e.getHitBlock() != null) e.getHitBlock().getWorld().createExplosion(e.getHitBlock().getLocation(), 2);
-            else e.getHitEntity().setVelocity(e.getEntity().getVelocity());
-            e.getEntity().remove();
+            else e.getHitEntity().setVelocity(e.getEntity().getVelocity().multiply(2));
         }
+        if (!(e.getEntity() instanceof FishHook))
+            e.getEntity().remove();
     }
 
     private void explode(final List<Block> blockList, final Location center, final float power) {

@@ -2,10 +2,10 @@ package ru.func.raidarea;
 
 public enum RaidTimeStatus {
 
-    WAITING(10, "Ожидание"),
-    STARTING(20, "Начало"),
-    GAME(600, "Игра"),
-    ENDING(615, "Завершение"),
+    WAITING (10,    "Ожидание"),
+    STARTING(20,      "Начало"),
+    GAME    (600,       "Игра"),
+    ENDING  (615, "Завершение"),
     ;
 
     private int    time;

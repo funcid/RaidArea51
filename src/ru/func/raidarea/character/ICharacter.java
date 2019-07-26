@@ -8,7 +8,7 @@ public interface ICharacter {
     /**
      * @param user player that use his unique perk.
      */
-    void usePerk(Player user);
+    void usePerk(final Player user);
 
     /**
      * @return name of character.
@@ -18,7 +18,7 @@ public interface ICharacter {
     /**
      * @param currentPlayer is player that will get custom ammunition.
      */
-    void giveAmmunition(Player currentPlayer);
+    void giveAmmunition(final Player currentPlayer);
 
     /**
      * @return weapon that have this character.
