@@ -57,7 +57,7 @@ public class RaidArea extends JavaPlugin {
     );
 
     private ICharacter[] characters = {
-            new KeanuReeves()
+            new ElonMusk()
     };
 
     private boolean STATION = true;
@@ -281,8 +281,9 @@ public class RaidArea extends JavaPlugin {
         Enderman enderman = (Enderman) Bukkit.getWorld(SETTINGS.getString("world")).spawnEntity(getLocationByPath("endermanLocation"), EntityType.ENDERMAN);
         enderman.setAI(false);
         enderman.setCustomName("§lПришелец Артемилиан");
-        enderman.setMaxHealth(2048);
-        enderman.setHealth(2048);
+        enderman.setMaxHealth(1024);
+        enderman.setHealth(1024);
+        enderman.setGlowing(true);
         enderman.setCustomNameVisible(true);
         enderman.setGravity(true);
 
@@ -296,21 +297,25 @@ public class RaidArea extends JavaPlugin {
                     .forEach(player::removePotionEffect);
 
             Location location;
+            player.sendMessage("[§b!§f] §b§lИНФОРМАЦИЯ.");
             if (characters.length > 0) {
                 raidPlayer.setCurrentCharacter(characters[characters.length - 1]);
                 characters = Arrays.copyOf(characters, characters.length - 1);
 
                 location = raidSpawn.subtract(random.nextInt(5), 0, random.nextInt(5));
-                player.sendMessage("[§b!§f] §7Ваш класс: §f§l" + raidPlayer.getCurrentCharacter().getName() +
+                player.sendMessage("[§b!§f] §7Ваш персонаж: §f§l" + raidPlayer.getCurrentCharacter().getName() +
                         "§7, первым делом §f§lотключете питание базы §7нажав на рычаг, который защищают солдаты," +
-                        " следом §f§lунесите§7 с собой невиданного §f§lпришельца, §7вся надежда на вас!"
+                        " следом §f§lунесите§7 с собой §f§lпришельца, §7вся надежда на вас!"
                 );
-                player.sendMessage("[§b!§f] §lУникальная способность - [§eSHIFT§f§l]");
+                player.sendMessage("[§b!§f] §7Вы можете купить взрывную стрелу, которая ломает преграды.");
+                player.sendMessage("[§b!§f] §lУникальная способность - [§eSHIFT§f§l] [§cPVP §f§l1.8]");
             } else {
                 location = defSpawn.subtract(random.nextInt(5), 0, random.nextInt(5));
                 raidPlayer.setCurrentCharacter(soldier);
                 raidPlayer.setDefend(true);
-                player.sendMessage("[§b!§f] §7Вы - защита этой легендарной Зоны 51, их §f§lрейд продлится 10 минут, §7любой ценой защитите базу!");
+                player.sendMessage("[§b!§f] §7Вы - защита легендарной Зоны 51, §f§lнападение продлится 10 минут, закрывайте §7пришельца и выключатель §f§lпреградами, §7любой ценой сохраните секреты базы!");
+                player.sendMessage("[§b!§f] §7Вы можете купить дополнительные преграды.");
+                player.sendMessage("[§b!§f] §lПоставить преграду - [§eSHIFT§f§l] [§cPVP §f§l1.8]");
             }
             player.teleport(location);
 

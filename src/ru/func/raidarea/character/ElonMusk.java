@@ -47,8 +47,12 @@ public class ElonMusk implements ICharacter {
 
     @Override
     public void usePerk(final Player user) {
-        if (CharacterDelayUtil.hasCountdown(user.getUniqueId()))
+        if (user.isSneaking())
             return;
+        if (CharacterDelayUtil.hasCountdown(user.getUniqueId())) {
+            user.sendMessage("[§b!§f] §7Подождите еще §f§l" + (CharacterDelayUtil.getSecondsLeft(user.getUniqueId()) + 1) + "§7 секунд(ы).");
+            return;
+        }
         for (int i = 0; i< 4; i++)
             user.getWorld().strikeLightning(user.getTargetBlock(null, 50).getLocation());
         CharacterDelayUtil.setCountdown(user.getUniqueId(), 12);

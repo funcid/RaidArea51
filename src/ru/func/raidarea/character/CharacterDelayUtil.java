@@ -18,4 +18,8 @@ final class CharacterDelayUtil {
     static void setCountdown(final UUID user, final int val) {
         perkDelay.put(user, System.currentTimeMillis() + TimeUnit.SECONDS.toMillis(val));
     }
+
+    static long getSecondsLeft(final UUID user) {
+        return TimeUnit.MILLISECONDS.toSeconds(perkDelay.get(user) - System.currentTimeMillis());
+    }
 }

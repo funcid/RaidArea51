@@ -32,8 +32,10 @@ public class ConnectionListener implements Listener {
     public void onPlayerJoin(final PlayerJoinEvent e) {
         e.setJoinMessage(null);
         loadStats(e.getPlayer());
-        if (!PLUGIN.getTimeStatus().equals(RaidTimeStatus.GAME))
+        if (!PLUGIN.getTimeStatus().equals(RaidTimeStatus.GAME)) {
             e.getPlayer().setGameMode(GameMode.SURVIVAL);
+            e.getPlayer().getInventory().clear();
+        }
     }
 
     @EventHandler

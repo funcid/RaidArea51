@@ -29,7 +29,7 @@ public class KeanuReeves implements ICharacter {
         INFO.setItemMeta(itemMeta);
 
         itemMeta = HOOK.getItemMeta();
-        itemMeta.setDisplayName("§e§lХук с левой, хус с правой");
+        itemMeta.setDisplayName("§e§lХук");
         itemMeta.setUnbreakable(true);
         HOOK.setItemMeta(itemMeta);
 
@@ -49,11 +49,15 @@ public class KeanuReeves implements ICharacter {
 
     @Override
     public void usePerk(final Player user) {
-        if (CharacterDelayUtil.hasCountdown(user.getUniqueId()))
+        if (user.isSneaking())
             return;
+        if (CharacterDelayUtil.hasCountdown(user.getUniqueId())) {
+            user.sendMessage("[§b!§f] §7Подождите еще §f§l" + (CharacterDelayUtil.getSecondsLeft(user.getUniqueId()) + 1) + "§7 секунд(ы).");
+            return;
+        }
         if (user.getPassengers().size() > 0)
             return;
-        user.setVelocity(user.getEyeLocation().getDirection().multiply(0.01).subtract(new Vector(0, -1.5, 0)));
+        user.setVelocity(user.getEyeLocation().getDirection().multiply(0.01).subtract(new Vector(0, -1.3, 0)));
         CharacterDelayUtil.setCountdown(user.getUniqueId(), 8);
     }
 

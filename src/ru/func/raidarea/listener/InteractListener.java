@@ -31,7 +31,6 @@ public class InteractListener implements Listener {
 
     @EventHandler
     public void onInteractEvent(final PlayerInteractEvent e) {
-        // ОСТОРОЖНО, ХРУПКИЙ КОД
         e.setCancelled(!PLUGIN.getTimeStatus().equals(RaidTimeStatus.GAME));
 
         if (PLUGIN.getTimeStatus().equals(RaidTimeStatus.GAME)) {

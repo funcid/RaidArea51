@@ -1,9 +1,12 @@
 package ru.func.raidarea.character;
 
+import org.bukkit.Bukkit;
+import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.util.Vector;
 import ru.func.raidarea.weapon.Gun;
 import ru.func.raidarea.weapon.GunBuilder;
 
@@ -63,7 +66,21 @@ public class Soldier implements ICharacter {
 
     @Override
     public void usePerk(final Player user) {
+        if (user.isSneaking())
+            return;
+        if (CharacterDelayUtil.hasCountdown(user.getUniqueId())) {
+            user.sendMessage("[§b!§f] §7Подождите еще §f§l" + (CharacterDelayUtil.getSecondsLeft(user.getUniqueId()) + 1) + "§7 секунд(ы).");
+            return;
+        }
+        Location location = user.getTargetBlock(null, 2).getLocation();
+        location.getBlock().setType(Material.FENCE);
+        location.subtract(0, -1, 0).getBlock().setType(Material.FENCE);
+        location.subtract(1, 1, 0).getBlock().setType(Material.FENCE);
+        location.subtract(0, -1, 0).getBlock().setType(Material.FENCE);
+        location.subtract(-1, 1, 1).getBlock().setType(Material.FENCE);
+        location.subtract(0, -1, 0).getBlock().setType(Material.FENCE);
 
+        CharacterDelayUtil.setCountdown(user.getUniqueId(), 14);
     }
 
     @Override

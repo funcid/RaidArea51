@@ -23,7 +23,6 @@ public class DamageListener implements Listener {
 
     @EventHandler
     public void onEntityDamageByEntity(final EntityDamageByEntityEvent e) {
-        // ОСТОРОЖНО, ХРУПКИЙ МЕТОД
         if (!PLUGIN.getTimeStatus().equals(RaidTimeStatus.GAME)) {
             e.setCancelled(true);
             return;
@@ -48,7 +47,7 @@ public class DamageListener implements Listener {
                 raidPlayer = (RaidPlayer) PLUGIN.getPlayers().get(attacker.getUniqueId());
                 if (PLUGIN.getPlayers().get(e.getEntity().getUniqueId()).isDefend() != raidPlayer.isDefend()) {
                     if (((Player) e.getDamager()).getInventory().getItemInMainHand().getItemMeta() == null) {
-                        e.setDamage(3);
+                        e.setDamage(2);
                         raidPlayer.depositMoney(10);
                         attacker.sendMessage("§l+ 10 ETH §eЗа отличный удар.");
                         attacker.playSound(attacker.getLocation(), Sound.ENTITY_ARROW_HIT_PLAYER, 1, 1);

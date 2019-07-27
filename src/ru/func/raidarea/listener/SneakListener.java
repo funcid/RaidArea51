@@ -22,6 +22,7 @@ public class SneakListener implements Listener {
         Player player = e.getPlayer();
         if (PLUGIN.getTimeStatus().equals(RaidTimeStatus.GAME))
             if (player.getGameMode().equals(GameMode.SURVIVAL))
-                PLUGIN.getPlayers().get(player.getUniqueId()).getCurrentCharacter().usePerk(player);
+                if (PLUGIN.getPlayers().containsKey(player.getUniqueId()))
+                    PLUGIN.getPlayers().get(player.getUniqueId()).getCurrentCharacter().usePerk(player);
     }
 }

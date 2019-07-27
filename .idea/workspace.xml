@@ -12,23 +12,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="InteractListener.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/ru/func/raidarea/listener/InteractListener.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2484">
-              <caret line="120" column="132" selection-start-line="120" selection-start-column="132" selection-end-line="120" selection-end-column="132" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="DamageListener.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/ru/func/raidarea/listener/DamageListener.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="510">
-              <caret line="41" selection-start-line="41" selection-end-line="41" />
+            <state relative-caret-position="112">
+              <caret line="49" column="37" selection-start-line="49" selection-start-column="37" selection-end-line="49" selection-end-column="37" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -36,23 +24,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="BlockEventListener.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/ru/func/raidarea/listener/BlockEventListener.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="687">
-              <caret line="96" column="49" selection-start-line="96" selection-start-column="49" selection-end-line="96" selection-end-column="49" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="RespawnListener.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="RespawnListener.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/ru/func/raidarea/listener/RespawnListener.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="400">
-              <caret line="27" column="43" selection-start-line="27" selection-start-column="43" selection-end-line="27" selection-end-column="43" />
+            <state relative-caret-position="460">
+              <caret line="20" column="74" selection-start-line="20" selection-start-column="74" selection-end-line="20" selection-end-column="74" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -63,8 +39,20 @@
       <file leaf-file-name="RaidArea.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/ru/func/raidarea/RaidArea.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="470">
-              <caret line="58" column="39" selection-start-line="58" selection-start-column="39" selection-end-line="58" selection-end-column="39" />
+            <state relative-caret-position="1081">
+              <caret line="324" column="5" lean-forward="true" selection-start-line="324" selection-start-column="5" selection-end-line="324" selection-end-column="5" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="NarutoRunner.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/ru/func/raidarea/character/NarutoRunner.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="480">
+              <caret line="36" column="66" selection-start-line="36" selection-start-column="66" selection-end-line="36" selection-end-column="66" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -75,38 +63,30 @@
       <file leaf-file-name="KeanuReeves.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/ru/func/raidarea/character/KeanuReeves.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="813">
-              <caret line="55" column="104" selection-start-line="55" selection-start-column="104" selection-end-line="55" selection-end-column="104" />
+            <state relative-caret-position="379">
+              <caret line="54" column="28" selection-start-line="54" selection-start-column="28" selection-end-line="54" selection-end-column="28" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="e#2046#2047#0" expanded="true" />
+                <element signature="e#2073#2074#0" expanded="true" />
+                <element signature="e#2437#2438#0" expanded="true" />
+                <element signature="e#2463#2464#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MoveListener.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/ru/func/raidarea/listener/MoveListener.java">
+      <file leaf-file-name="Soldier.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/ru/func/raidarea/character/Soldier.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="384">
-              <caret line="26" selection-start-line="26" selection-end-line="26" />
+            <state relative-caret-position="917">
+              <caret line="82" column="62" selection-start-line="82" selection-start-column="62" selection-end-line="82" selection-end-column="62" />
               <folding>
                 <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ConnectionListener.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/ru/func/raidarea/listener/ConnectionListener.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1164">
-              <caret line="161" selection-start-line="161" selection-end-line="161" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#6108#9374#0" expanded="true" />
-                <element signature="e#9373#9374#0" expanded="true" />
-                <element signature="e#9478#9479#0" expanded="true" />
-                <element signature="e#9551#9552#0" expanded="true" />
+                <element signature="e#3668#3669#0" expanded="true" />
+                <element signature="e#3695#3696#0" expanded="true" />
+                <element signature="e#4238#4239#0" expanded="true" />
+                <element signature="e#4264#4265#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -115,8 +95,20 @@
       <file leaf-file-name="ElonMusk.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/ru/func/raidarea/character/ElonMusk.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="688">
-              <caret line="43" column="19" selection-start-line="43" selection-start-column="19" selection-end-line="43" selection-end-column="19" />
+            <state relative-caret-position="422">
+              <caret line="49" column="24" selection-start-line="49" selection-start-column="24" selection-end-line="49" selection-end-column="24" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ArnoldSchwarzenegger.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/ru/func/raidarea/character/ArnoldSchwarzenegger.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="856">
+              <caret line="54" column="121" selection-start-line="54" selection-start-column="62" selection-end-line="54" selection-end-column="121" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -127,8 +119,20 @@
       <file leaf-file-name="SneakListener.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/ru/func/raidarea/listener/SneakListener.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
-              <caret line="24" column="16" selection-start-line="24" selection-start-column="16" selection-end-line="24" selection-end-column="16" />
+            <state relative-caret-position="304">
+              <caret line="28" lean-forward="true" selection-start-line="28" selection-end-line="28" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CharacterDelayUtil.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/ru/func/raidarea/character/CharacterDelayUtil.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="525">
+              <caret line="21" column="10" selection-start-line="21" selection-start-column="10" selection-end-line="21" selection-end-column="10" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -160,17 +164,12 @@
         <option value="$PROJECT_DIR$/src/ru/func/raidarea/character/CharacterUtil.java" />
         <option value="$PROJECT_DIR$/src/ru/func/raidarea/weapon/Gun.java" />
         <option value="$PROJECT_DIR$/src/ru/func/raidarea/database/MySQL.java" />
-        <option value="$PROJECT_DIR$/src/ru/func/raidarea/character/CharacterDelayUtil.java" />
         <option value="$PROJECT_DIR$/src/ru/func/raidarea/extraitems/ExtraItem.java" />
         <option value="$PROJECT_DIR$/src/ru/func/raidarea/player/IPlayer.java" />
         <option value="$PROJECT_DIR$/src/ru/func/raidarea/player/RaidPlayer.java" />
         <option value="$PROJECT_DIR$/src/ru/func/raidarea/listener/MoveListener.java" />
-        <option value="$PROJECT_DIR$/src/ru/func/raidarea/listener/SneakListener.java" />
         <option value="$PROJECT_DIR$/src/config.yml" />
         <option value="$PROJECT_DIR$/src/ru/func/raidarea/listener/BlockEventsListener.java" />
-        <option value="$PROJECT_DIR$/src/ru/func/raidarea/character/Soldier.java" />
-        <option value="$PROJECT_DIR$/src/ru/func/raidarea/character/ElonMusk.java" />
-        <option value="$PROJECT_DIR$/src/ru/func/raidarea/character/ArnoldSchwarzenegger.java" />
         <option value="$PROJECT_DIR$/src/ru/func/raidarea/weapon/GunBuilder.java" />
         <option value="$PROJECT_DIR$/src/ru/func/raidarea/character/NarutoRunner.java" />
         <option value="$PROJECT_DIR$/src/ru/func/raidarea/character/AttackerDecorator.java" />
@@ -180,13 +179,18 @@
         <option value="$PROJECT_DIR$/src/ru/func/raidarea/player/PlayerBuilder.java" />
         <option value="$PROJECT_DIR$/src/ru/func/raidarea/RaidTimeStatus.java" />
         <option value="$PROJECT_DIR$/src/ru/func/raidarea/RaidStatus.java" />
-        <option value="$PROJECT_DIR$/src/ru/func/raidarea/listener/InteractListener.java" />
-        <option value="$PROJECT_DIR$/src/ru/func/raidarea/listener/ConnectionListener.java" />
-        <option value="$PROJECT_DIR$/src/ru/func/raidarea/character/KeanuReeves.java" />
-        <option value="$PROJECT_DIR$/src/ru/func/raidarea/listener/DamageListener.java" />
-        <option value="$PROJECT_DIR$/src/ru/func/raidarea/RaidArea.java" />
         <option value="$PROJECT_DIR$/src/ru/func/raidarea/listener/BlockEventListener.java" />
+        <option value="$PROJECT_DIR$/src/ru/func/raidarea/listener/ConnectionListener.java" />
+        <option value="$PROJECT_DIR$/src/ru/func/raidarea/listener/InteractListener.java" />
+        <option value="$PROJECT_DIR$/src/ru/func/raidarea/character/CharacterDelayUtil.java" />
+        <option value="$PROJECT_DIR$/src/ru/func/raidarea/character/ArnoldSchwarzenegger.java" />
+        <option value="$PROJECT_DIR$/src/ru/func/raidarea/character/ElonMusk.java" />
+        <option value="$PROJECT_DIR$/src/ru/func/raidarea/character/KeanuReeves.java" />
         <option value="$PROJECT_DIR$/src/ru/func/raidarea/listener/RespawnListener.java" />
+        <option value="$PROJECT_DIR$/src/ru/func/raidarea/listener/DamageListener.java" />
+        <option value="$PROJECT_DIR$/src/ru/func/raidarea/listener/SneakListener.java" />
+        <option value="$PROJECT_DIR$/src/ru/func/raidarea/character/Soldier.java" />
+        <option value="$PROJECT_DIR$/src/ru/func/raidarea/RaidArea.java" />
       </list>
     </option>
   </component>
@@ -201,9 +205,9 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="PackagesPane" />
       <pane id="AndroidView" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -351,6 +355,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="2576" height="1416" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32942098" />
@@ -360,19 +365,19 @@
       <window_info anchor="right" id="Capture Analysis" order="3" />
       <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.5007949" side_tool="true" weight="0.14084508" />
       <window_info anchor="right" id="Maven Projects" order="3" />
-      <window_info anchor="bottom" id="Version Control" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Run" order="2" />
+      <window_info anchor="bottom" id="Version Control" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Terminal" order="7" />
       <window_info id="Capture Tool" order="2" />
       <window_info id="Designer" order="2" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24642289" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24841018" />
       <window_info anchor="bottom" id="Statistic" order="7" sideWeight="0.49920508" weight="0.0" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info id="UI Designer" order="2" />
       <window_info anchor="right" id="Theme Preview" order="3" />
-      <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -383,7 +388,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="4" />
+      <option name="time" value="5" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
@@ -504,10 +509,8 @@
           <caret line="62" column="32" selection-start-line="62" selection-start-column="32" selection-end-line="62" selection-end-column="32" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#6108#9374#0" expanded="true" />
-            <element signature="e#9373#9374#0" expanded="true" />
-            <element signature="e#9478#9479#0" expanded="true" />
-            <element signature="e#9551#9552#0" expanded="true" />
+            <element signature="e#9374#9375#0" expanded="true" />
+            <element signature="e#9447#9448#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -551,51 +554,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/ru/func/raidarea/character/AttackerDecorator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="52">
-          <caret line="2" column="52" selection-start-line="2" selection-start-column="52" selection-end-line="2" selection-end-column="52" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/ru/func/raidarea/character/ICharacter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="304">
-          <caret line="20" column="30" selection-start-line="20" selection-start-column="30" selection-end-line="20" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/ru/func/raidarea/character/CharacterDelayUtil.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="128">
-          <caret line="8" column="12" selection-start-line="8" selection-start-column="12" selection-end-line="8" selection-end-column="12" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/ru/func/raidarea/character/NarutoRunner.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="517">
-          <caret line="36" column="66" selection-start-line="36" selection-start-column="66" selection-end-line="36" selection-end-column="66" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/ru/func/raidarea/character/Soldier.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="446">
-          <caret line="47" column="35" lean-forward="true" selection-start-line="47" selection-start-column="35" selection-end-line="47" selection-end-column="35" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="method#usePerk#0;class#Soldier#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ru/func/raidarea/character/AttackerDecorator.java" />
     <entry file="file://$PROJECT_DIR$/src/ru/func/raidarea/database/MySQL.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="64">
@@ -607,13 +566,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="64">
           <caret line="5" column="22" selection-start-line="5" selection-start-column="22" selection-end-line="5" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/ru/func/raidarea/listener/UsualListener.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="208">
-          <caret line="21" column="31" selection-start-line="21" selection-start-column="31" selection-end-line="21" selection-end-column="31" />
         </state>
       </provider>
     </entry>
@@ -676,60 +628,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/ru/func/raidarea/character/ArnoldSchwarzenegger.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="532">
-          <caret line="41" column="40" lean-forward="true" selection-start-line="41" selection-start-column="40" selection-end-line="41" selection-end-column="40" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/ru/func/raidarea/character/ElonMusk.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="688">
-          <caret line="43" column="19" selection-start-line="43" selection-start-column="19" selection-end-line="43" selection-end-column="19" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/ru/func/raidarea/character/KeanuReeves.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="813">
-          <caret line="55" column="104" selection-start-line="55" selection-start-column="104" selection-end-line="55" selection-end-column="104" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/ru/func/raidarea/listener/MoveListener.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="384">
+        <state relative-caret-position="288">
           <caret line="26" selection-start-line="26" selection-end-line="26" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/ru/func/raidarea/listener/InteractListener.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2484">
-          <caret line="120" column="132" selection-start-line="120" selection-start-column="132" selection-end-line="120" selection-end-column="132" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/ru/func/raidarea/listener/DamageListener.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="510">
-          <caret line="41" selection-start-line="41" selection-end-line="41" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -738,22 +640,20 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/ru/func/raidarea/listener/ConnectionListener.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1164">
-          <caret line="161" selection-start-line="161" selection-end-line="161" />
+        <state relative-caret-position="384">
+          <caret line="36" column="49" selection-start-line="36" selection-start-column="49" selection-end-line="36" selection-end-column="49" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#6108#9374#0" expanded="true" />
-            <element signature="e#9373#9374#0" expanded="true" />
-            <element signature="e#9478#9479#0" expanded="true" />
-            <element signature="e#9551#9552#0" expanded="true" />
+            <element signature="e#9374#9375#0" expanded="true" />
+            <element signature="e#9447#9448#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/ru/func/raidarea/RaidArea.java">
+    <entry file="file://$PROJECT_DIR$/src/ru/func/raidarea/listener/InteractListener.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="470">
-          <caret line="58" column="39" selection-start-line="58" selection-start-column="39" selection-end-line="58" selection-end-column="39" />
+        <state relative-caret-position="464">
+          <caret line="49" column="48" selection-start-line="49" selection-start-column="48" selection-end-line="49" selection-end-column="48" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -762,7 +662,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/ru/func/raidarea/listener/BlockEventListener.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="687">
+        <state relative-caret-position="832">
           <caret line="96" column="49" selection-start-line="96" selection-start-column="49" selection-end-line="96" selection-end-column="49" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -770,19 +670,121 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/ru/func/raidarea/listener/SneakListener.java">
+    <entry file="file://$PROJECT_DIR$/src/ru/func/raidarea/listener/UsualListener.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="24" column="16" selection-start-line="24" selection-start-column="16" selection-end-line="24" selection-end-column="16" />
+        <state relative-caret-position="208">
+          <caret line="21" column="31" selection-start-line="21" selection-start-column="31" selection-end-line="21" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ru/func/raidarea/character/ICharacter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="304">
+          <caret line="20" column="30" selection-start-line="20" selection-start-column="30" selection-end-line="20" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ru/func/raidarea/character/CharacterDelayUtil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="525">
+          <caret line="21" column="10" selection-start-line="21" selection-start-column="10" selection-end-line="21" selection-end-column="10" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ru/func/raidarea/character/ArnoldSchwarzenegger.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="856">
+          <caret line="54" column="121" selection-start-line="54" selection-start-column="62" selection-end-line="54" selection-end-column="121" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ru/func/raidarea/character/NarutoRunner.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="480">
+          <caret line="36" column="66" selection-start-line="36" selection-start-column="66" selection-end-line="36" selection-end-column="66" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/ru/func/raidarea/listener/RespawnListener.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="400">
-          <caret line="27" column="43" selection-start-line="27" selection-start-column="43" selection-end-line="27" selection-end-column="43" />
+        <state relative-caret-position="460">
+          <caret line="20" column="74" selection-start-line="20" selection-start-column="74" selection-end-line="20" selection-end-column="74" />
           <folding>
             <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ru/func/raidarea/listener/DamageListener.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="112">
+          <caret line="49" column="37" selection-start-line="49" selection-start-column="37" selection-end-line="49" selection-end-column="37" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ru/func/raidarea/character/KeanuReeves.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="379">
+          <caret line="54" column="28" selection-start-line="54" selection-start-column="28" selection-end-line="54" selection-end-column="28" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#2046#2047#0" expanded="true" />
+            <element signature="e#2073#2074#0" expanded="true" />
+            <element signature="e#2437#2438#0" expanded="true" />
+            <element signature="e#2463#2464#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ru/func/raidarea/listener/SneakListener.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="304">
+          <caret line="28" lean-forward="true" selection-start-line="28" selection-end-line="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ru/func/raidarea/character/ElonMusk.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="422">
+          <caret line="49" column="24" selection-start-line="49" selection-start-column="24" selection-end-line="49" selection-end-column="24" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ru/func/raidarea/RaidArea.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1081">
+          <caret line="324" column="5" lean-forward="true" selection-start-line="324" selection-start-column="5" selection-end-line="324" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ru/func/raidarea/character/Soldier.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="917">
+          <caret line="82" column="62" selection-start-line="82" selection-start-column="62" selection-end-line="82" selection-end-column="62" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#3668#3669#0" expanded="true" />
+            <element signature="e#3695#3696#0" expanded="true" />
+            <element signature="e#4238#4239#0" expanded="true" />
+            <element signature="e#4264#4265#0" expanded="true" />
           </folding>
         </state>
       </provider>

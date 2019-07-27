@@ -49,8 +49,12 @@ public class ArnoldSchwarzenegger implements ICharacter {
 
     @Override
     public void usePerk(final Player user) {
-        if (CharacterDelayUtil.hasCountdown(user.getUniqueId()))
+        if (user.isSneaking())
             return;
+        if (CharacterDelayUtil.hasCountdown(user.getUniqueId())) {
+            user.sendMessage("[§b!§f] §7Подождите еще §f§l" + (CharacterDelayUtil.getSecondsLeft(user.getUniqueId()) + 1) + "§7 секунд(ы).");
+            return;
+        }
         FallingBlock fallingBlock = user.getWorld().spawnFallingBlock(user.getLocation().subtract(0, -1, 0), Material.IRON_BLOCK, (byte) 0);
         fallingBlock.setVelocity(user.getEyeLocation().getDirection().multiply(2));
         CharacterDelayUtil.setCountdown(user.getUniqueId(), 8);
