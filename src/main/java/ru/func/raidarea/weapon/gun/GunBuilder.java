@@ -1,4 +1,4 @@
-package ru.func.raidarea.weapon;
+package ru.func.raidarea.weapon.gun;
 
 import lombok.Getter;
 import org.bukkit.Material;

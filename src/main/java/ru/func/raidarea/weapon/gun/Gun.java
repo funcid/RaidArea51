@@ -1,4 +1,4 @@
-package ru.func.raidarea.weapon;
+package ru.func.raidarea.weapon.gun;
 
 import com.google.common.collect.Maps;
 import lombok.Getter;
@@ -97,5 +97,10 @@ public class Gun implements Shooting {
                     .findAny()
                     .ifPresent(item -> item.setAmount(item.getAmount() - 1));
         }
+    }
+
+    @Override
+    public void onUse(final Player player) {
+        strike(player);
     }
 }

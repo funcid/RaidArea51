@@ -54,9 +54,9 @@ public class InteractListener implements Listener {
                 }
             }
 
-            // STRIKE
+            // STRIKE OR something
             if (e.getAction().equals(Action.RIGHT_CLICK_AIR) || e.getAction().equals(Action.RIGHT_CLICK_BLOCK))
-                raidPlayer.getCurrentCharacter().getGunWeapon().strike(player);
+                raidPlayer.getCurrentCharacter().getWeapon().onUse(player);
 
             // EXTRA ITEMS
             boolean cancel = true;

@@ -3,14 +3,7 @@ package ru.func.raidarea.weapon;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
-public interface Shooting {
-
-    /**
-     * This method shoots and also reloads the weapon with beautiful animation.
-     *
-     * @param player that would strike/reload his weapon.
-     */
-    void strike(final Player player);
+public interface Weaponry {
 
     /**
      * @return item of this weapon.
@@ -21,4 +14,9 @@ public interface Shooting {
      * @return damage of player hit.
      */
     double getDamage();
+
+    /**
+     * @param player player that use weapon
+     */
+    void onUse(final Player player);
 }

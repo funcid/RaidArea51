@@ -1,7 +1,7 @@
 package ru.func.raidarea.character;
 
 import org.bukkit.entity.Player;
-import ru.func.raidarea.weapon.Shooting;
+import ru.func.raidarea.weapon.Weaponry;
 
 public interface Characterful {
 
@@ -23,5 +23,5 @@ public interface Characterful {
     /**
      * @return weapon that have this character.
      */
-    Shooting getGunWeapon();
+    Weaponry getWeapon();
 }

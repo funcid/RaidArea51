@@ -5,8 +5,8 @@ import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
-import ru.func.raidarea.weapon.Gun;
-import ru.func.raidarea.weapon.GunBuilder;
+import ru.func.raidarea.weapon.gun.GunBuilder;
+import ru.func.raidarea.weapon.Weaponry;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -14,7 +14,7 @@ import java.util.Arrays;
 public class ElonMusk implements Characterful {
 
     @Getter
-    private final Gun gunWeapon;
+    private final Weaponry weapon;
     @Getter
     private final String name = "§e§lИлон Маск";
 
@@ -33,7 +33,7 @@ public class ElonMusk implements Characterful {
         ));
         info.setItemMeta(itemMeta);
 
-        gunWeapon = new GunBuilder()
+        weapon = new GunBuilder()
                 .material(Material.GOLD_HOE)
                 .delay(5)
                 .bullets(5)
@@ -64,7 +64,7 @@ public class ElonMusk implements Characterful {
 
     @Override
     public void giveAmmunition(final Player currentPlayer) {
-        currentPlayer.getInventory().setItem(0, gunWeapon.getItemStack());
+        currentPlayer.getInventory().setItem(0, weapon.getItemStack());
         currentPlayer.getInventory().setItem(1, clips);
         currentPlayer.getInventory().setItem(8, info);
     }

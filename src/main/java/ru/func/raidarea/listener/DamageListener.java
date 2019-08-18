@@ -65,7 +65,7 @@ public class DamageListener implements Listener {
                 attacker = ((Player) ((Snowball) e.getDamager()).getShooter());
                 raidPlayer = plugin.getPlayers().get(attacker.getUniqueId());
                 if (plugin.getPlayers().get(e.getEntity().getUniqueId()).isDefend() != raidPlayer.isDefend()) {
-                    e.setDamage(raidPlayer.getCurrentCharacter().getGunWeapon().getDamage());
+                    e.setDamage(raidPlayer.getCurrentCharacter().getWeapon().getDamage());
                     raidPlayer.depositMoney(15);
                     attacker.sendMessage("§l+ 15 ETH §eЗа точный попадание в цель.");
                     attacker.playSound(attacker.getLocation(), Sound.ENTITY_ARROW_HIT_PLAYER, 1, 1);

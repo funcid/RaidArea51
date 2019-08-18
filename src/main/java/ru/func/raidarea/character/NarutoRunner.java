@@ -7,8 +7,8 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
-import ru.func.raidarea.weapon.Gun;
-import ru.func.raidarea.weapon.GunBuilder;
+import ru.func.raidarea.weapon.gun.GunBuilder;
+import ru.func.raidarea.weapon.gun.Shooting;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -22,7 +22,7 @@ public class NarutoRunner implements Characterful {
     private final ItemStack clips = new ItemStack(Material.FIREWORK_CHARGE, 16);
 
     @Getter
-    private final Gun gunWeapon;
+    private final Shooting weapon;
     private final PotionEffect speed;
 
     public NarutoRunner() {
@@ -41,7 +41,7 @@ public class NarutoRunner implements Characterful {
 
         speed = new PotionEffect(PotionEffectType.SPEED, 99999, 20);
 
-        gunWeapon = new GunBuilder()
+        weapon = new GunBuilder()
                 .material(Material.WOOD_AXE)
                 .delay(1)
                 .bullets(1)
@@ -67,7 +67,7 @@ public class NarutoRunner implements Characterful {
 
     @Override
     public void giveAmmunition(final Player currentPlayer) {
-        currentPlayer.getInventory().setItem(0, gunWeapon.getItemStack());
+        currentPlayer.getInventory().setItem(0, weapon.getItemStack());
         currentPlayer.getInventory().setItem(1, clips);
         currentPlayer.getInventory().setItem(8, info);
     }

@@ -6,8 +6,8 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.util.Vector;
-import ru.func.raidarea.weapon.Gun;
-import ru.func.raidarea.weapon.GunBuilder;
+import ru.func.raidarea.weapon.gun.GunBuilder;
+import ru.func.raidarea.weapon.gun.Shooting;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -20,7 +20,7 @@ public class KeanuReeves implements Characterful {
     private final ItemStack hook = new ItemStack(Material.FISHING_ROD);
     private final ItemStack clips = new ItemStack(Material.CLAY_BRICK, 16);
     @Getter
-    private final Gun gunWeapon;
+    private final Shooting weapon;
 
     public KeanuReeves() {
         ItemMeta itemMeta = info.getItemMeta();
@@ -36,7 +36,7 @@ public class KeanuReeves implements Characterful {
         itemMeta.setUnbreakable(true);
         hook.setItemMeta(itemMeta);
 
-        gunWeapon = new GunBuilder()
+        weapon = new GunBuilder()
                 .material(Material.WOOD_HOE)
                 .delay(4)
                 .bullets(10)
@@ -66,7 +66,7 @@ public class KeanuReeves implements Characterful {
 
     @Override
     public void giveAmmunition(final Player currentPlayer) {
-        currentPlayer.getInventory().setItem(0, gunWeapon.getItemStack());
+        currentPlayer.getInventory().setItem(0, weapon.getItemStack());
         currentPlayer.getInventory().setItem(1, hook);
         currentPlayer.getInventory().setItem(2, clips);
         currentPlayer.getInventory().setItem(8, info);

@@ -6,8 +6,8 @@ import org.bukkit.entity.FallingBlock;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
-import ru.func.raidarea.weapon.Gun;
-import ru.func.raidarea.weapon.GunBuilder;
+import ru.func.raidarea.weapon.gun.GunBuilder;
+import ru.func.raidarea.weapon.gun.Shooting;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -17,7 +17,7 @@ public class ArnoldSchwarzenegger implements Characterful {
     @Getter
     private final String name = "§e§lАрнольд Шварцнеггер";
     @Getter
-    private final Gun gunWeapon;
+    private final Shooting weapon;
 
     private final ItemStack info = new ItemStack(Material.PAPER);
     private final ItemStack clips = new ItemStack(Material.BLAZE_ROD, 12);
@@ -34,7 +34,7 @@ public class ArnoldSchwarzenegger implements Characterful {
         ));
         info.setItemMeta(itemMeta);
 
-        gunWeapon = new GunBuilder()
+        weapon = new GunBuilder()
                 .material(Material.GOLD_AXE)
                 .delay(8)
                 .bullets(100)
@@ -66,7 +66,7 @@ public class ArnoldSchwarzenegger implements Characterful {
 
     @Override
     public void giveAmmunition(final Player currentPlayer) {
-        currentPlayer.getInventory().setItem(0, gunWeapon.getItemStack());
+        currentPlayer.getInventory().setItem(0, weapon.getItemStack());
         currentPlayer.getInventory().setItem(1, clips);
         currentPlayer.getInventory().setItem(8, info);
     }
