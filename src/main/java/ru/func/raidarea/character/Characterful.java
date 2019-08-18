@@ -1,9 +1,9 @@
 package ru.func.raidarea.character;
 
 import org.bukkit.entity.Player;
-import ru.func.raidarea.weapon.IGun;
+import ru.func.raidarea.weapon.Shooting;
 
-public interface ICharacter {
+public interface Characterful {
 
     /**
      * @param user player that use his unique perk.
@@ -23,5 +23,5 @@ public interface ICharacter {
     /**
      * @return weapon that have this character.
      */
-    IGun getGunWeapon();
+    Shooting getGunWeapon();
 }

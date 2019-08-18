@@ -12,7 +12,7 @@ import ru.func.raidarea.weapon.GunBuilder;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class ArnoldSchwarzenegger implements ICharacter {
+public class ArnoldSchwarzenegger implements Characterful {
 
     @Getter
     private final String name = "§e§lАрнольд Шварцнеггер";

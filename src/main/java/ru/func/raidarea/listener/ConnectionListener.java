@@ -14,7 +14,7 @@ import org.bukkit.scheduler.BukkitRunnable;
 import ru.func.raidarea.RaidArea;
 import ru.func.raidarea.RaidClock;
 import ru.func.raidarea.RaidTimeStatus;
-import ru.func.raidarea.player.IPlayer;
+import ru.func.raidarea.player.Shuffler;
 import ru.func.raidarea.player.RaidPlayer;
 
 import java.sql.ResultSet;
@@ -81,7 +81,7 @@ public class ConnectionListener implements Listener {
 
     public void saveStats(final Player player, int i) {
         if (plugin.getPlayers().containsKey(player.getUniqueId())) {
-            IPlayer raidPlayer = plugin.getPlayers().get(player.getUniqueId());
+            Shuffler raidPlayer = plugin.getPlayers().get(player.getUniqueId());
             try {
                 ResultSet resultSet = plugin.getStatement().executeQuery("SELECT * FROM `RaidPlayers` WHERE uuid = '" + player.getUniqueId() + "';");
                 if (resultSet.next())
@@ -131,7 +131,7 @@ public class ConnectionListener implements Listener {
         ScoreboardScore null3Score = new ScoreboardScore(scoreboard, objective, "   ");
         null3Score.setScore(0);
 
-        IPlayer raidPlayer = plugin.getPlayers().get(player.getUniqueId());
+        Shuffler raidPlayer = plugin.getPlayers().get(player.getUniqueId());
 
         playerConnection.sendPacket(removeObj);
         playerConnection.sendPacket(createObj);

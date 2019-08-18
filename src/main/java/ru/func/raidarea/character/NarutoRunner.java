@@ -13,7 +13,7 @@ import ru.func.raidarea.weapon.GunBuilder;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class NarutoRunner implements ICharacter {
+public class NarutoRunner implements Characterful {
 
     @Getter
     private final String name = "§e§lНаруто Раннер";

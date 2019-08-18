@@ -15,7 +15,7 @@ import org.bukkit.potion.PotionType;
 import ru.func.raidarea.character.*;
 import ru.func.raidarea.database.MySQL;
 import ru.func.raidarea.listener.*;
-import ru.func.raidarea.player.IPlayer;
+import ru.func.raidarea.player.Shuffler;
 
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -39,7 +39,7 @@ public class RaidArea extends JavaPlugin {
     @Setter
     private boolean attackersWin = false;
 
-    private Map<UUID, IPlayer> players = Maps.newHashMap();
+    private Map<UUID, Shuffler> players = Maps.newHashMap();
     private int minPlayers = settings.getInt("minPlayers");
     @Setter
     private int endermanAmount = 0;
@@ -47,7 +47,7 @@ public class RaidArea extends JavaPlugin {
     private Statement statement;
 
     @Setter
-    private ICharacter[] characters = {
+    private Characterful[] characters = {
             new KeanuReeves(),
             new ArnoldSchwarzenegger()
     };

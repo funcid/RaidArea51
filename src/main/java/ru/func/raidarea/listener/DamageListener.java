@@ -15,7 +15,7 @@ import org.bukkit.potion.PotionEffectType;
 import ru.func.raidarea.RaidArea;
 import ru.func.raidarea.RaidClock;
 import ru.func.raidarea.RaidTimeStatus;
-import ru.func.raidarea.player.IPlayer;
+import ru.func.raidarea.player.Shuffler;
 
 @AllArgsConstructor
 public class DamageListener implements Listener {
@@ -42,7 +42,7 @@ public class DamageListener implements Listener {
             pullDown((Player) e.getEntity());
 
             Player attacker;
-            IPlayer raidPlayer;
+            Shuffler raidPlayer;
 
             // BY PLAYER
             if (e.getDamager() instanceof Player) {
@@ -95,7 +95,7 @@ public class DamageListener implements Listener {
         e.getDrops().clear();
         if (e.getEntity().getKiller() != null) {
             Player player = e.getEntity().getKiller();
-            IPlayer raidPlayer = plugin.getPlayers().get(player.getUniqueId());
+            Shuffler raidPlayer = plugin.getPlayers().get(player.getUniqueId());
             raidPlayer.depositMoney(25);
             raidPlayer.setKills(raidPlayer.getKills() + 1);
 

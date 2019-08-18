@@ -3,7 +3,7 @@ package ru.func.raidarea.weapon;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
-public interface IGun {
+public interface Shooting {
 
     /**
      * This method shoots and also reloads the weapon with beautiful animation.
@@ -13,7 +13,7 @@ public interface IGun {
     void strike(final Player player);
 
     /**
-     * @return item of thist weapon.
+     * @return item of this weapon.
      */
     ItemStack getItemStack();
 

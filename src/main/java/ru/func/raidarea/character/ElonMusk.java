@@ -11,7 +11,7 @@ import ru.func.raidarea.weapon.GunBuilder;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class ElonMusk implements ICharacter {
+public class ElonMusk implements Characterful {
 
     @Getter
     private final Gun gunWeapon;

@@ -9,16 +9,18 @@ import org.bukkit.entity.Snowball;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
-import java.util.*;
+import java.util.Map;
+import java.util.Objects;
+import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Stream;
 
-public class Gun implements IGun {
+public class Gun implements Shooting {
 
-    private @Getter
-    ItemStack itemStack;
-    private @Getter
-    double damage;
+    @Getter
+    private ItemStack itemStack;
+    @Getter
+    private double damage;
     private Material material;
     private Material clipMaterial;
     private String name;
@@ -68,28 +70,32 @@ public class Gun implements IGun {
                 if (gun.getDurability() == 0)
                     setCountdown(player.getUniqueId(), delay);
             } else {
-                if (player.getInventory().contains(clipMaterial)) {
-                    if (hasCountdown(player.getUniqueId())) {
-                        StringBuilder stars = new StringBuilder();
-                        for (long i = getSecondsLeft(player.getUniqueId()); i < delay; i++)
-                            stars.append("+");
-                        for (int i = 0; i < getSecondsLeft(player.getUniqueId()); i++)
-                            stars.append("_");
-                        meta.setDisplayName(String.format(name.replace("%d", "%s"), stars.toString()));
-                    } else {
-                        player.playSound(player.getLocation(), Sound.BLOCK_ANVIL_STEP, 1, 1);
-                        gun.setDurability((short) bullets);
-
-                        Stream.of(player.getInventory().getContents())
-                                .filter(Objects::nonNull)
-                                .filter(item -> item.getType().equals(clipMaterial))
-                                .findAny()
-                                .ifPresent(item -> item.setAmount(item.getAmount() - 1));
-                    }
-                } else
+                if (player.getInventory().contains(clipMaterial))
+                    reloadGun(player, gun, meta);
+                else
                     player.playSound(player.getLocation(), Sound.BLOCK_ANVIL_BREAK, 1, 1);
             }
             gun.setItemMeta(meta);
+        }
+    }
+
+    private void reloadGun(final Player player, final ItemStack gun, ItemMeta meta) {
+        if (hasCountdown(player.getUniqueId())) {
+            StringBuilder stars = new StringBuilder();
+            for (long i = getSecondsLeft(player.getUniqueId()); i < delay; i++)
+                stars.append("+");
+            for (int i = 0; i < getSecondsLeft(player.getUniqueId()); i++)
+                stars.append("_");
+            meta.setDisplayName(String.format(name.replace("%d", "%s"), stars.toString()));
+        } else {
+            player.playSound(player.getLocation(), Sound.BLOCK_ANVIL_STEP, 1, 1);
+            gun.setDurability((short) bullets);
+
+            Stream.of(player.getInventory().getContents())
+                    .filter(Objects::nonNull)
+                    .filter(item -> item.getType().equals(clipMaterial))
+                    .findAny()
+                    .ifPresent(item -> item.setAmount(item.getAmount() - 1));
         }
     }
 }

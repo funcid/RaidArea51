@@ -1,8 +1,8 @@
 package ru.func.raidarea.player;
 
-import ru.func.raidarea.character.ICharacter;
+import ru.func.raidarea.character.Characterful;
 
-public interface IPlayer {
+public interface Shuffler {
 
     /**
      * @return money that have player.
@@ -12,7 +12,7 @@ public interface IPlayer {
     /**
      * @return character that use attacker player
      */
-    ICharacter getCurrentCharacter();
+    Characterful getCurrentCharacter();
 
     /**
      * @return amount of kills
@@ -31,7 +31,7 @@ public interface IPlayer {
 
     void setMoney(final int money);
 
-    void setCurrentCharacter(final ICharacter currentCharacter);
+    void setCurrentCharacter(final Characterful currentCharacter);
 
     void setKills(final int kills);
 

@@ -5,15 +5,13 @@ import lombok.Setter;
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.Location;
-import org.bukkit.Sound;
 import org.bukkit.entity.Enderman;
 import org.bukkit.entity.EntityType;
-import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
-import ru.func.raidarea.character.ICharacter;
+import ru.func.raidarea.character.Characterful;
 import ru.func.raidarea.character.Soldier;
-import ru.func.raidarea.player.IPlayer;
+import ru.func.raidarea.player.Shuffler;
 import ru.func.raidarea.player.RaidPlayer;
 
 import java.util.Arrays;
@@ -32,10 +30,10 @@ public class RaidClock {
     @Setter
     private RaidStatus gameStatus = RaidStatus.ACTIVE_STATION;
 
-    private final ICharacter soldier = new Soldier();
+    private final Characterful soldier = new Soldier();
 
     private final RaidArea plugin;
-    private final Map<UUID, IPlayer> players;
+    private final Map<UUID, Shuffler> players;
 
     RaidClock(final RaidArea plugin) {
         this.plugin = plugin;
@@ -116,7 +114,7 @@ public class RaidClock {
             Location location;
             player.sendMessage("[§b!§f] #§lИНФОРМАЦИЯ.");
             Random random = plugin.getRandom();
-            ICharacter[] characters = plugin.getCharacters();
+            Characterful[] characters = plugin.getCharacters();
             if (characters.length > 0) {
                 raidPlayer.setCurrentCharacter(characters[characters.length - 1]);
                 plugin.setCharacters(Arrays.copyOf(characters, characters.length - 1));

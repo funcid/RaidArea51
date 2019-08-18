@@ -15,7 +15,7 @@ import ru.func.raidarea.RaidArea;
 import ru.func.raidarea.RaidClock;
 import ru.func.raidarea.RaidStatus;
 import ru.func.raidarea.RaidTimeStatus;
-import ru.func.raidarea.player.IPlayer;
+import ru.func.raidarea.player.Shuffler;
 
 public class InteractListener implements Listener {
 
@@ -38,7 +38,7 @@ public class InteractListener implements Listener {
 
         if (raidClock.getTimeStatus().equals(RaidTimeStatus.GAME)) {
             Player player = e.getPlayer();
-            IPlayer raidPlayer = plugin.getPlayers().get(player.getUniqueId());
+            Shuffler raidPlayer = plugin.getPlayers().get(player.getUniqueId());
 
             // OFF LEVER
             if (e.getClickedBlock() != null && !raidPlayer.isDefend() && plugin.isStation() && player.getGameMode().equals(GameMode.SURVIVAL)) {
