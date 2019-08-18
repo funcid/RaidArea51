@@ -3,17 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="ff97c714-4941-4bae-8405-a8fd9ac45d6a" name="Default" comment="Hello lombok">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/func/raidarea/RaidArea.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/func/raidarea/RaidArea.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/func/raidarea/RaidClock.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/func/raidarea/RaidClock.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/func/raidarea/RaidStatus.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/func/raidarea/RaidStatus.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/func/raidarea/RaidTimeStatus.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/func/raidarea/RaidTimeStatus.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/func/raidarea/database/MySQL.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/func/raidarea/database/MySQL.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/func/raidarea/listener/DamageListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/func/raidarea/listener/DamageListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/func/raidarea/listener/InteractListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/func/raidarea/listener/InteractListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/func/raidarea/listener/SneakListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/func/raidarea/listener/SneakListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/func/raidarea/player/PlayerBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/func/raidarea/player/PlayerBuilder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/func/raidarea/listener/ConnectionListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/func/raidarea/listener/ConnectionListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/func/raidarea/player/PlayerBuilder.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ru/func/raidarea/player/RaidPlayer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/func/raidarea/player/RaidPlayer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/func/raidarea/weapon/GunBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/func/raidarea/weapon/GunBuilder.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -52,7 +44,7 @@
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../Downloads/spigot-1.12.2.jar!/" />
-    <property name="project.structure.last.edited" value="Libraries" />
+    <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15429688" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />

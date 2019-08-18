@@ -10,13 +10,12 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
-
 import org.bukkit.scheduler.BukkitRunnable;
 import ru.func.raidarea.RaidArea;
 import ru.func.raidarea.RaidClock;
 import ru.func.raidarea.RaidTimeStatus;
 import ru.func.raidarea.player.IPlayer;
-import ru.func.raidarea.player.PlayerBuilder;
+import ru.func.raidarea.player.RaidPlayer;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -52,13 +51,14 @@ public class ConnectionListener implements Listener {
             try {
                 ResultSet resultSet = plugin.getStatement().executeQuery("SELECT * FROM `RaidPlayers` WHERE uuid = '" + player.getUniqueId() + "';");
                 if (resultSet.next()) {
-                    plugin.getPlayers().put(player.getUniqueId(), new PlayerBuilder()
-                            .kills(resultSet.getInt("kills"))
-                            .money(resultSet.getInt("money"))
-                            .wins(resultSet.getInt("wins"))
-                            .currentCharacter(null)
-                            .defend(false)
-                            .build()
+                    plugin.getPlayers().put(player.getUniqueId(),
+                            RaidPlayer.builder()
+                                    .kills(resultSet.getInt("kills"))
+                                    .money(resultSet.getInt("money"))
+                                    .wins(resultSet.getInt("wins"))
+                                    .currentCharacter(null)
+                                    .defend(false)
+                                    .build()
                     );
                     enableScoreboard(player);
                 } else {
