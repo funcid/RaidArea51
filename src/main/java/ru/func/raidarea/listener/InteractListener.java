@@ -16,7 +16,6 @@ import ru.func.raidarea.RaidClock;
 import ru.func.raidarea.RaidStatus;
 import ru.func.raidarea.RaidTimeStatus;
 import ru.func.raidarea.player.IPlayer;
-import ru.func.raidarea.player.RaidPlayer;
 
 public class InteractListener implements Listener {
 

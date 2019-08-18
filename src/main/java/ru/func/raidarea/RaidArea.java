@@ -23,66 +23,41 @@ import java.util.Map;
 import java.util.Random;
 import java.util.UUID;
 
+@Getter
 public class RaidArea extends JavaPlugin {
 
-    @Getter
     private Random random = new Random();
 
     private RaidClock raidClock = new RaidClock(this);
-    @Getter
     private ConnectionListener connectionListener = new ConnectionListener(this, raidClock);
-    @Getter
     private final ConfigurationSection settings = getConfig().getConfigurationSection("settings");
 
-    @Getter
     private Location defSpawn;
-    @Getter
     private Location raidSpawn;
-    @Getter
     private Location toggleLocation;
 
-    @Getter
     @Setter
     private boolean attackersWin = false;
 
-    @Getter
     private Map<UUID, IPlayer> players = Maps.newHashMap();
-    @Getter
     private int minPlayers = settings.getInt("minPlayers");
     @Setter
-    @Getter
     private int endermanAmount = 0;
 
-    /* SQL переменные */
-    @Getter
     private Statement statement;
-    private final ConfigurationSection sqlSettingsConfigurationSection = getConfig().getConfigurationSection("sqlSettings");
-    private final MySQL BASE = new MySQL(
-            sqlSettingsConfigurationSection.getString("user"),
-            sqlSettingsConfigurationSection.getString("password"),
-            sqlSettingsConfigurationSection.getString("host"),
-            sqlSettingsConfigurationSection.getString("database"),
-            sqlSettingsConfigurationSection.getInt("port")
-    );
 
-    @Getter
     @Setter
     private ICharacter[] characters = {
             new KeanuReeves(),
             new ArnoldSchwarzenegger()
     };
 
-    @Getter
     @Setter
     private boolean station = true;
 
-    @Getter
     private ItemStack heal = new Potion(PotionType.INSTANT_HEAL, 1, true).toItemStack(1);
-    @Getter
     private ItemStack arrow = new ItemStack(Material.ARROW);
-    @Getter
     private ItemStack speed = new Potion(PotionType.SPEED, 1, true).toItemStack(1);
-    @Getter
     private ItemStack barrier = new ItemStack(Material.FENCE);
 
     @Override
@@ -101,7 +76,15 @@ public class RaidArea extends JavaPlugin {
         // Подключение к базе данных
         try {
             getLogger().info("[!] Connecting to DataBase.");
-            statement = BASE.openConnection().createStatement();
+            ConfigurationSection sqlSettingsConfigurationSection = getConfig().getConfigurationSection("sqlSettings");
+            statement = new MySQL(
+                    sqlSettingsConfigurationSection.getString("user"),
+                    sqlSettingsConfigurationSection.getString("password"),
+                    sqlSettingsConfigurationSection.getString("host"),
+                    sqlSettingsConfigurationSection.getString("database"),
+                    sqlSettingsConfigurationSection.getInt("port")
+            ).openConnection().createStatement();
+
             statement.executeUpdate(
                     "CREATE TABLE IF NOT EXISTS `RaidPlayers` (" +
                             "id INT NOT NULL AUTO_INCREMENT PRIMARY KEY, " +

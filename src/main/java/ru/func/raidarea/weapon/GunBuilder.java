@@ -7,21 +7,15 @@ import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.List;
 
+@Getter
 public class GunBuilder {
 
-    @Getter
     private ItemStack itemStack;
-    @Getter
     private Material material;
-    @Getter
     private String name;
-    @Getter
     private int bullets;
-    @Getter
     private int delay;
-    @Getter
     private Material clipMaterial;
-    @Getter
     private double damage;
 
     public GunBuilder material(final Material material) {

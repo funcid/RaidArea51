@@ -12,6 +12,6 @@ public enum RaidStatus {
     SEARCHED("Пришельца спасены"),
     ;
 
-    private @Getter
-    String name;
+    @Getter
+    private String name;
 }

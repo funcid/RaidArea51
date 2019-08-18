@@ -10,8 +10,6 @@ import org.bukkit.entity.Enderman;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
-import org.bukkit.inventory.Inventory;
-import org.bukkit.potion.PotionEffect;
 import org.bukkit.scheduler.BukkitRunnable;
 import ru.func.raidarea.character.ICharacter;
 import ru.func.raidarea.character.Soldier;
@@ -39,7 +37,7 @@ public class RaidClock {
     private final RaidArea plugin;
     private final Map<UUID, IPlayer> players;
 
-    public RaidClock(final RaidArea plugin) {
+    RaidClock(final RaidArea plugin) {
         this.plugin = plugin;
         players = plugin.getPlayers();
     }
@@ -114,7 +112,7 @@ public class RaidClock {
             player.getInventory().clear();
             player.setGameMode(GameMode.SURVIVAL);
             player.getActivePotionEffects().clear();
-            
+
             Location location;
             player.sendMessage("[§b!§f] #§lИНФОРМАЦИЯ.");
             Random random = plugin.getRandom();

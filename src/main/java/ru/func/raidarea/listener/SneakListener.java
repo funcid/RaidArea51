@@ -16,7 +16,6 @@ public class SneakListener implements Listener {
     private final RaidArea plugin;
     private final RaidClock raidClock;
 
-
     @EventHandler
     public void playerSneakEvent(final PlayerToggleSneakEvent e) {
         Player player = e.getPlayer();

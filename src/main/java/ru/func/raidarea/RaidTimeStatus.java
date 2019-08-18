@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 @AllArgsConstructor
+@Getter
 public enum RaidTimeStatus {
 
     WAITING(10, "Ожидание"),
@@ -11,8 +12,6 @@ public enum RaidTimeStatus {
     GAME(600, "Игра"),
     ENDING(615, "Завершение"),
     ;
-    @Getter
     private int time;
-    @Getter
     private String name;
 }

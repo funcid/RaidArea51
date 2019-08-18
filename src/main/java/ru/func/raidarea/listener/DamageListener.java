@@ -8,13 +8,14 @@ import org.bukkit.entity.Player;
 import org.bukkit.entity.Snowball;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.event.entity.*;
+import org.bukkit.event.entity.EntityDamageByEntityEvent;
+import org.bukkit.event.entity.EntityDamageEvent;
+import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.potion.PotionEffectType;
 import ru.func.raidarea.RaidArea;
 import ru.func.raidarea.RaidClock;
 import ru.func.raidarea.RaidTimeStatus;
 import ru.func.raidarea.player.IPlayer;
-import ru.func.raidarea.player.RaidPlayer;
 
 @AllArgsConstructor
 public class DamageListener implements Listener {

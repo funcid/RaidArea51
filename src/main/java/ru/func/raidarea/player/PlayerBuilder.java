@@ -3,17 +3,13 @@ package ru.func.raidarea.player;
 import lombok.Getter;
 import ru.func.raidarea.character.ICharacter;
 
+@Getter
 public class PlayerBuilder {
 
-    @Getter
     private int money;
-    @Getter
     private ICharacter currentCharacter;
-    @Getter
     private int kills;
-    @Getter
     private int wins;
-    @Getter
     private boolean defend;
 
     public PlayerBuilder money(final int money) {

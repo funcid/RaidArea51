@@ -9,7 +9,7 @@ import java.sql.SQLException;
 @AllArgsConstructor
 public class MySQL extends DatabaseConnector {
 
-    //Класс хранящий инструменты для работы с MySql
+    /* Класс хранящий инструменты для работы с MySql */
     private final String user;
     private final String password;
     private final String host;

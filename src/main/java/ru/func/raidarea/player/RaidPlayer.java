@@ -4,22 +4,14 @@ import lombok.Getter;
 import lombok.Setter;
 import ru.func.raidarea.character.ICharacter;
 
+@Getter
+@Setter
 public class RaidPlayer implements IPlayer {
 
-    @Getter
-    @Setter
     private int money;
-    @Getter
-    @Setter
     private ICharacter currentCharacter;
-    @Getter
-    @Setter
     private int kills;
-    @Getter
-    @Setter
     private int wins;
-    @Getter
-    @Setter
     private boolean defend;
 
     RaidPlayer(final PlayerBuilder playerBuilder) {
