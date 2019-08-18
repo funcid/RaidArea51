@@ -1,56 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="ff97c714-4941-4bae-8405-a8fd9ac45d6a" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/dictionaries/1.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_google_code_gson_gson_2_8_0.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_google_guava_guava_21_0.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_googlecode_json_simple_json_simple_1_1_1.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__commons_lang_commons_lang_2_6.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__junit_junit_4_10.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__net_md_5_bungeecord_chat_1_12_SNAPSHOT.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_bukkit_bukkit_1_12_2_R0_1_SNAPSHOT.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_hamcrest_hamcrest_core_1_1.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_spigotmc_spigot_1_12_2_R0_1_SNAPSHOT.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_spigotmc_spigot_api_1_12_2_R0_1_SNAPSHOT.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_yaml_snakeyaml_1_19.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="ff97c714-4941-4bae-8405-a8fd9ac45d6a" name="Default" comment="Hello maven">
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_projectlombok_lombok_1_18_8.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_google_code_gson_gson_2_8_0.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_google_code_gson_gson_2_8_0.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/RaidArea51.iml" beforeDir="false" afterPath="$PROJECT_DIR$/RaidArea51.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/RaidArea51/META-INF/MANIFEST.MF" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/RaidArea51/config.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/RaidArea51/plugin.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/META-INF/MANIFEST.MF" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/config.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/plugin.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ru/func/raidarea/RaidArea.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ru/func/raidarea/RaidStatus.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ru/func/raidarea/RaidTimeStatus.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ru/func/raidarea/character/ArnoldSchwarzenegger.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ru/func/raidarea/character/CharacterDelayUtil.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ru/func/raidarea/character/ElonMusk.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ru/func/raidarea/character/ICharacter.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ru/func/raidarea/character/KeanuReeves.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ru/func/raidarea/character/NarutoRunner.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ru/func/raidarea/character/Soldier.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ru/func/raidarea/database/Database.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ru/func/raidarea/database/MySQL.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ru/func/raidarea/listener/BlockEventListener.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ru/func/raidarea/listener/ConnectionListener.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ru/func/raidarea/listener/DamageListener.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ru/func/raidarea/listener/InteractListener.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ru/func/raidarea/listener/MoveListener.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ru/func/raidarea/listener/RespawnListener.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ru/func/raidarea/listener/SneakListener.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ru/func/raidarea/listener/UsualListener.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ru/func/raidarea/player/IPlayer.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ru/func/raidarea/player/PlayerBuilder.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ru/func/raidarea/player/RaidPlayer.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ru/func/raidarea/weapon/Gun.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ru/func/raidarea/weapon/GunBuilder.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ru/func/raidarea/weapon/IGun.java" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -68,6 +23,11 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="PREVIOUS_COMMIT_AUTHORS">
+      <list>
+        <option value="S1mpleFunc &lt;42806772+s1mplefunc@users.noreply.github.com&gt;" />
+      </list>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="MavenImportPreferences">
@@ -84,7 +44,7 @@
     <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.15429688" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="configurable.group.language" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -135,6 +95,14 @@
       <option name="presentableId" value="Default" />
       <updated>1563816027403</updated>
     </task>
+    <task id="LOCAL-00001" summary="Hello maven">
+      <created>1566095889546</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1566095889546</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TodoView">
@@ -158,5 +126,10 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Hello maven" />
+    <option name="LAST_COMMIT_MESSAGE" value="Hello maven" />
+    <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
 </project>
