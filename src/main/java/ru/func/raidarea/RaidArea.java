@@ -5,14 +5,19 @@ import lombok.Getter;
 import lombok.Setter;
 import org.bukkit.*;
 import org.bukkit.configuration.ConfigurationSection;
-import org.bukkit.entity.*;
+import org.bukkit.entity.Entity;
+import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.potion.Potion;
 import org.bukkit.potion.PotionType;
-import ru.func.raidarea.character.*;
+import ru.func.raidarea.character.attack.ArnoldSchwarzenegger;
+import ru.func.raidarea.character.attack.Attacker;
+import ru.func.raidarea.character.attack.KeanuReeves;
+import ru.func.raidarea.character.defend.Defender;
+import ru.func.raidarea.character.defend.Soldier;
 import ru.func.raidarea.database.MySQL;
 import ru.func.raidarea.listener.*;
 import ru.func.raidarea.player.Shuffler;
@@ -47,9 +52,13 @@ public class RaidArea extends JavaPlugin {
     private Statement statement;
 
     @Setter
-    private Characterful[] characters = {
+    private Attacker[] attackCharacters = {
             new KeanuReeves(),
             new ArnoldSchwarzenegger()
+    };
+    @Setter
+    private Defender[] defendCharacters = {
+            new Soldier()
     };
 
     @Setter

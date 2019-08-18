@@ -1,17 +1,18 @@
-package ru.func.raidarea.character;
+package ru.func.raidarea.character.attack;
 
 import lombok.Getter;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
-import ru.func.raidarea.weapon.gun.GunBuilder;
+import ru.func.raidarea.character.CharacterDelayUtil;
 import ru.func.raidarea.weapon.Weaponry;
+import ru.func.raidarea.weapon.gun.GunBuilder;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class ElonMusk implements Characterful {
+public class ElonMusk implements Attacker {
 
     @Getter
     private final Weaponry weapon;

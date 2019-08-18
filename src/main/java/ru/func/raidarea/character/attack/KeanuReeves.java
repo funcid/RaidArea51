@@ -1,4 +1,4 @@
-package ru.func.raidarea.character;
+package ru.func.raidarea.character.attack;
 
 import lombok.Getter;
 import org.bukkit.Material;
@@ -6,13 +6,14 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.util.Vector;
+import ru.func.raidarea.character.CharacterDelayUtil;
 import ru.func.raidarea.weapon.gun.GunBuilder;
 import ru.func.raidarea.weapon.gun.Shooting;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class KeanuReeves implements Characterful {
+public class KeanuReeves implements Attacker {
 
     @Getter
     private final String name = "§e§lКеану Ривз";

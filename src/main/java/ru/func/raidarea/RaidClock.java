@@ -10,9 +10,10 @@ import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 import ru.func.raidarea.character.Characterful;
-import ru.func.raidarea.character.Soldier;
+import ru.func.raidarea.character.attack.Attacker;
+import ru.func.raidarea.character.defend.Defender;
+import ru.func.raidarea.character.defend.Soldier;
 import ru.func.raidarea.player.Shuffler;
-import ru.func.raidarea.player.RaidPlayer;
 
 import java.util.Arrays;
 import java.util.Map;
@@ -106,18 +107,21 @@ public class RaidClock {
         spawnEnderman();
 
         Bukkit.getOnlinePlayers().forEach(player -> {
-            RaidPlayer raidPlayer = (RaidPlayer) players.get(player.getUniqueId());
+            Shuffler raidPlayer = players.get(player.getUniqueId());
             player.getInventory().clear();
             player.setGameMode(GameMode.SURVIVAL);
             player.getActivePotionEffects().clear();
 
             Location location;
             player.sendMessage("[§b!§f] #§lИНФОРМАЦИЯ.");
-            Random random = plugin.getRandom();
-            Characterful[] characters = plugin.getCharacters();
-            if (characters.length > 0) {
-                raidPlayer.setCurrentCharacter(characters[characters.length - 1]);
-                plugin.setCharacters(Arrays.copyOf(characters, characters.length - 1));
+            final Random random = plugin.getRandom();
+
+            final Attacker[] attackCharacters = plugin.getAttackCharacters();
+            final Defender[] defendCharacters = plugin.getDefendCharacters();
+
+            if (attackCharacters.length > 0) {
+                raidPlayer.setCurrentCharacter(attackCharacters[attackCharacters.length - 1]);
+                plugin.setAttackCharacters(Arrays.copyOf(attackCharacters, attackCharacters.length - 1));
 
                 location = plugin.getRaidSpawn().subtract(random.nextInt(5), 0, random.nextInt(5));
                 player.sendMessage("[§b!§f] §7Ваш персонаж: §f§l" + raidPlayer.getCurrentCharacter().getName() +
@@ -127,6 +131,11 @@ public class RaidClock {
                 player.sendMessage("[§b!§f] §7Вы можете купить взрывную стрелу, которая ломает преграды.");
                 player.sendMessage("[§b!§f] §lУникальная способность - [§eSHIFT§f§l] [§cPVP §f§l1.8]");
             } else {
+                if (defendCharacters.length > 0) {
+                    raidPlayer.setCurrentCharacter(defendCharacters[defendCharacters.length - 1]);
+                    plugin.setDefendCharacters(Arrays.copyOf(defendCharacters, defendCharacters.length - 1));
+                } else
+                    raidPlayer.setCurrentCharacter(new Soldier());
                 location = plugin.getDefSpawn().subtract(random.nextInt(5), 0, random.nextInt(5));
                 raidPlayer.setCurrentCharacter(soldier);
                 raidPlayer.setDefend(true);
@@ -141,9 +150,8 @@ public class RaidClock {
         });
     }
 
+    /* Создаю N эндерманов, которых необходимо принести на базу что бы победить */
     private void spawnEnderman() {
-
-        /* Создаю N эндерманов, которых необходимо принести на базу что бы победить */
         plugin.getConfig().getConfigurationSection("settings.enderman_locations").getKeys(false).forEach(key -> {
             Enderman enderman = (Enderman) Bukkit.getWorld(plugin.getSettings().getString("world"))
                     .spawnEntity(getLocationByPath("enderman_locations." + key), EntityType.ENDERMAN);

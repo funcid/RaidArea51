@@ -1,4 +1,4 @@
-package ru.func.raidarea.character;
+package ru.func.raidarea.character.attack;
 
 import lombok.Getter;
 import org.bukkit.Material;
@@ -13,7 +13,7 @@ import ru.func.raidarea.weapon.gun.Shooting;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class NarutoRunner implements Characterful {
+public class NarutoRunner implements Attacker {
 
     @Getter
     private final String name = "§e§lНаруто Раннер";

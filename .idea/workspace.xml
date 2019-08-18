@@ -3,17 +3,17 @@
   <component name="ChangeListManager">
     <list default="true" id="ff97c714-4941-4bae-8405-a8fd9ac45d6a" name="Default" comment="Hello lombok">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/func/raidarea/character/ArnoldSchwarzenegger.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/func/raidarea/character/ArnoldSchwarzenegger.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/func/raidarea/character/Characterful.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/func/raidarea/character/Characterful.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/func/raidarea/character/ElonMusk.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/func/raidarea/character/ElonMusk.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/func/raidarea/character/KeanuReeves.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/func/raidarea/character/KeanuReeves.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/func/raidarea/character/NarutoRunner.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/func/raidarea/character/NarutoRunner.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/func/raidarea/character/Soldier.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/func/raidarea/character/Soldier.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/func/raidarea/listener/DamageListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/func/raidarea/listener/DamageListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/func/raidarea/listener/InteractListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/func/raidarea/listener/InteractListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/func/raidarea/weapon/Gun.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/func/raidarea/weapon/gun/Gun.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/func/raidarea/weapon/GunBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/func/raidarea/weapon/gun/GunBuilder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/func/raidarea/weapon/Shooting.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/func/raidarea/weapon/gun/Shooting.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/func/raidarea/RaidArea.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/func/raidarea/RaidArea.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/func/raidarea/RaidClock.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/func/raidarea/RaidClock.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/func/raidarea/character/ArnoldSchwarzenegger.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/func/raidarea/character/attack/ArnoldSchwarzenegger.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/func/raidarea/character/CharacterDelayUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/func/raidarea/character/CharacterDelayUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/func/raidarea/character/ElonMusk.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/func/raidarea/character/attack/ElonMusk.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/func/raidarea/character/KeanuReeves.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/func/raidarea/character/attack/KeanuReeves.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/func/raidarea/character/NarutoRunner.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/func/raidarea/character/attack/NarutoRunner.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/func/raidarea/character/Soldier.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/func/raidarea/character/defend/Soldier.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/META-INF/RaidArea51.kotlin_module" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/config.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/plugin.yml" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />

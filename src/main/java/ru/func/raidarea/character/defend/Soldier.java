@@ -1,4 +1,4 @@
-package ru.func.raidarea.character;
+package ru.func.raidarea.character.defend;
 
 import lombok.Getter;
 import org.bukkit.Location;
@@ -6,13 +6,14 @@ import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
+import ru.func.raidarea.character.CharacterDelayUtil;
 import ru.func.raidarea.weapon.gun.GunBuilder;
 import ru.func.raidarea.weapon.gun.Shooting;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class Soldier implements Characterful {
+public class Soldier implements Defender {
 
     @Getter
     private final String name = "§lСолдат Армии США";
