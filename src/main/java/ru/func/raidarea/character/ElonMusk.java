@@ -18,11 +18,11 @@ public class ElonMusk implements ICharacter {
     @Getter
     private final String name = "§e§lИлон Маск";
 
-    private final ItemStack INFO = new ItemStack(Material.PAPER);
-    private final ItemStack CLIPS = new ItemStack(Material.DIAMOND, 8);
+    private final ItemStack info = new ItemStack(Material.PAPER);
+    private final ItemStack clips = new ItemStack(Material.DIAMOND, 8);
 
     public ElonMusk() {
-        ItemMeta itemMeta = INFO.getItemMeta();
+        ItemMeta itemMeta = info.getItemMeta();
         itemMeta.setDisplayName("§fИнформация о персонаже: " + name);
         itemMeta.setLore(Arrays.asList(
                 "",
@@ -31,7 +31,7 @@ public class ElonMusk implements ICharacter {
                 "§fпо-этому создать космический луч со спутника",
                 "§fдля него не составит больших хлапот."
         ));
-        INFO.setItemMeta(itemMeta);
+        info.setItemMeta(itemMeta);
 
         gunWeapon = new GunBuilder()
                 .material(Material.GOLD_HOE)
@@ -65,7 +65,7 @@ public class ElonMusk implements ICharacter {
     @Override
     public void giveAmmunition(final Player currentPlayer) {
         currentPlayer.getInventory().setItem(0, gunWeapon.getItemStack());
-        currentPlayer.getInventory().setItem(1, CLIPS);
-        currentPlayer.getInventory().setItem(8, INFO);
+        currentPlayer.getInventory().setItem(1, clips);
+        currentPlayer.getInventory().setItem(8, info);
     }
 }

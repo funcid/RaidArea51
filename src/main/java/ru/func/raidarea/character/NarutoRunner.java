@@ -18,15 +18,15 @@ public class NarutoRunner implements ICharacter {
     @Getter
     private final String name = "§e§lНаруто Раннер";
 
-    private final ItemStack INFO = new ItemStack(Material.PAPER);
-    private final ItemStack CLIPS = new ItemStack(Material.FIREWORK_CHARGE, 16);
+    private final ItemStack info = new ItemStack(Material.PAPER);
+    private final ItemStack clips = new ItemStack(Material.FIREWORK_CHARGE, 16);
 
     @Getter
     private final Gun gunWeapon;
-    private final PotionEffect SPEED;
+    private final PotionEffect speed;
 
     public NarutoRunner() {
-        ItemMeta itemMeta = INFO.getItemMeta();
+        ItemMeta itemMeta = info.getItemMeta();
         itemMeta.setDisplayName("§fИнформация о персонаже: " + name);
         itemMeta.setLore(Arrays.asList(
                 "",
@@ -37,9 +37,9 @@ public class NarutoRunner implements ICharacter {
                 "",
                 "§7[§fНе повторять в реальной жизни, вы упадете лицом в пол§7]"
         ));
-        INFO.setItemMeta(itemMeta);
+        info.setItemMeta(itemMeta);
 
-        SPEED = new PotionEffect(PotionEffectType.SPEED, 99999, 20);
+        speed = new PotionEffect(PotionEffectType.SPEED, 99999, 20);
 
         gunWeapon = new GunBuilder()
                 .material(Material.WOOD_AXE)
@@ -62,14 +62,14 @@ public class NarutoRunner implements ICharacter {
     @Override
     public void usePerk(final Player user) {
         if (user.isSneaking()) user.removePotionEffect(PotionEffectType.SPEED);
-        else user.addPotionEffect(SPEED);
+        else user.addPotionEffect(speed);
     }
 
     @Override
     public void giveAmmunition(final Player currentPlayer) {
         currentPlayer.getInventory().setItem(0, gunWeapon.getItemStack());
-        currentPlayer.getInventory().setItem(1, CLIPS);
-        currentPlayer.getInventory().setItem(8, INFO);
+        currentPlayer.getInventory().setItem(1, clips);
+        currentPlayer.getInventory().setItem(8, info);
     }
 }
 

@@ -26,7 +26,7 @@ import java.util.List;
 @AllArgsConstructor
 public class BlockEventListener implements Listener {
 
-    private final RaidArea PLUGIN;
+    private final RaidArea plugin;
     //private final Map<Location, Integer> breakingBlocks = Maps.newHashMap();
 
     @EventHandler
@@ -43,7 +43,7 @@ public class BlockEventListener implements Listener {
         if (e.getPlayer().getInventory().getItemInMainHand().getItemMeta() == null) {
             if (!e.getBlock().getType().equals(Material.FENCE)) {
                 Material material = e.getBlock().getType();
-                Bukkit.getScheduler().runTaskLater(PLUGIN, () -> e.getBlock().setType(material), 80L);
+                Bukkit.getScheduler().runTaskLater(plugin, () -> e.getBlock().setType(material), 80L);
             }
         } else
             e.setCancelled(true);
@@ -54,11 +54,11 @@ public class BlockEventListener implements Listener {
         e.setCancelled(true);
 
         if (e.getBlock().getType().equals(Material.FENCE)) {
-            RaidPlayer raidPlayer = (RaidPlayer) PLUGIN.getPlayers().get(e.getPlayer().getUniqueId());
+            RaidPlayer raidPlayer = (RaidPlayer) plugin.getPlayers().get(e.getPlayer().getUniqueId());
             if (raidPlayer.getMoney() >= 75) {
                 raidPlayer.depositMoney(-75);
                 e.setCancelled(false);
-                PLUGIN.giveItems(e.getPlayer());
+                plugin.giveItems(e.getPlayer());
             }
         }
     }
@@ -98,9 +98,8 @@ public class BlockEventListener implements Listener {
     }
 
     private void explode(final List<Block> blockList, final Location center, final float power) {
-        Bukkit.getScheduler().runTask(PLUGIN, () -> {
+        Bukkit.getScheduler().runTask(plugin, () -> {
             for (Block block : blockList) {
-
                 /*
                 int step = breakingBlocks.getOrDefault(block.getLocation(), 0) + 3;
                 if (step == 9)

@@ -11,17 +11,20 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.entity.*;
 import org.bukkit.potion.PotionEffectType;
 import ru.func.raidarea.RaidArea;
+import ru.func.raidarea.RaidClock;
 import ru.func.raidarea.RaidTimeStatus;
+import ru.func.raidarea.player.IPlayer;
 import ru.func.raidarea.player.RaidPlayer;
 
 @AllArgsConstructor
 public class DamageListener implements Listener {
 
-    private final RaidArea PLUGIN;
+    private final RaidArea plugin;
+    private final RaidClock raidClock;
 
     @EventHandler
     public void onEntityDamageByEntity(final EntityDamageByEntityEvent e) {
-        if (!PLUGIN.getTimeStatus().equals(RaidTimeStatus.GAME)) {
+        if (!raidClock.getTimeStatus().equals(RaidTimeStatus.GAME)) {
             e.setCancelled(true);
             return;
         }
@@ -38,13 +41,13 @@ public class DamageListener implements Listener {
             pullDown((Player) e.getEntity());
 
             Player attacker;
-            RaidPlayer raidPlayer;
+            IPlayer raidPlayer;
 
             // BY PLAYER
             if (e.getDamager() instanceof Player) {
                 attacker = (Player) e.getDamager();
-                raidPlayer = (RaidPlayer) PLUGIN.getPlayers().get(attacker.getUniqueId());
-                if (PLUGIN.getPlayers().get(e.getEntity().getUniqueId()).isDefend() != raidPlayer.isDefend()) {
+                raidPlayer = plugin.getPlayers().get(attacker.getUniqueId());
+                if (plugin.getPlayers().get(e.getEntity().getUniqueId()).isDefend() != raidPlayer.isDefend()) {
                     if (((Player) e.getDamager()).getInventory().getItemInMainHand().getItemMeta() == null) {
                         e.setDamage(2);
                         raidPlayer.depositMoney(10);
@@ -59,8 +62,8 @@ public class DamageListener implements Listener {
             // BY SNOWBALL
             else if (e.getDamager() instanceof Snowball) {
                 attacker = ((Player) ((Snowball) e.getDamager()).getShooter());
-                raidPlayer = (RaidPlayer) PLUGIN.getPlayers().get(attacker.getUniqueId());
-                if (PLUGIN.getPlayers().get(e.getEntity().getUniqueId()).isDefend() != raidPlayer.isDefend()) {
+                raidPlayer = plugin.getPlayers().get(attacker.getUniqueId());
+                if (plugin.getPlayers().get(e.getEntity().getUniqueId()).isDefend() != raidPlayer.isDefend()) {
                     e.setDamage(raidPlayer.getCurrentCharacter().getGunWeapon().getDamage());
                     raidPlayer.depositMoney(15);
                     attacker.sendMessage("§l+ 15 ETH §eЗа точный попадание в цель.");
@@ -81,7 +84,7 @@ public class DamageListener implements Listener {
             else if (e.getCause().equals(EntityDamageEvent.DamageCause.BLOCK_EXPLOSION) ||
                     e.getCause().equals(EntityDamageEvent.DamageCause.ENTITY_EXPLOSION) ||
                     e.getCause().equals(EntityDamageEvent.DamageCause.LIGHTNING))
-                e.setCancelled(!PLUGIN.getPlayers().get(e.getEntity().getUniqueId()).isDefend());
+                e.setCancelled(!plugin.getPlayers().get(e.getEntity().getUniqueId()).isDefend());
         }
     }
 
@@ -91,7 +94,7 @@ public class DamageListener implements Listener {
         e.getDrops().clear();
         if (e.getEntity().getKiller() != null) {
             Player player = e.getEntity().getKiller();
-            RaidPlayer raidPlayer = (RaidPlayer) PLUGIN.getPlayers().get(player.getUniqueId());
+            IPlayer raidPlayer = plugin.getPlayers().get(player.getUniqueId());
             raidPlayer.depositMoney(25);
             raidPlayer.setKills(raidPlayer.getKills() + 1);
 

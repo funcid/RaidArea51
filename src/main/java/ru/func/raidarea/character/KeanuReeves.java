@@ -16,25 +16,25 @@ public class KeanuReeves implements ICharacter {
 
     @Getter
     private final String name = "§e§lКеану Ривз";
-    private final ItemStack INFO = new ItemStack(Material.PAPER);
-    private final ItemStack HOOK = new ItemStack(Material.FISHING_ROD);
-    private final ItemStack CLIPS = new ItemStack(Material.CLAY_BRICK, 16);
+    private final ItemStack info = new ItemStack(Material.PAPER);
+    private final ItemStack hook = new ItemStack(Material.FISHING_ROD);
+    private final ItemStack clips = new ItemStack(Material.CLAY_BRICK, 16);
     @Getter
     private final Gun gunWeapon;
 
     public KeanuReeves() {
-        ItemMeta itemMeta = INFO.getItemMeta();
+        ItemMeta itemMeta = info.getItemMeta();
         itemMeta.setDisplayName("§fИнформация о персонаже: " + name);
         itemMeta.setLore(Arrays.asList(
                 "",
                 "§fБог киберпанка."
         ));
-        INFO.setItemMeta(itemMeta);
+        info.setItemMeta(itemMeta);
 
-        itemMeta = HOOK.getItemMeta();
+        itemMeta = hook.getItemMeta();
         itemMeta.setDisplayName("§e§lХук");
         itemMeta.setUnbreakable(true);
-        HOOK.setItemMeta(itemMeta);
+        hook.setItemMeta(itemMeta);
 
         gunWeapon = new GunBuilder()
                 .material(Material.WOOD_HOE)
@@ -67,8 +67,8 @@ public class KeanuReeves implements ICharacter {
     @Override
     public void giveAmmunition(final Player currentPlayer) {
         currentPlayer.getInventory().setItem(0, gunWeapon.getItemStack());
-        currentPlayer.getInventory().setItem(1, HOOK);
-        currentPlayer.getInventory().setItem(2, CLIPS);
-        currentPlayer.getInventory().setItem(8, INFO);
+        currentPlayer.getInventory().setItem(1, hook);
+        currentPlayer.getInventory().setItem(2, clips);
+        currentPlayer.getInventory().setItem(8, info);
     }
 }

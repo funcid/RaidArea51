@@ -9,6 +9,7 @@ import org.bukkit.event.player.PlayerRespawnEvent;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import ru.func.raidarea.RaidArea;
+import ru.func.raidarea.player.IPlayer;
 import ru.func.raidarea.player.RaidPlayer;
 
 public class RespawnListener implements Listener {
@@ -24,7 +25,7 @@ public class RespawnListener implements Listener {
     @EventHandler
     public void onPlayerRespawn(final PlayerRespawnEvent e) {
         Player player = e.getPlayer();
-        RaidPlayer raidPlayer = (RaidPlayer) PLUGIN.getPlayers().get(player.getUniqueId());
+        IPlayer raidPlayer = PLUGIN.getPlayers().get(player.getUniqueId());
 
         e.setRespawnLocation(player.getLocation());
 

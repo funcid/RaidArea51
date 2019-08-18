@@ -1,11 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="ff97c714-4941-4bae-8405-a8fd9ac45d6a" name="Default" comment="Hello maven">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_projectlombok_lombok_1_18_8.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_google_code_gson_gson_2_8_0.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_google_code_gson_gson_2_8_0.xml" afterDir="false" />
+    <list default="true" id="ff97c714-4941-4bae-8405-a8fd9ac45d6a" name="Default" comment="Hello lombok">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RaidArea51.iml" beforeDir="false" afterPath="$PROJECT_DIR$/RaidArea51.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/func/raidarea/RaidArea.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/func/raidarea/RaidArea.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/func/raidarea/character/ArnoldSchwarzenegger.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/func/raidarea/character/ArnoldSchwarzenegger.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/func/raidarea/character/ElonMusk.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/func/raidarea/character/ElonMusk.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/func/raidarea/character/KeanuReeves.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/func/raidarea/character/KeanuReeves.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/func/raidarea/character/NarutoRunner.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/func/raidarea/character/NarutoRunner.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/func/raidarea/listener/BlockEventListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/func/raidarea/listener/BlockEventListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/func/raidarea/listener/ConnectionListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/func/raidarea/listener/ConnectionListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/func/raidarea/listener/DamageListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/func/raidarea/listener/DamageListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/func/raidarea/listener/InteractListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/func/raidarea/listener/InteractListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/func/raidarea/listener/MoveListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/func/raidarea/listener/MoveListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/func/raidarea/listener/RespawnListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/func/raidarea/listener/RespawnListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/func/raidarea/listener/SneakListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/func/raidarea/listener/SneakListener.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -102,7 +111,14 @@
       <option name="project" value="LOCAL" />
       <updated>1566095889546</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Hello lombok">
+      <created>1566098127642</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1566098127642</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TodoView">
@@ -129,7 +145,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Hello maven" />
-    <option name="LAST_COMMIT_MESSAGE" value="Hello maven" />
+    <MESSAGE value="Hello lombok" />
+    <option name="LAST_COMMIT_MESSAGE" value="Hello lombok" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
 </project>

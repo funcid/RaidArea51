@@ -9,20 +9,22 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.potion.PotionEffectType;
 import ru.func.raidarea.RaidArea;
+import ru.func.raidarea.RaidClock;
 import ru.func.raidarea.RaidStatus;
 
 @AllArgsConstructor
 public class MoveListener implements Listener {
 
-    private final RaidArea PLUGIN;
+    private final RaidArea plugin;
+    private final RaidClock raidClock;
 
     @EventHandler
     public void onPlayerMove(final PlayerMoveEvent e) {
-        if (PLUGIN.getRaidSpawn().distance(e.getTo()) < 6) {
+        if (plugin.getRaidSpawn().distance(e.getTo()) < 6) {
             Player player = e.getPlayer();
             if (player.getPassengers().size() > 0) {
 
-                PLUGIN.setEndermanAmount(PLUGIN.getEndermanAmount() - 1);
+                plugin.setEndermanAmount(plugin.getEndermanAmount() - 1);
 
                 Entity entity = player.getPassengers().get(0);
                 entity.remove();
@@ -30,13 +32,13 @@ public class MoveListener implements Listener {
                 player.removePotionEffect(PotionEffectType.SLOW);
                 player.removePotionEffect(PotionEffectType.BLINDNESS);
 
-                if (PLUGIN.getEndermanAmount() == 0) {
-                    PLUGIN.setAttackersWin(true);
-                    PLUGIN.setGameStatus(RaidStatus.SEARCHED);
+                if (plugin.getEndermanAmount() == 0) {
+                    plugin.setAttackersWin(true);
+                    raidClock.setGameStatus(RaidStatus.SEARCHED);
                     return;
                 }
 
-                Bukkit.broadcastMessage(String.format("[§b!§f] Пришелец спасен! Осталось спасти еще %d пришельцев.", PLUGIN.getEndermanAmount()));
+                Bukkit.broadcastMessage(String.format("[§b!§f] Пришелец спасен! Осталось спасти еще %d пришельцев.", plugin.getEndermanAmount()));
             }
         }
     }

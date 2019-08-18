@@ -19,11 +19,11 @@ public class ArnoldSchwarzenegger implements ICharacter {
     @Getter
     private final Gun gunWeapon;
 
-    private final ItemStack INFO = new ItemStack(Material.PAPER);
-    private final ItemStack CLIPS = new ItemStack(Material.BLAZE_ROD, 12);
+    private final ItemStack info = new ItemStack(Material.PAPER);
+    private final ItemStack clips = new ItemStack(Material.BLAZE_ROD, 12);
 
     public ArnoldSchwarzenegger() {
-        ItemMeta itemMeta = INFO.getItemMeta();
+        ItemMeta itemMeta = info.getItemMeta();
         itemMeta.setDisplayName("§fИнформация о персонаже: " + name);
         itemMeta.setLore(Arrays.asList(
                 "",
@@ -32,7 +32,7 @@ public class ArnoldSchwarzenegger implements ICharacter {
                 "§fшвырнуть в противника, так же его огромная мощь",
                 "§fпозволяет стоят стрелять из пулемета, не звадую вашим врагам."
         ));
-        INFO.setItemMeta(itemMeta);
+        info.setItemMeta(itemMeta);
 
         gunWeapon = new GunBuilder()
                 .material(Material.GOLD_AXE)
@@ -67,7 +67,7 @@ public class ArnoldSchwarzenegger implements ICharacter {
     @Override
     public void giveAmmunition(final Player currentPlayer) {
         currentPlayer.getInventory().setItem(0, gunWeapon.getItemStack());
-        currentPlayer.getInventory().setItem(1, CLIPS);
-        currentPlayer.getInventory().setItem(8, INFO);
+        currentPlayer.getInventory().setItem(1, clips);
+        currentPlayer.getInventory().setItem(8, info);
     }
 }

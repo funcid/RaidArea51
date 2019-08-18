@@ -13,10 +13,10 @@ import org.bukkit.event.player.PlayerQuitEvent;
 
 import org.bukkit.scheduler.BukkitRunnable;
 import ru.func.raidarea.RaidArea;
+import ru.func.raidarea.RaidClock;
 import ru.func.raidarea.RaidTimeStatus;
 import ru.func.raidarea.player.IPlayer;
 import ru.func.raidarea.player.PlayerBuilder;
-import ru.func.raidarea.player.RaidPlayer;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -24,13 +24,14 @@ import java.sql.SQLException;
 @AllArgsConstructor
 public class ConnectionListener implements Listener {
 
-    private final RaidArea PLUGIN;
+    private final RaidArea plugin;
+    private final RaidClock raidClock;
 
     @EventHandler
     public void onPlayerJoin(final PlayerJoinEvent e) {
         e.setJoinMessage(null);
         loadStats(e.getPlayer());
-        if (!PLUGIN.getTimeStatus().equals(RaidTimeStatus.GAME)) {
+        if (!raidClock.getTimeStatus().equals(RaidTimeStatus.GAME)) {
             e.getPlayer().setGameMode(GameMode.SURVIVAL);
             e.getPlayer().getInventory().clear();
         }
@@ -38,20 +39,20 @@ public class ConnectionListener implements Listener {
 
     @EventHandler
     public void onPlayerQuit(final PlayerQuitEvent e) {
-        if (PLUGIN.getTimeStatus().equals(RaidTimeStatus.WAITING))
-            if (PLUGIN.getMinPlayers() >= Bukkit.getOnlinePlayers().size())
-                PLUGIN.setTime(0);
+        if (raidClock.getTimeStatus().equals(RaidTimeStatus.WAITING))
+            if (plugin.getMinPlayers() >= Bukkit.getOnlinePlayers().size())
+                raidClock.setTime(0);
         e.getPlayer().getInventory().clear();
         e.setQuitMessage(null);
         saveStats(e.getPlayer(), 0);
     }
 
     public void loadStats(final Player player) {
-        if (PLUGIN.getTimeStatus().equals(RaidTimeStatus.WAITING) || PLUGIN.getTimeStatus().equals(RaidTimeStatus.STARTING)) {
+        if (raidClock.getTimeStatus().equals(RaidTimeStatus.WAITING) || raidClock.getTimeStatus().equals(RaidTimeStatus.STARTING)) {
             try {
-                ResultSet resultSet = PLUGIN.getStatement().executeQuery("SELECT * FROM `RaidPlayers` WHERE uuid = '" + player.getUniqueId() + "';");
+                ResultSet resultSet = plugin.getStatement().executeQuery("SELECT * FROM `RaidPlayers` WHERE uuid = '" + player.getUniqueId() + "';");
                 if (resultSet.next()) {
-                    PLUGIN.getPlayers().put(player.getUniqueId(), new PlayerBuilder()
+                    plugin.getPlayers().put(player.getUniqueId(), new PlayerBuilder()
                             .kills(resultSet.getInt("kills"))
                             .money(resultSet.getInt("money"))
                             .wins(resultSet.getInt("wins"))
@@ -63,7 +64,7 @@ public class ConnectionListener implements Listener {
                 } else {
                     //Создает новый профиль в базе данных
                     // uuid TEXT, money INT, characters TEXT, clef INT, kills INT, wins INT
-                    PLUGIN.getStatement().executeUpdate("INSERT INTO `RaidPlayers` (uuid, money, kills, wins) VALUES(" +
+                    plugin.getStatement().executeUpdate("INSERT INTO `RaidPlayers` (uuid, money, kills, wins) VALUES(" +
                             "'" + player.getUniqueId() + "', " +
                             "1000, " +
                             "0, " +
@@ -74,17 +75,17 @@ public class ConnectionListener implements Listener {
             }
         } else {
             player.setGameMode(GameMode.SPECTATOR);
-            player.teleport(PLUGIN.getRaidSpawn());
+            player.teleport(plugin.getRaidSpawn());
         }
     }
 
     public void saveStats(final Player player, int i) {
-        if (PLUGIN.getPlayers().containsKey(player.getUniqueId())) {
-            RaidPlayer raidPlayer = (RaidPlayer) PLUGIN.getPlayers().get(player.getUniqueId());
+        if (plugin.getPlayers().containsKey(player.getUniqueId())) {
+            IPlayer raidPlayer = plugin.getPlayers().get(player.getUniqueId());
             try {
-                ResultSet resultSet = PLUGIN.getStatement().executeQuery("SELECT * FROM `RaidPlayers` WHERE uuid = '" + player.getUniqueId() + "';");
+                ResultSet resultSet = plugin.getStatement().executeQuery("SELECT * FROM `RaidPlayers` WHERE uuid = '" + player.getUniqueId() + "';");
                 if (resultSet.next())
-                    PLUGIN.getStatement().executeUpdate("UPDATE `RaidPlayers` SET " +
+                    plugin.getStatement().executeUpdate("UPDATE `RaidPlayers` SET " +
                             "money = '" + raidPlayer.getMoney() + "', " +
                             "kills = '" + raidPlayer.getKills() + "', " +
                             "wins = '" + raidPlayer.getWins() + "' " +
@@ -94,7 +95,7 @@ public class ConnectionListener implements Listener {
                 if (i < 3)
                     saveStats(player, ++i);
             }
-            PLUGIN.getPlayers().remove(player.getUniqueId());
+            plugin.getPlayers().remove(player.getUniqueId());
         }
     }
 
@@ -130,7 +131,7 @@ public class ConnectionListener implements Listener {
         ScoreboardScore null3Score = new ScoreboardScore(scoreboard, objective, "   ");
         null3Score.setScore(0);
 
-        IPlayer raidPlayer = PLUGIN.getPlayers().get(player.getUniqueId());
+        IPlayer raidPlayer = plugin.getPlayers().get(player.getUniqueId());
 
         playerConnection.sendPacket(removeObj);
         playerConnection.sendPacket(createObj);
@@ -144,7 +145,7 @@ public class ConnectionListener implements Listener {
                     return;
                 }
 
-                ScoreboardScore characterScore = new ScoreboardScore(scoreboard, objective, "§lПерсонаж: §6§l" + (PLUGIN.getTimeStatus().equals(RaidTimeStatus.GAME) ? raidPlayer.getCurrentCharacter().getName() : "Не подобран"));
+                ScoreboardScore characterScore = new ScoreboardScore(scoreboard, objective, "§lПерсонаж: §6§l" + (raidClock.getTimeStatus().equals(RaidTimeStatus.GAME) ? raidPlayer.getCurrentCharacter().getName() : "Не подобран"));
                 characterScore.setScore(10);
                 ScoreboardScore moneyScore = new ScoreboardScore(scoreboard, objective, "§lETH: §e§l" + raidPlayer.getMoney());
                 moneyScore.setScore(9);
@@ -152,13 +153,13 @@ public class ConnectionListener implements Listener {
                 killsScore.setScore(8);
                 ScoreboardScore winsScore = new ScoreboardScore(scoreboard, objective, "§lПобед: §5§l" + raidPlayer.getWins());
                 winsScore.setScore(7);
-                ScoreboardScore timeStatusScore = new ScoreboardScore(scoreboard, objective, "§lСостояние игры: §6§l" + PLUGIN.getTimeStatus().getName());
+                ScoreboardScore timeStatusScore = new ScoreboardScore(scoreboard, objective, "§lСостояние игры: §6§l" + raidClock.getTimeStatus().getName());
                 timeStatusScore.setScore(4);
-                ScoreboardScore gameStatusScore = new ScoreboardScore(scoreboard, objective, "§lСтатус: §e§l" + String.format(PLUGIN.getGameStatus().getName(), PLUGIN.getEndermanAmount()));
+                ScoreboardScore gameStatusScore = new ScoreboardScore(scoreboard, objective, "§lСтатус: §e§l" + String.format(raidClock.getGameStatus().getName(), plugin.getEndermanAmount()));
                 gameStatusScore.setScore(3);
-                ScoreboardScore onlineScore = new ScoreboardScore(scoreboard, objective, "§lИгроков: §6§l" + Bukkit.getOnlinePlayers().size() + " §f§l/ §b§l" + PLUGIN.getMinPlayers());
+                ScoreboardScore onlineScore = new ScoreboardScore(scoreboard, objective, "§lИгроков: §6§l" + Bukkit.getOnlinePlayers().size() + " §f§l/ §b§l" + plugin.getMinPlayers());
                 onlineScore.setScore(2);
-                ScoreboardScore timeScore = new ScoreboardScore(scoreboard, objective, "§lВремя: " + secondsToString(Math.abs(PLUGIN.getTime() - RaidTimeStatus.STARTING.getTime())));
+                ScoreboardScore timeScore = new ScoreboardScore(scoreboard, objective, "§lВремя: " + secondsToString(Math.abs(raidClock.getTime() - RaidTimeStatus.STARTING.getTime())));
                 timeScore.setScore(1);
 
                 playerConnection.sendPacket(removeObj);
@@ -180,7 +181,7 @@ public class ConnectionListener implements Listener {
                 playerConnection.sendPacket(new PacketPlayOutScoreboardScore(null3Score));
                 playerConnection.sendPacket(new PacketPlayOutScoreboardScore(winsScore));
             }
-        }.runTaskTimerAsynchronously(PLUGIN, 0, 20L);
+        }.runTaskTimerAsynchronously(plugin, 0, 20L);
     }
 
     private String secondsToString(final int pTime) {
