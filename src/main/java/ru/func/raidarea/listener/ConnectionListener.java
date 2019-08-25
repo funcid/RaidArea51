@@ -62,8 +62,6 @@ public class ConnectionListener implements Listener {
                     );
                     enableScoreboard(player);
                 } else {
-                    //Создает новый профиль в базе данных
-                    // uuid TEXT, money INT, characters TEXT, clef INT, kills INT, wins INT
                     plugin.getStatement().executeUpdate("INSERT INTO `RaidPlayers` (uuid, money, kills, wins) VALUES(" +
                             "'" + player.getUniqueId() + "', " +
                             "1000, " +
@@ -71,8 +69,7 @@ public class ConnectionListener implements Listener {
                             "0);");
                     loadStats(player);
                 }
-            } catch (Exception ignored) {
-            }
+            } catch (Exception ignored) { }
         } else {
             player.setGameMode(GameMode.SPECTATOR);
             player.teleport(plugin.getRaidSpawn());
@@ -100,7 +97,8 @@ public class ConnectionListener implements Listener {
     }
 
     private void enableScoreboard(final Player player) {
-        /* С самного начала этот код понимали я и Бог,
+        /*
+        С самного начала этот код понимали я и Бог,
         прошло 10 дней, отсался только Бог
         (лан шучу, это просто)
         С кем я вообще болтаю? Ахаха

@@ -30,13 +30,13 @@ public class DamageListener implements Listener {
             return;
         }
 
-        // ENDERMAN DAMAGING
+        /* ENDERMAN DAMAGING */
         if (e.getEntity() instanceof Enderman) {
             e.setCancelled(true);
             return;
         }
 
-        // PLAYER DAMAGING
+        /* PLAYER DAMAGING */
         if (e.getEntity() instanceof Player) {
 
             pullDown((Player) e.getEntity());
@@ -44,30 +44,29 @@ public class DamageListener implements Listener {
             Player attacker;
             Shuffler raidPlayer;
 
-            // BY PLAYER
+            /* BY PLAYER */
             if (e.getDamager() instanceof Player) {
                 attacker = (Player) e.getDamager();
                 raidPlayer = plugin.getPlayers().get(attacker.getUniqueId());
-                if (plugin.getPlayers().get(e.getEntity().getUniqueId()).isDefend() != raidPlayer.isDefend()) {
-                    if (((Player) e.getDamager()).getInventory().getItemInMainHand().getItemMeta() == null) {
-                        e.setDamage(2);
-                        raidPlayer.depositMoney(10);
-                        attacker.sendMessage("§l+ 10 ETH §eЗа отличный удар.");
-                        attacker.playSound(attacker.getLocation(), Sound.ENTITY_ARROW_HIT_PLAYER, 1, 1);
-                    } else
-                        e.setCancelled(true);
+                if (plugin.getPlayers().get(e.getEntity().getUniqueId()).isDefend() != raidPlayer.isDefend() &&
+                        ((Player) e.getDamager()).getInventory().getItemInMainHand().getItemMeta() == null) {
+
+                    e.setDamage(2);
+                    raidPlayer.depositMoney(10);
+                    attacker.sendMessage("§l+ 10 ETH §eЗа отличный удар.");
+                    attacker.playSound(attacker.getLocation(), Sound.ENTITY_ARROW_HIT_PLAYER, 1, 1);
                 } else
                     e.setCancelled(true);
             }
 
-            // BY SNOWBALL
+            /* BY SNOWBALL */
             else if (e.getDamager() instanceof Snowball) {
                 attacker = ((Player) ((Snowball) e.getDamager()).getShooter());
                 raidPlayer = plugin.getPlayers().get(attacker.getUniqueId());
                 if (plugin.getPlayers().get(e.getEntity().getUniqueId()).isDefend() != raidPlayer.isDefend()) {
                     e.setDamage(raidPlayer.getCurrentCharacter().getWeapon().getDamage());
                     raidPlayer.depositMoney(15);
-                    attacker.sendMessage("§l+ 15 ETH §eЗа точный попадание в цель.");
+                    attacker.sendMessage("§l+ 15 ETH §eЗа точное попадание в цель.");
                     attacker.playSound(attacker.getLocation(), Sound.ENTITY_ARROW_HIT_PLAYER, 1, 1);
                 } else
                     e.setCancelled(true);
@@ -80,9 +79,10 @@ public class DamageListener implements Listener {
     public void onEntityDamage(final EntityDamageEvent e) {
         if (e.getEntity() instanceof Player) {
             pullDown((Player) e.getEntity());
-            if (e.getCause().equals(EntityDamageEvent.DamageCause.FALL))
-                e.setCancelled(true);
-            else if (e.getCause().equals(EntityDamageEvent.DamageCause.BLOCK_EXPLOSION) ||
+
+            e.setCancelled(e.getCause().equals(EntityDamageEvent.DamageCause.FALL));
+
+            if (e.getCause().equals(EntityDamageEvent.DamageCause.BLOCK_EXPLOSION) ||
                     e.getCause().equals(EntityDamageEvent.DamageCause.ENTITY_EXPLOSION) ||
                     e.getCause().equals(EntityDamageEvent.DamageCause.LIGHTNING))
                 e.setCancelled(!plugin.getPlayers().get(e.getEntity().getUniqueId()).isDefend());

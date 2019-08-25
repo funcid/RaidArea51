@@ -4,8 +4,8 @@ import lombok.Getter;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.ItemMeta;
 import ru.func.raidarea.character.CharacterDelayUtil;
+import ru.func.raidarea.character.InfoItemBuilder;
 import ru.func.raidarea.weapon.Weaponry;
 import ru.func.raidarea.weapon.gun.GunBuilder;
 
@@ -19,20 +19,19 @@ public class ElonMusk implements Attacker {
     @Getter
     private final String name = "§e§lИлон Маск";
 
-    private final ItemStack info = new ItemStack(Material.PAPER);
+    private final ItemStack info;
     private final ItemStack clips = new ItemStack(Material.DIAMOND, 8);
 
     public ElonMusk() {
-        ItemMeta itemMeta = info.getItemMeta();
-        itemMeta.setDisplayName("§fИнформация о персонаже: " + name);
-        itemMeta.setLore(Arrays.asList(
-                "",
-                "§fВаш персонаж обладает огромными средтвами и умом,",
-                "§fв свое лучше время он основал SpaceX и Tesla",
-                "§fпо-этому создать космический луч со спутника",
-                "§fдля него не составит больших хлапот."
-        ));
-        info.setItemMeta(itemMeta);
+
+        info = new InfoItemBuilder()
+                .name("§fИнформация о персонаже: " + name)
+                .lore("")
+                .lore("§fВаш персонаж обладает огромными средтвами и умом,")
+                .lore("§fв свое лучше время он основал SpaceX и Tesla")
+                .lore("§fпо-этому создать космический луч со спутника")
+                .lore("§fдля него не составит больших хлапот.")
+                .build();
 
         weapon = new GunBuilder()
                 .material(Material.GOLD_HOE)

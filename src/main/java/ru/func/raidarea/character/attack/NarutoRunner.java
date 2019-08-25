@@ -4,9 +4,9 @@ import lombok.Getter;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
+import ru.func.raidarea.character.InfoItemBuilder;
 import ru.func.raidarea.weapon.gun.GunBuilder;
 import ru.func.raidarea.weapon.gun.Shooting;
 
@@ -18,7 +18,7 @@ public class NarutoRunner implements Attacker {
     @Getter
     private final String name = "§e§lНаруто Раннер";
 
-    private final ItemStack info = new ItemStack(Material.PAPER);
+    private final ItemStack info;
     private final ItemStack clips = new ItemStack(Material.FIREWORK_CHARGE, 16);
 
     @Getter
@@ -26,18 +26,15 @@ public class NarutoRunner implements Attacker {
     private final PotionEffect speed;
 
     public NarutoRunner() {
-        ItemMeta itemMeta = info.getItemMeta();
-        itemMeta.setDisplayName("§fИнформация о персонаже: " + name);
-        itemMeta.setLore(Arrays.asList(
-                "",
-                "§fВаш персонаж обладает огромной скоростью,",
-                "§fкогда заносит руки за спину и начинает бежать",
-                "§fон становится настолько быстрым, что даже пули",
-                "§fне способны его остановить.",
-                "",
-                "§7[§fНе повторять в реальной жизни, вы упадете лицом в пол§7]"
-        ));
-        info.setItemMeta(itemMeta);
+
+        info = new InfoItemBuilder()
+                .name("§fИнформация о персонаже: " + name)
+                .lore("")
+                .lore("§fВаш персонаж обладает огромной скоростью,")
+                .lore("§fкогда заносит руки за спину и начинает бежать")
+                .lore("§fон становится настолько быстрым, что даже пули")
+                .lore("§fне способны его остановить.")
+                .build();
 
         speed = new PotionEffect(PotionEffectType.SPEED, 99999, 20);
 

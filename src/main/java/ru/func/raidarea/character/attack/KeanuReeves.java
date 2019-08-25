@@ -7,6 +7,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.util.Vector;
 import ru.func.raidarea.character.CharacterDelayUtil;
+import ru.func.raidarea.character.InfoItemBuilder;
 import ru.func.raidarea.weapon.gun.GunBuilder;
 import ru.func.raidarea.weapon.gun.Shooting;
 
@@ -17,25 +18,19 @@ public class KeanuReeves implements Attacker {
 
     @Getter
     private final String name = "§e§lКеану Ривз";
-    private final ItemStack info = new ItemStack(Material.PAPER);
+    private final ItemStack info;
     private final ItemStack hook = new ItemStack(Material.FISHING_ROD);
     private final ItemStack clips = new ItemStack(Material.CLAY_BRICK, 16);
     @Getter
     private final Shooting weapon;
 
     public KeanuReeves() {
-        ItemMeta itemMeta = info.getItemMeta();
-        itemMeta.setDisplayName("§fИнформация о персонаже: " + name);
-        itemMeta.setLore(Arrays.asList(
-                "",
-                "§fБог киберпанка."
-        ));
-        info.setItemMeta(itemMeta);
 
-        itemMeta = hook.getItemMeta();
-        itemMeta.setDisplayName("§e§lХук");
-        itemMeta.setUnbreakable(true);
-        hook.setItemMeta(itemMeta);
+        info = new InfoItemBuilder()
+                .name("§fИнформация о персонаже: " + name)
+                .lore("")
+                .lore("§fБог киберпанка.")
+                .build();
 
         weapon = new GunBuilder()
                 .material(Material.WOOD_HOE)
@@ -49,6 +44,11 @@ public class KeanuReeves implements Attacker {
                         "§fОбычное, но не менее опасное оружие."
                 )))
                 .build();
+
+        ItemMeta itemMeta = hook.getItemMeta();
+        itemMeta.setDisplayName("§e§lХук");
+        itemMeta.setUnbreakable(true);
+        hook.setItemMeta(itemMeta);
     }
 
     @Override

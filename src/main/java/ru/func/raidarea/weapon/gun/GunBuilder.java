@@ -37,7 +37,7 @@ public class GunBuilder {
         lore.add("");
         lore.add("§fУрон: §c§l" + damage);
         lore.add("§fМаксимум выстрелов: §e§l" + bullets);
-        lore.add("§fВремя перезардки (с): §b§l" + delay);
+        lore.add("§fВремя перезарядки (с): §b§l" + delay);
         meta.setLore(lore);
         this.itemStack.setItemMeta(meta);
         return this;

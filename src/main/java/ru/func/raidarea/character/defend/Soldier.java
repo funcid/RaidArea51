@@ -7,6 +7,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import ru.func.raidarea.character.CharacterDelayUtil;
+import ru.func.raidarea.character.InfoItemBuilder;
 import ru.func.raidarea.weapon.gun.GunBuilder;
 import ru.func.raidarea.weapon.gun.Shooting;
 
@@ -20,7 +21,7 @@ public class Soldier implements Defender {
     @Getter
     private final Shooting weapon;
 
-    private final ItemStack info = new ItemStack(Material.PAPER);
+    private final ItemStack info;
     private final ItemStack clips = new ItemStack(Material.GLOWSTONE_DUST, 14);
 
     private final ItemStack helmet = new ItemStack(Material.LEATHER_HELMET);
@@ -30,16 +31,15 @@ public class Soldier implements Defender {
 
 
     public Soldier() {
-        ItemMeta infoItemMeta = info.getItemMeta();
-        infoItemMeta.setDisplayName("§fИнформация о персонаже: " + name);
-        infoItemMeta.setLore(Arrays.asList(
-                "",
-                "§fВаш персонаж это рядовой солдат,",
-                "§fкоторому надо любой ценой укрыть секреты",
-                "§fзоны 51, да бы всякие невежды не знали о",
-                "§fсуществавании иных форм жизни."
-        ));
-        info.setItemMeta(infoItemMeta);
+
+        info = new InfoItemBuilder()
+                .name("§fИнформация о персонаже: " + name)
+                .lore("")
+                .lore("§fВаш персонаж это рядовой солдат,")
+                .lore("§fкоторому надо любой ценой укрыть секреты")
+                .lore("§fзоны 51, да бы всякие невежды не знали о")
+                .lore("§fсуществавании иных форм жизни.")
+                .build();
 
         setUnbreakable(helmet);
         setUnbreakable(chestplate);
@@ -63,7 +63,7 @@ public class Soldier implements Defender {
                 .build();
 
         ItemMeta clipItemMeta = clips.getItemMeta();
-        infoItemMeta.setDisplayName("§f§lОбойма");
+        clipItemMeta.setDisplayName("§f§lОбойма");
         clips.setItemMeta(clipItemMeta);
     }
 

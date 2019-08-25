@@ -108,14 +108,14 @@ public class RaidArea extends JavaPlugin {
             getLogger().info("[!] Connection exception.");
         }
 
-        Bukkit.getPluginManager().registerEvents(new BlockEventListener(this), this);
+        Bukkit.getPluginManager().registerEvents(connectionListener, this);
         Bukkit.getPluginManager().registerEvents(new UsualListener(), this);
+        Bukkit.getPluginManager().registerEvents(new BlockEventListener(this), this);
         Bukkit.getPluginManager().registerEvents(new RespawnListener(this), this);
         Bukkit.getPluginManager().registerEvents(new SneakListener(this, raidClock), this);
         Bukkit.getPluginManager().registerEvents(new InteractListener(this, raidClock), this);
         Bukkit.getPluginManager().registerEvents(new MoveListener(this, raidClock), this);
         Bukkit.getPluginManager().registerEvents(new DamageListener(this, raidClock), this);
-        Bukkit.getPluginManager().registerEvents(connectionListener, this);
 
         Bukkit.getOnlinePlayers().forEach(connectionListener::loadStats);
 
